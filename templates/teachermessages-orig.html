@@ -1,0 +1,229 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block title %}
+K.T.V Teacher Messages
+{% endblock title %}
+
+
+{% block pagename %}
+messages
+{% endblock pagename %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static 'styling/teachermessages.css' %}>
+{% endblock headeradditionalcss %}
+
+
+{% block center_feed_content %}
+<!-- Main Area -->
+ <div class="main-area">
+
+   <!-- Right: Chat Window -->
+   <div class="chat-panel">
+     <div class="chat-header">
+       <div class="chat-user-info">
+         <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4"
+           class="chat-avatar" alt="Principal Sarah" />
+         <div class="chat-user-details">
+           <div class="chat-user-name">Principal Sarah</div>
+           <div class="chat-user-status">
+             Greenwood High School • Active now
+           </div>
+         </div>
+       </div>
+       <div class="chat-actions">
+         <div class="action-icon" data-media-type="banani-button">
+           <iconify-icon icon="lucide:phone" style="font-size: 20px"></iconify-icon>
+         </div>
+         <div class="action-icon" data-media-type="banani-button">
+           <iconify-icon icon="lucide:video" style="font-size: 20px"></iconify-icon>
+         </div>
+         <div class="action-icon" data-media-type="banani-button">
+           <iconify-icon icon="lucide:more-vertical" style="font-size: 20px"></iconify-icon>
+         </div>
+       </div>
+     </div>
+
+     <div class="messages-area">
+       <div class="date-divider">Today</div>
+
+       <!-- Received Message -->
+       <div class="message-row received">
+         <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4" style="
+             width: 32px;
+             height: 32px;
+             border-radius: 50%;
+             align-self: flex-end;
+             margin-bottom: 4px;
+           " alt="Sarah" />
+         <div class="message-bubble">
+           Hi Alex! We reviewed your application for the Math Teacher
+           role. Impressive experience with middle schoolers!
+           <div class="message-meta">10:30 AM</div>
+         </div>
+       </div>
+
+       <!-- Sent Message -->
+       <div class="message-row sent">
+         <div class="message-bubble">
+           Thanks Sarah! I really admire Greenwood's focus on STEM. I'd
+           love to discuss how I can contribute.
+           <div class="message-meta">
+             10:32 AM
+             <span class="read-receipt"><iconify-icon icon="lucide:check-check"
+                 style="font-size: 14px"></iconify-icon></span>
+           </div>
+         </div>
+       </div>
+
+       <!-- Received Message -->
+       <div class="message-row received">
+         <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4" style="
+             width: 32px;
+             height: 32px;
+             border-radius: 50%;
+             align-self: flex-end;
+             margin-bottom: 4px;
+           " alt="Sarah" />
+         <div class="message-bubble">
+           That sounds great. We are looking for someone to start next
+           term. What are your salary expectations?
+           <div class="message-meta">10:41 AM</div>
+         </div>
+       </div>
+
+       <!-- Received Message (Follow up) -->
+       <div class="message-row received">
+         <div style="width: 32px"></div>
+         <!-- Spacer for avatar alignment -->
+         <div class="message-bubble">
+           Is this salary range okay?
+           <div class="message-meta">10:42 AM</div>
+         </div>
+       </div>
+     </div>
+
+     <div class="chat-input-container">
+
+
+       <div class="chat-input-wrapper">
+         <div class="action-icon" title="Attach CV/File" data-media-type="banani-button" style="padding-bottom: 4px">
+           <iconify-icon icon="lucide:paperclip" style="font-size: 20px"></iconify-icon>
+         </div>
+         <div class="action-icon" title="Emoji" data-media-type="banani-button" style="padding-bottom: 4px">
+           <iconify-icon icon="lucide:smile" style="font-size: 20px"></iconify-icon>
+         </div>
+
+         <textarea class="chat-textarea" placeholder="Type a message..." rows="1"></textarea>
+
+         <div class="send-btn" data-media-type="banani-button">
+           <iconify-icon icon="lucide:send-horizontal" style="font-size: 18px"></iconify-icon>
+         </div>
+       </div>
+     </div>
+   </div>
+
+ </div>
+    
+
+{% endblock center_feed_content %}
+
+{% block rightsidebar %}
+    <div class="conversations-panel menu-card scrollview">
+      <div class="list-header">
+        <div class="list-title">Messages</div>
+        <div class="action-icon" data-media-type="banani-button">
+          <iconify-icon icon="lucide:edit" style="font-size: 20px"></iconify-icon>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <iconify-icon icon="lucide:search" style="font-size: 16px"></iconify-icon>
+        <span>Search messages...</span>
+      </div>
+
+      <div style="overflow-y: auto; flex: 1">
+        <!-- Item 1: Active -->
+        <div class="conversation-item active" data-media-type="banani-button">
+          <div class="conv-avatar-container">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4"
+              class="conv-avatar" alt="Principal Sarah" />
+            <div class="online-indicator"></div>
+          </div>
+          <div class="conv-content">
+            <div class="conv-top-row">
+              <span class="conv-name">Principal Sarah</span>
+              <span class="conv-time">10:42 AM</span>
+            </div>
+            <div class="conv-snippet unread">
+              Is this salary range okay?
+            </div>
+          </div>
+          <div style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            ">
+            <div class="badge">2</div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="conversation-item" data-media-type="banani-button">
+          <div class="conv-avatar-container">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F25-35%2FSouth%20Asian%2F1"
+              class="conv-avatar" alt="Recruiter Raj" />
+          </div>
+          <div class="conv-content">
+            <div class="conv-top-row">
+              <span class="conv-name">Recruiter Raj</span>
+              <span class="conv-time">Yesterday</span>
+            </div>
+            <div class="conv-snippet">
+              <iconify-icon icon="lucide:check-check" style="font-size: 14px; margin-right: 2px"></iconify-icon>
+              I've sent the updated CV.
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="conversation-item" data-media-type="banani-button">
+          <div class="conv-avatar-container">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F3"
+              class="conv-avatar" alt="Maria Garcia" />
+          </div>
+          <div class="conv-content">
+            <div class="conv-top-row">
+              <span class="conv-name">Maria Garcia</span>
+              <span class="conv-time">Tue</span>
+            </div>
+            <div class="conv-snippet">
+              Thanks for the interview opportunity!
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="conversation-item" data-media-type="banani-button">
+          <div class="conv-avatar-container">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F50-65%2FAfrican%2F2"
+              class="conv-avatar" alt="Westside Academy" />
+          </div>
+          <div class="conv-content">
+            <div class="conv-top-row">
+              <span class="conv-name">Westside Academy</span>
+              <span class="conv-time">Mon</span>
+            </div>
+            <div class="conv-snippet">
+              Let's schedule a call for next week.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock rightsidebar %}
+
+

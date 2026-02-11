@@ -1,0 +1,172 @@
+.saved-jobs-page {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+span{
+  color: var(--foreground);
+}
+
+/* ---------- HEADER ---------- */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.header-left {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header-left iconify-icon {
+  font-size: 26px;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.header-left p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.job-count {
+  font-weight: 600;
+}
+
+/* ---------- JOB LIST ---------- */
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---------- JOB CARD ---------- */
+
+.job-card {
+  padding: 1.75rem;
+  border-radius: 22px;
+  position: relative;
+}
+
+.job-card.featured {
+  border: 1px solid rgba(255, 215, 0, 0.25);
+}
+
+.job-card.urgent {
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.25);
+}
+
+/* ---------- TOP ---------- */
+
+.job-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.job-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.job-title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/* ---------- BADGES ---------- */
+
+.badge {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.badge.featured {
+  background:var(--glass-bg);
+}
+
+.badge.urgent {
+  background:var(--glass-bg);
+}
+
+/* ---------- META ---------- */
+
+.job-meta,
+.job-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.job-meta iconify-icon,
+.job-info iconify-icon {
+  margin-right: 0.3rem;
+}
+
+/* ---------- SUBJECTS ---------- */
+
+.subjects {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.subject {
+  background:var(--glass-bg);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+/* ---------- SALARY ---------- */
+
+.salary {
+  margin-top: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ---------- ACTIONS ---------- */
+
+.job-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  background:var(--glass-bg);
+  border: none;
+  cursor: pointer;
+}
+
+.icon-btn.saved iconify-icon {
+  color: #4ade80;
+  font-size: 20px;
+}
+
+.btn.danger {
+  background:var(--card);
+  color: #f87171;
+}
+
+

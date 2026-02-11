@@ -1,0 +1,371 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+Admin Dashboard
+{% endblock title %}
+
+{% block headeradditionalcss %}
+ <link rel="stylesheet" href={% static "styling/admindashboard.css" %}>
+{% endblock headeradditionalcss %}
+
+{% block center_feed_content %}
+
+<div class="main-area">
+  <div class="content-container">
+    <div class="header-actions">
+      <div>
+        <h1 class="page-title">Overview</h1>
+        <div class="date-display">Tuesday, October 24, 2024</div>
+      </div>
+      <div
+        class="btn-sm btn-approve"
+        data-media-type="banani-button"
+        style="
+          padding: 10px 16px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        "
+      >
+        <iconify-icon
+          icon="lucide:download"
+          style="font-size: 16px"
+        ></iconify-icon>
+        Export Report
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Total Teachers</div>
+          <div class="stat-icon">
+            <iconify-icon
+              icon="lucide:users"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="stat-value">12,450</div>
+        <div class="stat-trend trend-up">
+          <iconify-icon
+            icon="lucide:trending-up"
+            style="font-size: 16px"
+          ></iconify-icon>
+          +12% from last month
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Active Jobs</div>
+          <div class="stat-icon">
+            <iconify-icon
+              icon="lucide:briefcase"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="stat-value">843</div>
+        <div class="stat-trend trend-up">
+          <iconify-icon
+            icon="lucide:trending-up"
+            style="font-size: 16px"
+          ></iconify-icon>
+          +5% from last month
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Pending Approval</div>
+          <div class="stat-icon">
+            <iconify-icon
+              icon="lucide:file-clock"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="stat-value">28</div>
+        <div
+          class="stat-trend"
+          style="color: var(--warning-foreground)"
+        >
+          <iconify-icon
+            icon="lucide:alert-circle"
+            style="font-size: 16px"
+          ></iconify-icon>
+          Action needed
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-label">Revenue</div>
+          <div class="stat-icon">
+            <iconify-icon
+              icon="lucide:credit-card"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="stat-value">$45.2k</div>
+        <div class="stat-trend trend-up">
+          <iconify-icon
+            icon="lucide:trending-up"
+            style="font-size: 16px"
+          ></iconify-icon>
+          +8% from last month
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics Graph -->
+    <div class="analytics-section">
+      <div class="section-header">
+        <div class="section-title">Application Activity</div>
+        <div style="display: flex; gap: 8px">
+          <div class="btn-sm" style="background: var(--muted)">
+            Weekly
+          </div>
+          <div class="btn-sm">Monthly</div>
+        </div>
+      </div>
+
+      <div class="graph-container">
+        <!-- Simulated CSS Bars -->
+        <div class="bar-group">
+          <div class="bar" style="height: 40%"></div>
+          <div class="bar-label">Mon</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 65%"></div>
+          <div class="bar-label">Tue</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 55%"></div>
+          <div class="bar-label">Wed</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 80%"></div>
+          <div class="bar-label">Thu</div>
+        </div>
+        <div class="bar-group">
+          <div
+            class="bar"
+            style="height: 95%; background-color: var(--accent)"
+          ></div>
+          <div class="bar-label">Fri</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 30%"></div>
+          <div class="bar-label">Sat</div>
+        </div>
+        <div class="bar-group">
+          <div class="bar" style="height: 25%"></div>
+          <div class="bar-label">Sun</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Grid -->
+    <div class="content-grid">
+      <!-- Pending Jobs Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="section-title">Pending Job Approvals</div>
+          <div class="action-link">View All</div>
+        </div>
+
+        <div class="list-item">
+          <div style="display: flex; gap: 16px; align-items: center">
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                background: #e0f2fe;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #0284c7;
+              "
+            >
+              <iconify-icon
+                icon="lucide:calculator"
+                style="font-size: 20px"
+              ></iconify-icon>
+            </div>
+            <div class="item-info">
+              <div class="item-title">HS Math Teacher</div>
+              <div class="item-subtitle">
+                Lincoln High School • Posted 2h ago
+              </div>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button
+              class="btn-sm btn-reject"
+              data-media-type="banani-button"
+            >
+              Decline
+            </button>
+            <button
+              class="btn-sm btn-approve"
+              data-media-type="banani-button"
+            >
+              Approve
+            </button>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div style="display: flex; gap: 16px; align-items: center">
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                background: #dcfce7;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #16a34a;
+              "
+            >
+              <iconify-icon
+                icon="lucide:flask-conical"
+                style="font-size: 20px"
+              ></iconify-icon>
+            </div>
+            <div class="item-info">
+              <div class="item-title">Science Department Head</div>
+              <div class="item-subtitle">
+                West Valley Academy • Posted 5h ago
+              </div>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button
+              class="btn-sm btn-reject"
+              data-media-type="banani-button"
+            >
+              Decline
+            </button>
+            <button
+              class="btn-sm btn-approve"
+              data-media-type="banani-button"
+            >
+              Approve
+            </button>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div style="display: flex; gap: 16px; align-items: center">
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                background: #fae8ff;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #a855f7;
+              "
+            >
+              <iconify-icon
+                icon="lucide:palette"
+                style="font-size: 20px"
+              ></iconify-icon>
+            </div>
+            <div class="item-info">
+              <div class="item-title">Art Teacher (Part-time)</div>
+              <div class="item-subtitle">
+                Creative Kids Montessori • Posted 8h ago
+              </div>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button
+              class="btn-sm btn-reject"
+              data-media-type="banani-button"
+            >
+              Decline
+            </button>
+            <button
+              class="btn-sm btn-approve"
+              data-media-type="banani-button"
+            >
+              Approve
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Users Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="section-title">New Teachers</div>
+          <div class="action-link">View All</div>
+        </div>
+
+        <div class="list-item">
+          <div style="display: flex; gap: 12px; align-items: center">
+            <img
+              src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F2"
+              class="user-avatar"
+              alt="Teacher"
+            />
+            <div class="item-info">
+              <div class="item-title">Maria Rodriguez</div>
+              <div class="item-subtitle">Physics • 3 yrs exp</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div style="display: flex; gap: 12px; align-items: center">
+            <img
+              src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F35-50%2FAfrican%2F4"
+              class="user-avatar"
+              alt="Teacher"
+            />
+            <div class="item-info">
+              <div class="item-title">James Okafor</div>
+              <div class="item-subtitle">History • 8 yrs exp</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div style="display: flex; gap: 12px; align-items: center">
+            <img
+              src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F18-25%2FEast%20Asian%2F1"
+              class="user-avatar"
+              alt="Teacher"
+            />
+            <div class="item-info">
+              <div class="item-title">Sarah Kim</div>
+              <div class="item-subtitle">English • New Grad</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="list-item"
+          style="justify-content: center; padding: 12px"
+        >
+          <div class="action-link" style="font-size: 13px">
+            See 15 more new signups
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock center_feed_content %}

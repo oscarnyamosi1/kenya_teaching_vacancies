@@ -1,0 +1,175 @@
+/* =========================
+   ROOT THEME (Mac + IG)
+========================= */
+:root {
+  --bg: #0b0b10;
+  --card-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --text: #f5f5f7;
+  --muted-foreground: rgba(255, 255, 255, 0.55);
+
+  --ig-gradient: linear-gradient(
+    135deg,
+    #f58529,
+    #dd2a7b,
+    #8134af,
+    #515bd4
+  );
+
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --blur: blur(22px);
+}
+
+/* =========================
+   GLOBAL
+========================= */
+body {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(129, 52, 175, 0.15), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(81, 91, 212, 0.18), transparent 45%),
+    var(--bg);
+  color: var(--text);
+}
+
+/* =========================
+   GLASS CARD
+========================= */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* =========================
+   FILTER BAR
+========================= */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-input {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.08);
+  padding: 0 14px;
+  height: 46px;
+  border-radius: var(--radius-md);
+}
+
+.filter-input input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  width: 100%;
+}
+
+select {
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  border: none;
+  padding: 0 14px;
+  height: 46px;
+  border-radius: var(--radius-md);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+  background: rgba(255,255,255,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+.btn.primary {
+  background: var(--ig-gradient);
+}
+
+/* =========================
+   TEACHER GRID
+========================= */
+.teacher-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+/* =========================
+   CARD HEADER
+========================= */
+.job-card-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   STORY RING (IG STYLE)
+========================= */
+.story-ring {
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--ig-gradient);
+}
+
+.story-ring img {
+  border: 2px solid rgba(0,0,0,0.5);
+}
+
+/* =========================
+   TAGS
+========================= */
+.tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: rgba(255,255,255,0.14);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.job-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  gap: 10px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 640px) {
+  .filter-bar {
+    flex-direction: column;
+  }
+}

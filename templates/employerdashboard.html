@@ -1,0 +1,605 @@
+<div
+  class="export-wrapper"
+  style="
+    width: 1440px;
+    min-height: 812px;
+    position: relative;
+    font-family: var(--font-family-body);
+    background-color: var(--background);
+  "
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&family=Geist:wght@100;200;300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:wght@200;300;400;500;600;700;800;900&family=PT+Serif:wght@400;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Shantell+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Teacher Notifications</title>
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+        .export-wrapper {
+          margin: 0;
+          font-family: var(--font-family-body);
+          background-color: var(--background);
+          color: var(--foreground);
+          display: flex;
+          flex-direction: column;
+          min-height: 812px;
+          overflow: hidden;
+        }
+      </style>
+
+      <style id="layout-styles">
+        .app-container {
+          display: flex;
+          flex: 1;
+          min-height: 812px;
+          background-color: var(--background);
+          overflow: hidden;
+        }
+
+        .sidebar {
+          width: 280px;
+          background-color: var(--card);
+          border-right: 1px solid var(--border);
+          display: flex;
+          flex-direction: column;
+          padding: 24px 16px;
+          gap: 8px;
+          overflow-y: auto;
+          flex-shrink: 0;
+        }
+
+        .main-area {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+          background-color: var(--secondary);
+          align-items: center;
+        }
+
+        .content-container {
+          width: 100%;
+          max-width: 700px;
+          padding: 32px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+      </style>
+
+      <style id="nav-styles">
+        .nav-logo {
+          padding: 0 12px 16px;
+        }
+
+        .nav-logo h2 {
+          font-size: 24px;
+          font-weight: 700;
+          color: var(--primary);
+          margin: 0;
+        }
+
+        .nav-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px;
+          border-radius: var(--radius-md);
+          color: var(--muted-foreground);
+          font-weight: 500;
+          font-size: 15px;
+          cursor: pointer;
+          white-space: nowrap;
+        }
+
+        .nav-item.active {
+          background-color: var(--secondary);
+          color: var(--foreground);
+        }
+
+        .nav-icon {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      </style>
+
+      <style id="notification-styles">
+        .page-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 8px;
+        }
+
+        .page-title {
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .mark-read-btn {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--primary);
+          cursor: pointer;
+          padding: 8px 12px;
+          border-radius: var(--radius-md);
+        }
+
+        .mark-read-btn:hover {
+          background-color: var(--background);
+        }
+
+        .filter-tabs {
+          display: flex;
+          gap: 8px;
+        }
+
+        .filter-tab {
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 600;
+          background-color: var(--card);
+          color: var(--muted-foreground);
+          cursor: pointer;
+          border: 1px solid transparent;
+        }
+
+        .filter-tab.active {
+          background-color: var(--primary);
+          color: var(--primary-foreground);
+        }
+
+        .notification-section {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .section-label {
+          font-size: 16px;
+          font-weight: 700;
+          color: var(--foreground);
+        }
+
+        .notification-card {
+          background-color: var(--card);
+          border-radius: var(--radius-lg);
+          padding: 16px;
+          display: flex;
+          gap: 16px;
+          align-items: flex-start;
+          position: relative;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+          border: 1px solid var(--border);
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        .notification-card:hover {
+          background-color: var(--muted);
+        }
+
+        .notification-card.unread {
+          background-color: var(--input);
+          border-color: var(--primary);
+        }
+
+        .notif-avatar-wrapper {
+          position: relative;
+          flex-shrink: 0;
+        }
+
+        .notif-avatar {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .notif-type-icon {
+          position: absolute;
+          bottom: -2px;
+          right: -2px;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          border: 2px solid var(--card);
+        }
+
+        .type-message {
+          background-color: var(--primary);
+        }
+        .type-job {
+          background-color: var(--success);
+        }
+        .type-alert {
+          background-color: var(--destructive);
+        }
+        .type-view {
+          background-color: var(--accent-foreground);
+        }
+
+        .notif-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .notif-text {
+          font-size: 15px;
+          line-height: 1.4;
+          color: var(--foreground);
+        }
+
+        .notif-text strong {
+          font-weight: 600;
+        }
+
+        .notif-time {
+          font-size: 13px;
+          color: var(--primary);
+          font-weight: 500;
+        }
+
+        .notif-meta {
+          font-size: 13px;
+          color: var(--muted-foreground);
+        }
+
+        .unread-indicator {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: var(--primary);
+          margin-top: 6px;
+          flex-shrink: 0;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <div class="nav-logo">
+            <h2>JobSocial</h2>
+          </div>
+
+          <div class="nav-item" data-media-type="banani-button">
+            <div class="nav-icon">
+              <iconify-icon
+                icon="lucide:home"
+                style="font-size: 24px; color: currentColor"
+              ></iconify-icon>
+            </div>
+            <span>Feed</span>
+          </div>
+
+          <div class="nav-item" data-media-type="banani-button">
+            <div class="nav-icon">
+              <iconify-icon
+                icon="lucide:search"
+                style="font-size: 24px; color: currentColor"
+              ></iconify-icon>
+            </div>
+            <span>Explore</span>
+          </div>
+
+          <div class="nav-item" data-media-type="banani-button">
+            <div class="nav-icon">
+              <iconify-icon
+                icon="lucide:message-circle"
+                style="font-size: 24px; color: currentColor"
+              ></iconify-icon>
+            </div>
+            <span>Messages</span>
+          </div>
+
+          <div class="nav-item active" data-media-type="banani-button">
+            <div class="nav-icon">
+              <iconify-icon
+                icon="lucide:bell"
+                style="font-size: 24px; color: currentColor"
+              ></iconify-icon>
+            </div>
+            <span>Notifications</span>
+          </div>
+
+          <div class="nav-item" data-media-type="banani-button">
+            <div class="nav-icon">
+              <iconify-icon
+                icon="lucide:square-pen"
+                style="font-size: 24px; color: currentColor"
+              ></iconify-icon>
+            </div>
+            <span>Post a Job</span>
+          </div>
+
+          <div class="nav-item" data-media-type="banani-button">
+            <div class="nav-icon">
+              <iconify-icon
+                icon="lucide:user"
+                style="font-size: 24px; color: currentColor"
+              ></iconify-icon>
+            </div>
+            <span>Profile</span>
+          </div>
+
+          <div
+            style="
+              margin-top: auto;
+              border-top: 1px solid var(--border);
+              padding-top: 16px;
+            "
+          >
+            <div class="nav-item" data-media-type="banani-button">
+              <div class="nav-icon">
+                <iconify-icon
+                  icon="lucide:settings"
+                  style="font-size: 24px; color: currentColor"
+                ></iconify-icon>
+              </div>
+              <span>Settings</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-area">
+          <div class="content-container">
+            <div class="page-header">
+              <h1 class="page-title">Notifications</h1>
+              <div class="mark-read-btn" data-media-type="banani-button">
+                Mark all as read
+              </div>
+            </div>
+
+            <div class="filter-tabs">
+              <div class="filter-tab active" data-media-type="banani-button">
+                All
+              </div>
+              <div class="filter-tab" data-media-type="banani-button">
+                Job Alerts
+              </div>
+              <div class="filter-tab" data-media-type="banani-button">
+                Applications
+              </div>
+              <div class="filter-tab" data-media-type="banani-button">
+                Mentions
+              </div>
+            </div>
+
+            <!-- New Section -->
+            <div class="notification-section">
+              <div class="section-label">New</div>
+
+              <!-- Notif 1: Job Alert (Unread) -->
+              <div
+                class="notification-card unread"
+                data-media-type="banani-button"
+              >
+                <div class="notif-avatar-wrapper">
+                  <img
+                    src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F2"
+                    class="notif-avatar"
+                    alt="Recruiter"
+                  />
+                  <div class="notif-type-icon type-job">
+                    <iconify-icon
+                      icon="lucide:briefcase"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="notif-content">
+                  <div class="notif-text">
+                    <strong>Sunnyvale District</strong> posted a new position:
+                    <strong>Senior History Teacher</strong> matching your
+                    preferences.
+                  </div>
+                  <div class="notif-time">20 minutes ago</div>
+                </div>
+                <div class="unread-indicator"></div>
+              </div>
+
+              <!-- Notif 2: Application Update (Unread) -->
+              <div
+                class="notification-card unread"
+                data-media-type="banani-button"
+              >
+                <div class="notif-avatar-wrapper">
+                  <img
+                    src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F50-65%2FAfrican%2F2"
+                    class="notif-avatar"
+                    alt="Westside Academy"
+                  />
+                  <div class="notif-type-icon type-view">
+                    <iconify-icon
+                      icon="lucide:eye"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="notif-content">
+                  <div class="notif-text">
+                    <strong>Westside Academy</strong> viewed your application
+                    for <strong>Head of Science</strong>.
+                  </div>
+                  <div class="notif-time">2 hours ago</div>
+                </div>
+                <div class="unread-indicator"></div>
+              </div>
+
+              <!-- Notif 3: Message (Unread) -->
+              <div
+                class="notification-card unread"
+                data-media-type="banani-button"
+              >
+                <div class="notif-avatar-wrapper">
+                  <img
+                    src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4"
+                    class="notif-avatar"
+                    alt="Principal Sarah"
+                  />
+                  <div class="notif-type-icon type-message">
+                    <iconify-icon
+                      icon="lucide:message-circle"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="notif-content">
+                  <div class="notif-text">
+                    <strong>Principal Sarah</strong> sent you a message: "Is
+                    this salary range okay?"
+                  </div>
+                  <div class="notif-time">3 hours ago</div>
+                </div>
+                <div class="unread-indicator"></div>
+              </div>
+            </div>
+
+            <!-- Earlier Section -->
+            <div class="notification-section">
+              <div class="section-label">Earlier</div>
+
+              <!-- Notif 4: Alert -->
+              <div class="notification-card" data-media-type="banani-button">
+                <div class="notif-avatar-wrapper">
+                  <div
+                    class="notif-avatar"
+                    style="
+                      background-color: var(--input);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    <iconify-icon
+                      icon="lucide:bell-ring"
+                      style="font-size: 24px; color: var(--muted-foreground)"
+                    ></iconify-icon>
+                  </div>
+                  <div class="notif-type-icon type-alert">
+                    <iconify-icon
+                      icon="lucide:zap"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="notif-content">
+                  <div class="notif-text">
+                    3 new <strong>English Teacher</strong> jobs in
+                    <strong>New York</strong> were added today.
+                  </div>
+                  <div class="notif-meta">Yesterday at 4:30 PM</div>
+                </div>
+              </div>
+
+              <!-- Notif 5: Application Status -->
+              <div class="notification-card" data-media-type="banani-button">
+                <div class="notif-avatar-wrapper">
+                  <img
+                    src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F25-35%2FSouth%20Asian%2F1"
+                    class="notif-avatar"
+                    alt="Recruiter Raj"
+                  />
+                  <div class="notif-type-icon type-job">
+                    <iconify-icon
+                      icon="lucide:check"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="notif-content">
+                  <div class="notif-text">
+                    <strong>Recruiter Raj</strong> marked your application as
+                    <strong>Shortlisted</strong>.
+                  </div>
+                  <div class="notif-meta">Yesterday at 10:15 AM</div>
+                </div>
+              </div>
+
+              <!-- Notif 6: Profile -->
+              <div class="notification-card" data-media-type="banani-button">
+                <div class="notif-avatar-wrapper">
+                  <div
+                    class="notif-avatar"
+                    style="
+                      background-color: var(--secondary);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    "
+                  >
+                    <iconify-icon
+                      icon="lucide:user"
+                      style="font-size: 24px; color: var(--foreground)"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="notif-content">
+                  <div class="notif-text">
+                    Your profile is getting noticed! 5 recruiters viewed your
+                    profile this week.
+                  </div>
+                  <div class="notif-meta">2 days ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </html>
+  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #000000;
+      --border: #e8e8e8;
+      --input: #f8f8f7;
+      --primary: #ff272a;
+      --primary-foreground: #ffffff;
+      --secondary: #ffd4d4;
+      --secondary-foreground: #ff272a;
+      --muted: #e8e8e8;
+      --muted-foreground: #949494;
+      --success: #00c417;
+      --success-foreground: #ffffff;
+      --accent: #ff272a;
+      --accent-foreground: #ffffff;
+      --destructive: #ff0000;
+      --destructive-foreground: #ffffff;
+      --warning: #ff7308;
+      --warning-foreground: #ffffff;
+      --card: #fbfaf9;
+      --card-foreground: #000000;
+      --sidebar: #ffffff;
+      --sidebar-foreground: #4a4a4a;
+      --sidebar-primary: #e8e8e8;
+      --sidebar-primary-foreground: #000000;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 24px;
+      --font-family-body: Inter;
+    }
+  </style>
+</div>

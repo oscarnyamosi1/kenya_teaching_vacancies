@@ -1,0 +1,186 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href="{% static 'styling/blogstyles.css' %}">
+<link rel="stylesheet" href="{% static 'styling/themes/admindashboard.css' %}">
+{% endblock headeradditionalcss %}
+
+
+{% block title %}K.T.V Blog{% endblock title %}
+
+{% block rightsidebar %}
+
+    <aside class="sidebar-right">
+      <div class="promo-card glass card">
+        <h4 style="margin:0 0 8px">Popular Tags</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="?tag=Mathematics" class="tag">Mathematics</a>
+          <a href="?tag=English" class="tag">English</a>
+          <a href="?tag=Physics" class="tag">Physics</a>
+          <a href="?tag=Primary" class="tag">Primary</a>
+        </div>
+      </div>
+
+      <div class="promo-card glass card">
+        <h4 style="margin:0 0 8px">Subscribe</h4>
+        <p style="margin:0 0 8px;color:var(--muted-foreground)">Get weekly teaching tips and new vacancies.</p>
+        <form action="/blog/subscribe/" method="post">
+          {% csrf_token %}
+          <input name="email" placeholder="you@example.com" class="form-input" />
+          <div style="margin-top:8px"><button class="btn btn-primary">Subscribe</button></div>
+        </form>
+      </div>
+    </aside>
+
+
+{% endblock rightsidebar %}
+
+
+{% block center_feed_content %}
+
+<main class="feed-container">
+
+  <div class="hero-card">
+    <h2 style="margin:0">Insights & Teaching Opportunities</h2>
+    <p style="margin:8px 0 0;color:var(--muted-foreground)">News, tips and curated teaching vacancies from schools across Kenya.</p>
+  </div>
+
+  <div style="display:flex;gap:20px;margin-top:16px;align-items:start">
+    <div style="flex:1;min-width:0">
+
+      <div class="promo-card" style="display:flex;gap:12px;align-items:center;padding:12px;margin-bottom:12px">
+        <select id="countyFilter" class="form-select">
+          <option value="">All Counties</option>
+          <option value="Nairobi">Nairobi</option>
+          <option value="Kisumu">Kisumu</option>
+          <option value="Homa Bay">Homa Bay</option>
+        </select>
+        <select id="subjectFilter" class="form-select">
+          <option value="">All Subjects</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="English">English</option>
+          <option value="Physics">Physics</option>
+        </select>
+        <label style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="tscFilter" /> <span style="color:var(--muted-foreground)">TSC only</span>
+        </label>
+      </div>
+
+      <section class="blog-grid">
+        {% if posts %}
+          {% for post in posts %}
+            <article class="glass card promo-card post" data-county="{{ post.county|default:'' }}" data-subject="{{ post.subject|default:'' }}">
+              <div class="post-header" style="display:flex;gap:12px;align-items:center">
+                <div class="post-icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,0.02);">
+                  <iconify-icon icon="lucide:book-open"></iconify-icon>
+                </div>
+                <div>
+                  <a href="/blog:detail/" class="post-title" style="font-weight:700;color:inherit;text-decoration:none">{{ post.employer.school.name }}</a>
+                  <div class="post-meta" style="color:var(--muted-foreground);font-size:13px;margin-top:6px">{{ post.excerpt|default:post.employer.school.summary|truncatechars:120 }} · {{ post.posted_on|date:"M j, Y" }}</div>
+                </div>
+              </div>
+              <div class="post-desc" style="margin-top:10px;color:var(--muted-foreground)">{{ post.body|truncatechars:220 }}</div>
+              <div class="tags" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+                {% for tag in post.tags.all %}
+                  <span class="tag">{{ tag.name }}</span>
+                {% endfor %}
+              </div>
+            </article>
+          {% endfor %}
+        {% else %}
+          <!-- fallback sample posts -->
+          <article class="glass card promo-card post">
+            <div class="post-header" style="display:flex;gap:12px;align-items:center">
+              <div class="post-icon" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,0.02);">
+                <iconify-icon icon="lucide:school"></iconify-icon>
+              </div>
+              <div>
+                <div class="post-title" style="font-weight:700">Mathematics Teacher – Nairobi</div>
+                <div class="post-meta" style="color:var(--muted-foreground);font-size:13px;margin-top:6px">Private Secondary School · Deadline: 15 Feb 2026</div>
+              </div>
+            </div>
+            <div class="post-desc" style="margin-top:10px;color:var(--muted-foreground)">A well-established private school in Nairobi is seeking a qualified Mathematics teacher with KCSE experience.</div>
+            <div class="tags" style="margin-top:12px;display:flex;gap:8px"><span class="tag">Mathematics</span><span class="tag">Secondary</span><span class="tag">Full-time</span></div>
+          </article>
+        {% endif %}
+      </section>
+
+      {% if page_obj and page_obj.has_other_pages %}
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline">Previous</a>{% endif %}
+          <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+          {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline">Next</a>{% endif %}
+        </div>
+      {% endif %}
+
+    </div>
+
+
+  </div>
+
+</main>
+
+<!-- Modal -->
+<div id="vacancyModal" class="modal hidden">
+  <div class="modal-content glass">
+    <button class="close-btn">&times;</button>
+    <h2 id="modalTitle"></h2>
+    <p id="modalMeta" class="muted"></p>
+    <div id="modalBody"></div>
+    <a href="/upload-documents" class="btn btn-primary">Apply Now <iconify-icon icon="lucide:arrow-right"></iconify-icon></a>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const modal = document.getElementById('vacancyModal');
+    const closeBtn = modal && modal.querySelector('.close-btn');
+    document.querySelectorAll('.post').forEach(post => {
+      post.addEventListener('click', () => {
+        const title = post.querySelector('.post-title')?.innerText || '';
+        const meta = post.querySelector('.post-meta')?.innerText || '';
+        const body = post.querySelector('.post-desc')?.innerText || '';
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalMeta').innerText = meta;
+        document.getElementById('modalBody').innerText = body + '\n\nRequirements:\n• Degree in Education\n• TSC registration (where applicable)\n• Teaching experience preferred';
+        modal.classList.remove('hidden');
+      });
+    });
+    if(closeBtn) closeBtn.addEventListener('click',()=>modal.classList.add('hidden'));
+  })();
+
+  (function(){
+    const countyFilter = document.getElementById('countyFilter');
+    const subjectFilter = document.getElementById('subjectFilter');
+    const tscFilter = document.getElementById('tscFilter');
+    const posts = Array.from(document.querySelectorAll('.post'));
+    function filterPosts(){
+      const county = countyFilter?.value || '';
+      const subject = subjectFilter?.value || '';
+      const tsc = tscFilter?.checked || false;
+      posts.forEach(post=>{
+        const text = post.innerText || '';
+        const show = (!county || text.includes(county)) && (!subject || text.includes(subject)) && (!tsc || text.includes('TSC'));
+        post.style.display = show ? 'block' : 'none';
+      });
+    }
+    if(countyFilter) countyFilter.onchange = filterPosts;
+    if(subjectFilter) subjectFilter.onchange = filterPosts;
+    if(tscFilter) tscFilter.onchange = filterPosts;
+  })();
+
+  // simple infinite-load placeholder (client-side clone only)
+  (function(){
+    let page = 1;
+    window.addEventListener('scroll', ()=>{
+      if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 200){
+        if(page>3) return; page++; const sample = document.querySelector('.post'); if(!sample) return; const clone = sample.cloneNode(true); clone.style.opacity=0; document.querySelector('.blog-grid').appendChild(clone); requestAnimationFrame(()=>clone.style.opacity=1);
+      }
+    });
+  })();
+</script>
+
+{% endblock center_feed_content %}
+

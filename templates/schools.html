@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Schools • Kenya Teaching Vacancies{% endblock title %}
+{% block pagename %}schools{% endblock pagename %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href="{% static 'styling/themes/glassmorphism.css' %}">
+<style>
+/* Use existing variables and glass styles to match site theme */
+.schools-hero{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)}
+.school-card{display:flex;gap:16px;padding:16px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(8px);align-items:flex-start}
+.school-card .school-logo{width:84px;height:84px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+.school-card-body h3{margin:0;font-size:1.05rem}
+.school-meta{color:var(--muted-foreground);font-size:0.9rem;margin-top:6px}
+.school-excerpt{margin-top:8px;color:var(--muted-foreground)}
+.school-actions{margin-top:12px;display:flex;gap:8px}
+.empty-state{padding:36px;text-align:center;color:var(--muted-foreground)}
+
+/* Make cards feel mac-like with subtle shadows */
+.school-card{box-shadow: 0 8px 30px rgba(2,6,23,0.6);}
+
+@media (max-width: 900px){
+  .app-container{grid-template-columns: 1fr}
+  .sidebar-right{display:none}
+}
+</style>
+{% endblock headeradditionalcss %}
+
+{% block center_feed_content %}
+
+<div class="schools-hero">
+  <h2 style="margin:0">Schools</h2>
+  <p style="margin:6px 0 0;color:var(--muted-foreground)">Browse schools and the latest teaching vacancies.</p>
+</div>
+
+{% if schools %}
+  {% for school in schools %}
+	<div class="school-card">
+	  <div>
+		{% if school.logo %}
+		  <img class="school-logo" src="{{ school.logo.url }}" alt="{{ school.name }}">
+		{% else %}
+		  <img class="school-logo" src="{% static 'images/school-placeholder.png' %}" alt="{{ school.name }}">
+		{% endif %}
+	  </div>
+	  <div class="school-card-body">
+		<h3><a href="/schools/{{ school.id }}/" style="color:inherit;text-decoration:none">{{ school.name }}</a></h3>
+		<div class="school-meta">{{ school.vacancies_count }} vacancies • {{ school.location }}</div>
+		<div class="school-excerpt">{{ school.description|truncatechars:140 }}</div>
+		<div class="school-actions">
+		  <a href="/schools/{{ school.id }}/vacancies" class="btn btn-outline">View Vacancies</a>
+		  <a href="/schools/{{ school.id }}/follow" class="btn btn-primary">Follow</a>
+		</div>
+	  </div>
+	</div>
+  {% endfor %}
+
+  {% if page_obj.has_other_pages %}
+	<div class="pagination" style="margin-top:12px;display:flex;gap:8px;align-items:center">
+	  {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline">Previous</a>{% endif %}
+	  <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+	  {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline">Next</a>{% endif %}
+	</div>
+  {% endif %}
+
+{% else %}
+  <div class="empty-state">No schools found. Try adjusting your filters or come back later.</div>
+{% endif %}
+
+{% endblock center_feed_content %}

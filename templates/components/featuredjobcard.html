@@ -1,0 +1,81 @@
+<div class="job-card sponsored" data-media-type="banani-button">
+    <span class="sponsored-label">Featured Opportunity</span>
+    <div class="job-header">
+        <div class="job-school-info">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F18-25%2FAfrican%2F1" class="school-logo" alt="School Logo">
+            <div class="school-details">
+                <h3>{{job.employer.school}}</h3>
+                <span>
+                    {{job.county}} County
+                    <span class="verified-badge">
+                        <iconify-icon icon="lucide:badge-check" style="font-size: 14px"></iconify-icon>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div style="color: var(--muted-foreground); font-size: 13px">
+            {{job.days_posted}} ago
+        </div>
+    </div>
+    <div class="job-content">
+        <h2>{{job.job_title}}</h2>
+        <div class="job-tags">
+            <span class="tag">{{job.employment_type}}</span>
+            {% if job.tsc_required is True %}
+                <span class="tag">TSC Required</span>
+            {% endif %}
+            
+            {% if convertSalaryMin is None %}
+            <span class="tag salary-tag">Salary Undisclosed</span>
+            {% else %}
+            <span class="tag salary-tag">KSh {{job.convertSalaryMin}}k - {{job.convertSalaryMax}}k</span>
+            {% endif %}        </div>
+        <p style="
+    font-size: 14px;
+    color: var(--muted-foreground);
+    margin: 0;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    ">
+            {{job.job_description}}
+        </p>
+    </div>
+    <div class="job-actions">
+        <div class="action-group">
+
+            {% if job in jobs_saved %}
+                <button class="btn btn-primary">
+                    <iconify-icon icon="lucide:heart" style="font-size: 18px"></iconify-icon>
+                    Saved
+                </button>
+            {% else %}
+                <a href="/jobs/savejob/{{job.id}}" class="btn btn-outline">
+                    <iconify-icon icon="lucide:share-2" style="font-size: 18px"></iconify-icon>
+                    Save
+                </a>
+            {% endif %}
+            <button class="btn">
+                <iconify-icon icon="lucide:share-2" style="font-size: 18px"></iconify-icon>
+                Share
+            </button>
+        </div>
+        {% if job in jobs_applied %}
+            <button class="btn btn-primary" data-media-type="banani-button">
+                Applied
+            </button>
+        {%else%}
+            <a href="/jobs/applyjob/{{job.id}}"  class="btn btn-outline" data-media-type="banani-button">
+                Apply Now
+            </a>
+        {% endif %}
+    </div>
+    <!-- WhatsApp Share Button -->
+    <div class="job-actions" style="margin-top: 10px;">
+        <a href="https://wa.me/?text={{ job.job_title|urlencode }}%20at%20{{ job.employer.school|urlencode }}%20in%20{{ job.county|urlencode }}%20%7C%20Apply%20on%20Kenya%20Teaching%20Vacancies:%20{{ request.build_absolute_uri }}" target="_blank" class="btn whatsapp-share" style="background:#25D366;color:#fff;border-radius:6px;padding:6px 14px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:500;">
+            <iconify-icon icon="ic:baseline-whatsapp" style="font-size:20px;"></iconify-icon> Share on WhatsApp
+        </a>
+    </div>
+</div>

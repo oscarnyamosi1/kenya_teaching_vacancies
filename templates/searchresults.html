@@ -1,0 +1,39 @@
+{% extends 'jobfeed.html' %}
+{% load my_tags %}
+
+
+{% block center_feed_content %}
+
+
+    {% block jobsearchbar %}
+        {% include 'components/jobsearchbar.html' %}
+    {% endblock jobsearchbar %}
+
+    {% for item in search_results  %}
+        
+        {% if item.is_job %}
+            
+            {% rename_var item as job  %}
+            {% include "components/standardjobcard.html" %}
+                
+        {% endif %}
+
+        
+        {% if item.is_county %}
+            <div class="btn widget menucard glass">
+                {{item.title.capitalize}}
+            </div>
+
+        {% endif %}
+            
+        
+        {% if item.is_school %}
+            <h1>School : {{item.name}}</h1>
+        {% endif %}
+            
+            
+    {% endfor %}
+        
+{% endblock center_feed_content %}
+    
+{{alerts|json_script:"alerts-json"}}

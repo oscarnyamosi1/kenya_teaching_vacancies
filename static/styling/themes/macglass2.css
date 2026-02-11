@@ -1,0 +1,129 @@
+
+/* Dark Theme Base */
+:root {
+    --background: #111111;
+    --card-bg: rgba(9, 17, 26, 0.75);
+    --glass-bg: rgba(25, 25, 25, 0.6);
+    --primary: #6366f1;
+    --primary-foreground: #fff;
+    --muted: #1f1f1f;
+    --muted-foreground: #aaa;
+    --success: #22c55e;
+    --warning: #facc15;
+    --error: #ef4444;
+    --font-family-body: 'Inter', 'DM Sans', sans-serif;
+    --radius-md: 8px;
+    --shadow-md: rgba(0, 0, 0, 0.5) 0px 4px 16px;
+}
+
+body {
+    background-color: var(--background);
+    color: #fff;
+    font-family: var(--font-family-body);
+    margin: 0;
+}
+
+/* Top Navigation */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+}
+
+.top-nav .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.top-nav .nav-links a {
+    margin: 0 12px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.top-nav .nav-links a:hover {
+    color: var(--primary);
+}
+
+.top-nav .auth-buttons a {
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+/* App container */
+.app-container {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+}
+
+/* Sidebars */
+.sidebar-left,
+.sidebar-right {
+    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+/* Feed */
+.feed-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    backdrop-filter: blur(12px);
+    /* background: var(--glass-bg); */
+    padding: 16px;
+    border-radius: var(--radius-md);
+    min-height: 80vh;
+}
+
+/* Footer Links */
+.footer-links {
+    color: var(--muted-foreground);
+    font-size: 12px;
+    text-align: center;
+    margin-top: 24px;
+}
+
+.footer-links a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+/* Scrollbar Dark Theme */
+.scrollview::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollview::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.scrollview::-webkit-scrollbar-track {
+    background: transparent;
+}

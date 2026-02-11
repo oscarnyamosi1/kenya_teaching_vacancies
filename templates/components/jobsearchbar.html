@@ -1,0 +1,47 @@
+  <form action='/jobs/search'  class="card glass" style="padding: 20px;">
+    <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 600;">
+      Find your next teaching role 🇰🇪
+    </h2>
+    <div style="display: flex; gap: 12px;">
+      <input name='jobquery' placeholder="Subject or Job Title" style="
+        flex: 1;
+        display: flex;
+        align-items: center;
+        background: var(--muted);
+        border-radius: var(--radius-md);
+        padding: 0 16px;
+        height: 48px;
+        color: var(--foreground);
+        font-size:16px;
+        font-weight: 800;
+        border:none;
+      ">
+        <iconify-icon icon="lucide:search" style="color: var(--foreground); margin-right: 12px;"></iconify-icon>
+      </input>
+      <input name='county/location' placeholder='County or Town' style="
+        flex: 1;
+        display: flex;
+        align-items: center;
+        background: var(--muted);
+        border-radius: var(--radius-md);
+        padding: 0 16px;
+        height: 48px;
+        font-size:16px;
+        font-weight: 800;
+        border:none;
+        color: var(--foreground);
+      ">
+        <iconify-icon icon="lucide:map-pin" style="color: var(--foreground); margin-right: 12px;"></iconify-icon>
+      </input>
+      <button type='submit' style="
+        background: var(--primary);
+        color: var(--primary-foreground);
+        border: none;
+        padding: 0 24px;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+      " data-media-type="banani-button">Search</button>
+    </div>
+  </form>

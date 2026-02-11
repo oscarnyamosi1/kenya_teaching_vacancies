@@ -1,0 +1,135 @@
+/* ===== GLASS FOUNDATION ===== */
+.glass {
+  /* background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.25),
+    rgba(255,255,255,0.05)
+  ); */
+  background: linear-gradient( 
+    135deg, 
+    rgba(25,25,255,0.05),
+    rgba(25,25,25,0.05) );
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+}
+
+/* Bubble glow */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255,255,255,0.35),
+    transparent 60%
+  );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ===== CARDS ===== */
+.card {
+  position: relative;
+  padding: 18px;
+  margin-bottom: 16px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.35);
+}
+
+/* ===== STORY RING ===== */
+.story-ring {
+  padding: 2px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #facc15,
+    #ec4899,
+    #6366f1
+  );
+}
+
+/* ===== TAGS ===== */
+.tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  font-weight: 500;
+}
+
+/* ===== JOB HEADER ===== */
+.job-card-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* ===== FOOTER ===== */
+.job-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.easyapply {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .job-card-footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* additional glow effects */
+
+.card::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--glow);
+  opacity:0.6;
+  pointer-events:none;
+  border-radius: 20px;
+
+}
+

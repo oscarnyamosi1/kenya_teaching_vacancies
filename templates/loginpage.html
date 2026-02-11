@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<div class="export-wrapper">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="stylesheet" href={% static "styling/index.css" %}>
+		<link rel="stylesheet" href={% static "styling/login.css" %}>
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&family=Geist:wght@100;200;300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:wght@200;300;400;500;600;700;800;900&family=PT+Serif:wght@400;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Shantell+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet" />
+
+</head>
+
+<body>
+	<div class="split-layout">
+		<!-- Brand Side (Left) -->
+		<div class="brand-side">
+			<img class="brand-image"
+				src="https://storage.googleapis.com/banani-generated-images/generated-images/7e24eac0-f1c2-48ed-b5c4-9014633f40e9.jpg"
+				data-aspect-ratio="9:16" data-query="happy african teachers in modern staffroom professional"
+				alt="Background" />
+			<div class="brand-overlay"></div>
+			<div class="brand-content">
+				<div style="font-size: 24px; font-weight: 600; margin-bottom: 12px">
+					"This platform transformed how I found my teaching placement in
+					Nairobi."
+				</div>
+				<div style="display: flex; align-items: center; gap: 12px">
+					<div style="
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  border: 2px solid white;
+                ">
+						<img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F4"
+							alt="Sarah" style="width: 100%; height: 100%; object-fit: cover" />
+					</div>
+					<div>
+						<div style="font-weight: 600; font-size: 14px">
+							Sarah Omondi
+						</div>
+						<div style="font-size: 12px; opacity: 0.8">
+							English Teacher, Riara Group of Schools
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Form Side (Right) -->
+		<div class="form-side">
+			<div class="form-container">
+				<!-- Header -->
+				<div style="margin-bottom: 32px; text-align: center">
+					<div style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                  font-weight: 700;
+                  font-size: 22px;
+                  color: var(--foreground);
+                  margin-bottom: 24px;
+                ">
+												<div style="
+										width: 36px;
+										height: 36px;
+										border-radius: 8px;
+										overflow: hidden;
+										display: flex;
+										align-items: center;
+										justify-content: center;
+										background: var(--card);
+									">
+														<img src="{% static 'images/logo/ktvlogo.png' %}" alt="KTV" style="width:100%;height:100%;object-fit:contain">
+												</div>
+												<span>Kenya Teaching Vacancies</span>
+					</div>
+					<h1 style="margin: 0 0 8px; font-size: 24px; font-weight: 600">
+						Welcome back
+					</h1>
+					<p style="
+                  margin: 0;
+                  color: var(--muted-foreground);
+                  font-size: 14px;
+                ">
+						Enter your details to access your account.
+					</p>
+				</div>
+
+				<!-- Social Login -->
+				<div class="social-grid">
+					<button class="btn-social" data-media-type="banani-button">
+						<iconify-icon icon="lucide:facebook" style="font-size: 18px; color: #1877f2"></iconify-icon>
+						Facebook
+					</button>
+					<button class="btn-social" data-media-type="banani-button">
+						<iconify-icon icon="lucide:linkedin" style="font-size: 18px; color: #0a66c2"></iconify-icon>
+						LinkedIn
+					</button>
+				</div>
+
+				<div class="divider">Or continue with email</div>
+
+				<!-- Email Form -->
+				<form action='/login/' method="post">
+					{% csrf_token %}
+					<div class="input-group">
+						<label class="input-label">Email address</label>
+						<input name='email' type="email" class="input-field" placeholder="mwalimu@example.com" />
+					</div>
+
+					<div class="input-group">
+						<div style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  ">
+							<label class="input-label">Password</label>
+							<a href="#" class="link" style="font-size: 12px" data-media-type="banani-button">Forgot
+								password?</a>
+						</div>
+						<input type="password" name='password' class="input-field" placeholder="••••••••" />
+					</div>
+
+					<button type="submit" class="btn-primary" style="margin-top: 8px" data-media-type="banani-button">
+						Sign in
+					</button>
+				</form>
+
+				<!-- Footer -->
+				<div style="
+                margin-top: 24px;
+                text-align: center;
+                font-size: 14px;
+                color: var(--muted-foreground);
+              ">
+					Don't have an account?
+					<a href="/signup" class="link" data-media-type="banani-button">Sign up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+{% comment %}
+<script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script> {% endcomment %}
+</div>

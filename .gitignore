@@ -1,0 +1,7 @@
+__pycache__/
+.venv/
+migrations/
+pythonenv/
+db.sqlite3
+requirementsML.txt
+requirementsWEBDEV.txt

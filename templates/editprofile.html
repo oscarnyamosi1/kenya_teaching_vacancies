@@ -1,0 +1,113 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+K.T.V Edit Profile
+{% endblock title %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static 'styling/editprofile.css' %}>
+{% endblock headeradditionalcss %}
+
+{% block center_feed_content %}
+
+  <main class='colorize'>
+    <!-- PROFILE COMPLETION -->
+    <section class="section glass">
+      <h2>Profile Completion</h2>
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+      <small>Upload your TSC certificate to reach 100%</small>
+    </section>
+
+    <!-- BASIC INFO -->
+    <section class="section glass">
+      <h2>Personal Information</h2>
+
+      <div class="avatar">
+        <img src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F25-35%2FAfrican%2F2" />
+        <button class="upload-btn">Change Photo</button>
+      </div>
+
+      <div class="grid" style="margin-top: 1.5rem">
+        <div>
+          <label>Full Name</label>
+          <input value="Oscar Nyamosi" />
+        </div>
+        <div>
+          <label>Email</label>
+          <input value="oscar@email.com" />
+        </div>
+        <div>
+          <label>Phone Number</label>
+          <input value="+2547XXXXXXX" />
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHING INFO -->
+    <section class="section glass">
+      <h2>Teaching Details</h2>
+
+      <div class="grid">
+        <div>
+          <label>Main Subject</label>
+          <select>
+            <option>Physics</option>
+            <option>Chemistry</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Secondary Subject</label>
+          <select>
+            <option>Chemistry</option>
+          </select>
+        </div>
+
+        <div>
+          <label>County</label>
+          <select>
+            <option>Homa Bay</option>
+            <option>Nairobi</option>
+          </select>
+        </div>
+
+        <div>
+          <label>TSC Status</label>
+          <select>
+            <option>Registered</option>
+            <option>Not Registered</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section glass">
+      <h2>Professional Summary</h2>
+      <textarea>
+Dedicated secondary school teacher with experience in Physics and Chemistry...
+  </textarea>
+    </section>
+
+    <!-- SAVE BAR -->
+    <div class="save-bar glass">
+      <small>Changes not saved</small>
+      <div>
+        <button class="btn secondary">Cancel</button>
+        <button class="btn primary">
+          Save Changes
+          <iconify-icon icon="lucide:check"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- DJANGO PREP (SAFE COMMENTS) -->
+  <!--
+{% csrf_token %}
+{{ form.full_name }}
+{{ form.subjects }}
+-->
+{% endblock center_feed_content %}

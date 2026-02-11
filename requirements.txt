@@ -1,0 +1,8 @@
+Django
+djangorestframework
+pillow
+django-cors-headers
+requests
+whitenoise
+psycopg2-binary
+fastapi

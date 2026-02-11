@@ -1,0 +1,30 @@
+<!-- Create Profile Promo -->
+{% if user.is_authenticated %}
+<div class="promo-card card glass colorize">
+    <div style="
+    width: 48px;
+    height: 48px;
+    background: #e6f4ea;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+    color: var(--primary);
+    ">
+        <iconify-icon icon="lucide:user-plus" style="font-size: 24px"></iconify-icon>
+    </div>
+    <h3 class="promo-title">Complete your Profile</h3>
+    <p class="promo-text">
+        Schools are 80% more likely to contact teachers with a full
+        profile and uploaded CV.
+    </p>
+    <a href="/teachers/uploaddocuments/" >
+        <div class="btn btn-primary" style="width: 100%; justify-content: center"
+            data-media-type="banani-button">
+            Upload CV
+        </div>
+    </a>
+</div>
+
+{% endif %}

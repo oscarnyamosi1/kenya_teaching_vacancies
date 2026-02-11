@@ -1,0 +1,64 @@
+<!-- Standard Job 2 -->
+<div class="job-card card glass" data-media-type="banani-button">
+    {% if job.is_promoted %}
+        <div class="promo-belt">Promoted</div>
+    {% endif %}
+
+    <div class="job-header">
+        <div class="job-school-info">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F35-50%2FAfrican%2F2"
+                class="school-logo" alt="School Logo" />
+            <div class="school-details">
+                <h3>{{job.employer.school.name}}</h3>
+                <span>{{job.county}}, {{job.location.capitalize}} • {{job.employer.school.school_type}}</span>
+            </div>
+        </div>
+        <div style="color: var(--muted-foreground); font-size: 13px">
+            {{job.days_posted}} ago
+        </div>
+    </div>
+    <div class="job-content">
+        <h2>{{job.job_title}}</h2>
+        <div class="job-tags">
+            <span class="tag">{{job.employment_type}}</span>
+            <span class="tag">{{job.carriculum_type}}</span>
+            {% if job.tsc_required is True %}
+                <span class="tag">TSC Required</span>
+            {% endif %}
+            <span class="tag salary-tag">KSh {{job.convertSalaryMin}}k - {{job.convertSalaryMax}}k</span>
+            {% if job.total_applications > 500 %}
+                <span class="tag salary-tag">Competitive 500+ applicants</span>
+            {% endif %}
+            
+            {% for subject in job.subjects_required.all %}
+                <span class='tag menu-item active'><h4>{{subject.title.capitalize}}</h4></span>
+            {% endfor %}
+                
+        </div>
+    </div>
+    <div class="job-actions">
+        <div class="action-group">
+            {% if job in saved_jobs %}
+            <button class="btn">
+                <iconify-icon icon="lucide:share-2" style="font-size: 18px"></iconify-icon>
+                Saved
+            </button>
+            {% else %}
+            <a href="/jobs/savejob/{{job.id}}" class="btn btn-primary">
+                <iconify-icon icon="lucide:heart" style="font-size: 18px"></iconify-icon>
+                Save
+            </a>
+            {% endif %}
+            <a href='/jobs/sharejob/{{job.id}}' class="btn">
+                <iconify-icon icon="lucide:share-2" style="font-size: 18px"></iconify-icon>
+                Share
+            </a>
+
+        </div>
+
+        <button class="btn btn-outline viewjobdetails" data-media-type="banani-button">
+            View Details
+        </button>
+
+    </div>
+</div>

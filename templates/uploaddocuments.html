@@ -1,0 +1,96 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static 'styling/uploaddocuments.css' %}>
+{% endblock headeradditionalcss %}
+{% block center_feed_content %}
+
+<main class="page">
+  <section class="glass-card upload-card">
+
+    <header class="card-header">
+      <h1>Upload Your Teaching Documents</h1>
+      <p>
+        Upload clear scans or photos. Accepted formats: PDF, JPG, PNG (max 5MB).
+      </p>
+    </header>
+
+    <div class="upload-list">
+
+      <div class="upload-item">
+        <div class="icon-box">
+          <iconify-icon icon="lucide:id-card"></iconify-icon>
+        </div>
+        <div class="item-content">
+          <div class="item-label">National ID</div>
+          <div class="item-meta">Front & back required</div>
+        </div>
+        <button class="upload-btn">Upload</button>
+      </div>
+
+      <div class="upload-item completed">
+        <div class="icon-box success">
+          <iconify-icon icon="lucide:award"></iconify-icon>
+        </div>
+        <div class="item-content">
+          <div class="item-label">Academic Certificates</div>
+          <div class="file-preview">
+            <iconify-icon icon="lucide:file-check"></iconify-icon>
+            BEd_Certificate_2023.pdf
+          </div>
+        </div>
+        <div class="status">
+          <iconify-icon icon="lucide:check"></iconify-icon>
+        </div>
+      </div>
+
+      <div class="upload-item">
+        <div class="icon-box">
+          <iconify-icon icon="lucide:school"></iconify-icon>
+        </div>
+        <div class="item-content">
+          <div class="item-label">TP / Internship Letter</div>
+          <div class="item-meta">Signed by institution head</div>
+        </div>
+        <button class="upload-btn">Upload</button>
+      </div>
+
+      <div class="upload-item">
+        <div class="icon-box">
+          <iconify-icon icon="lucide:file-text"></iconify-icon>
+        </div>
+        <div class="item-content">
+          <div class="item-label">Curriculum Vitae</div>
+          <div class="item-meta">PDF only</div>
+        </div>
+        <button class="upload-btn">Upload</button>
+      </div>
+
+      <div class="upload-item optional">
+        <div class="icon-box muted">
+          <iconify-icon icon="lucide:badge-check"></iconify-icon>
+        </div>
+        <div class="item-content">
+          <div class="item-label">
+            TSC Certificate <span class="badge">Optional</span>
+          </div>
+          <div class="item-meta">If registered</div>
+        </div>
+        <button class="upload-btn outline">Browse</button>
+      </div>
+
+    </div>
+
+    <footer class="card-actions">
+      <button class="btn primary">
+        Submit Documents
+        <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+      </button>
+      <button class="btn ghost">Save & Continue Later</button>
+    </footer>
+
+  </section>
+</main>
+{% endblock center_feed_content %}

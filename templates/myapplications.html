@@ -1,0 +1,100 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+K.T.V My Applications
+{% endblock title %}
+
+{% block pagename %}
+myapplications
+{% endblock pagename %}
+
+{% block center_feed_content %}
+<div class="hero-card" style="padding:18px;border-radius:12px;">
+	<h2 style="margin:0">My Applications</h2>
+	<p style="margin:6px 0 0;color:var(--muted-foreground)">Track the jobs you've applied to and their statuses.</p>
+</div>
+
+{% if applications %}
+	<div class="applications-list" style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
+		{% for app in applications %}
+			<div class="job-card" style="display:flex;gap:16px;align-items:flex-start;">
+				<div style="width:64px;height:64px;flex-shrink:0">
+					{% if app.school.logo %}
+						<img src="{{ app.school.logo.url }}" class="school-logo" alt="{{ app.school.name }}">
+					{% else %}
+						<img src="{% static 'images/logo/ktvlogo.png' %}" class="school-logo" alt="{{ app.school.name }}">
+					{% endif %}
+				</div>
+				<div style="flex:1;min-width:0">
+					<div style="display:flex;justify-content:space-between;align-items:start;gap:12px">
+						<div>
+							<h3 style="margin:0;font-size:16px"><a href="/jobs/{{ app.id }}/" style="text-decoration:none;color:inherit">{{ app.job_title }}</a></h3>
+							<div style="color:var(--foreground);font-size:13px;margin-top:6px">{{ app.employer.school.name }} • {{ app.location }}</div>
+						</div>
+						<div style="text-align:right">
+							<div class="tag" style="background:transparent;color:var(--muted-foreground);font-weight:600">Posted {{ app.date_posted|date:"M j, Y" }}</div>
+							<div style="margin-top:8px">
+								{% if app.is_active %}
+								<span class="badge" style="background:transparent;color:var(--primary);font-weight:700;border:1px solid var(--border);padding:6px 8px;border-radius:8px">
+										Active
+								</span>
+								{% else %}
+								<span class="badge" style="background:transparent;color:var(--primary);font-weight:700;border:1px solid var(--border);padding:6px 8px;border-radius:8px">
+										Inactive
+								</span>
+								{% endif %}
+						</div>
+						</div>
+					</div>
+					{% if app.cover_letter %}
+						<div style="margin-top:10px;color:var(--muted-foreground);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ app.cover_letter|truncatechars:180 }}</div>
+					{% endif %}
+					<div style="margin-top:12px;display:flex;gap:8px">
+						<a href="/jobs/{{ app.id }}/" class="btn btn-outline">View Job</a>
+						<a href="/applications/withdrawapplication/{{app.id}}" class="btn btn-ghost">Withdraw</a>
+						<a href="/applications/{{ app.id }}/message" class="btn btn-primary">Message School</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	{% if page_obj and page_obj.has_other_pages %}
+		<div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+			{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline">Previous</a>{% endif %}
+			<span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+			{% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline">Next</a>{% endif %}
+		</div>
+	{% endif %}
+{% elif jobs_applied %}
+	<div class="applications-list" style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
+		{% for job in jobs_applied %}
+			<div class="job-card" style="display:flex;gap:16px;align-items:flex-start;">
+				<div style="width:64px;height:64px;flex-shrink:0">
+					{% if job.school.logo %}
+						<img src="{{ job.school.logo.url }}" class="school-logo" alt="{{ job.school.name }}">
+					{% else %}
+						<img src="{% static 'images/logo/ktvlogo.png' %}" class="school-logo" alt="{{ job.school.name }}">
+					{% endif %}
+				</div>
+				<div style="flex:1;min-width:0">
+					<h3 style="margin:0;font-size:16px"><a href="/jobs/{{ job.id }}/" style="text-decoration:none;color:inherit">{{ job.title }}</a></h3>
+					<div style="color:var(--muted-foreground);font-size:13px;margin-top:6px">{{ job.school.name }} • {{ job.location }}</div>
+					<div style="margin-top:12px;display:flex;gap:8px">
+						<a href="/jobs/{{ job.id }}/" class="btn btn-outline">View Job</a>
+						<a href="/jobs/{{ job.id }}/apply" class="btn btn-primary">View Application</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% else %}
+	<div class="empty-state" style="margin-top:24px;padding:28px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
+		<h3 style="margin:0">No applications yet</h3>
+		<p style="margin:8px 0 0;color:var(--muted-foreground)">Browse jobs and apply — your applications will appear here.</p>
+		<div style="margin-top:12px">
+			<a href="/jobs/jobfeed" class="btn btn-primary">Find Jobs</a>
+		</div>
+	</div>
+{% endif %}
+
+{% endblock center_feed_content %}

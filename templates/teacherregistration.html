@@ -1,0 +1,714 @@
+<div
+  class="export-wrapper"
+  style="
+    width: 1440px;
+    min-height: 812px;
+    position: relative;
+    font-family: var(--font-family-body);
+    background-color: var(--background);
+  "
+>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&family=Geist:wght@100;200;300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:wght@200;300;400;500;600;700;800;900&family=PT+Serif:wght@400;700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Shantell+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Teacher Registration - Kenya Teaching Vacancies</title>
+      <style>
+        * {
+          box-sizing: border-box;
+        }
+        .export-wrapper {
+          margin: 0;
+          font-family: var(--font-family-body);
+          background-color: var(--secondary);
+          color: var(--foreground);
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+      </style>
+
+      <style id="layout-styles">
+        .app-layout {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          max-width: 1440px;
+          margin: 0 auto;
+          width: 100%;
+          background: var(--secondary);
+          position: relative;
+        }
+
+        .top-nav {
+          height: 64px;
+          background: var(--background);
+          border-bottom: 1px solid var(--border);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 24px;
+          flex-shrink: 0;
+          z-index: 10;
+        }
+
+        .nav-logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-weight: 800;
+          font-size: 18px;
+          color: var(--foreground);
+          text-decoration: none;
+        }
+
+        .nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .scroll-container {
+          flex: 1;
+          overflow-y: auto;
+          padding: 32px 24px 120px 24px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .form-container {
+          width: 100%;
+          max-width: 540px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .sticky-footer {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: var(--background);
+          border-top: 1px solid var(--border);
+          padding: 16px 24px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 20;
+        }
+      </style>
+
+      <style id="component-styles">
+        /* Progress Header */
+        .progress-header {
+          text-align: center;
+          margin-bottom: 8px;
+        }
+
+        .progress-title {
+          font-size: 24px;
+          font-weight: 800;
+          margin: 0 0 8px 0;
+        }
+
+        .progress-subtitle {
+          color: var(--muted-foreground);
+          font-size: 14px;
+          margin: 0 0 24px 0;
+        }
+
+        .steps-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          margin-bottom: 32px;
+        }
+
+        .step-dot {
+          height: 4px;
+          width: 32px;
+          border-radius: 2px;
+          background: var(--muted);
+        }
+
+        .step-dot.active {
+          background: var(--primary);
+        }
+
+        .step-dot.completed {
+          background: var(--success);
+        }
+
+        /* Cards */
+        .form-card {
+          background: var(--card);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-xl);
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 4px;
+        }
+
+        .card-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: var(--secondary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--primary);
+        }
+
+        .card-title {
+          font-size: 18px;
+          font-weight: 700;
+          margin: 0;
+        }
+
+        .card-desc {
+          font-size: 13px;
+          color: var(--muted-foreground);
+          margin: 0;
+        }
+
+        /* Form Elements */
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .label {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--foreground);
+        }
+
+        .label-optional {
+          font-weight: 400;
+          color: var(--muted-foreground);
+          font-size: 12px;
+          margin-left: 4px;
+        }
+
+        .input-field {
+          height: 48px;
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 0 16px;
+          font-size: 15px;
+          background: var(--input);
+          color: var(--foreground);
+          display: flex;
+          align-items: center;
+          outline: none;
+        }
+
+        .input-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .select-box {
+          height: 48px;
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 0 16px;
+          font-size: 15px;
+          background: var(--input);
+          color: var(--foreground);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+        }
+
+        /* Selection Chips */
+        .chips-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .chip {
+          padding: 8px 16px;
+          border-radius: 20px;
+          border: 1px solid var(--border);
+          background: var(--background);
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.2s;
+        }
+
+        .chip.selected {
+          background: var(--primary);
+          color: var(--primary-foreground);
+          border-color: var(--primary);
+        }
+
+        .chip:hover:not(.selected) {
+          background: var(--secondary);
+        }
+
+        /* Radio Cards */
+        .radio-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+          gap: 12px;
+        }
+
+        .radio-card {
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 12px;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.2s;
+          background: var(--background);
+        }
+
+        .radio-card.active {
+          border-color: var(--primary);
+          background: rgba(var(--primary), 0.05);
+          color: var(--primary);
+          font-weight: 600;
+          box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        /* Buttons */
+        .btn-submit {
+          width: 100%;
+          max-width: 540px;
+          height: 52px;
+          background: var(--primary);
+          color: var(--primary-foreground);
+          border: none;
+          border-radius: var(--radius-xl);
+          font-size: 16px;
+          font-weight: 700;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          transition: transform 0.1s;
+        }
+
+        .btn-submit:active {
+          transform: scale(0.98);
+        }
+
+        .btn-text {
+          background: none;
+          border: none;
+          color: var(--primary);
+          font-weight: 600;
+          font-size: 14px;
+          cursor: pointer;
+        }
+
+        .helper-text {
+          font-size: 12px;
+          color: var(--muted-foreground);
+          margin-top: 4px;
+        }
+
+        .toggle-switch {
+          width: 44px;
+          height: 24px;
+          background: var(--muted);
+          border-radius: 12px;
+          position: relative;
+          cursor: pointer;
+        }
+
+        .toggle-knob {
+          width: 20px;
+          height: 20px;
+          background: white;
+          border-radius: 50%;
+          position: absolute;
+          top: 2px;
+          left: 2px;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active {
+          background: var(--success);
+        }
+
+        .toggle-switch.active .toggle-knob {
+          left: 22px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="app-layout">
+        <!-- Top Nav -->
+        <nav class="top-nav">
+          <a href="#" class="nav-logo">
+            <div
+              style="
+                width: 32px;
+                height: 32px;
+                background: var(--primary);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <iconify-icon
+                icon="lucide:graduation-cap"
+                style="font-size: 20px; color: white"
+              ></iconify-icon>
+            </div>
+            TeachKenya
+          </a>
+          <div class="nav-actions">
+            <span
+              style="
+                font-size: 14px;
+                color: var(--muted-foreground);
+                display: none;
+                @media (min-width: 600px) {
+                  display: inline;
+                }
+              "
+              >Already have an account?</span
+            >
+            <button class="btn-text" data-media-type="banani-button">
+              Log In
+            </button>
+          </div>
+        </nav>
+
+        <!-- Scrollable Content -->
+        <main class="scroll-container">
+          <div class="form-container">
+            <!-- Header & Progress -->
+            <div class="progress-header">
+              <h1 class="progress-title">Create Teacher Profile</h1>
+              <p class="progress-subtitle">
+                Join 15,000+ Kenyan teachers finding jobs daily.
+              </p>
+
+              <div class="steps-row">
+                <div class="step-dot active"></div>
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+              </div>
+            </div>
+
+            <!-- Section 1: Personal Details -->
+            <div class="form-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <iconify-icon
+                    icon="lucide:user"
+                    style="font-size: 20px"
+                  ></iconify-icon>
+                </div>
+                <div>
+                  <h2 class="card-title">Personal Details</h2>
+                  <p class="card-desc">Basic info for your profile card</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Full Name</label>
+                <div class="input-field">e.g. Mary Wanjiku</div>
+              </div>
+
+              <div class="input-row">
+                <div class="form-group">
+                  <label class="label"
+                    >Gender
+                    <span class="label-optional">(Optional)</span></label
+                  >
+                  <div class="select-box">
+                    <span>Female</span>
+                    <iconify-icon
+                      icon="lucide:chevron-down"
+                      style="font-size: 16px; color: var(--muted-foreground)"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label">Date of Birth</label>
+                  <div class="input-field">
+                    <span>DD / MM / YYYY</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Phone Number</label>
+                <div class="input-field">
+                  <span style="margin-right: 8px">🇰🇪 +254</span>
+                  <span style="color: var(--muted-foreground)"
+                    >7XX XXX XXX</span
+                  >
+                </div>
+                <span class="helper-text"
+                  >We'll send an OTP code to verify this number.</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label class="label">Email Address</label>
+                <div class="input-field">
+                  <iconify-icon
+                    icon="lucide:mail"
+                    style="
+                      font-size: 16px;
+                      color: var(--muted-foreground);
+                      margin-right: 8px;
+                    "
+                  ></iconify-icon>
+                  example@email.com
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Professional Info -->
+            <div class="form-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <iconify-icon
+                    icon="lucide:briefcase"
+                    style="font-size: 20px"
+                  ></iconify-icon>
+                </div>
+                <div>
+                  <h2 class="card-title">Professional Info</h2>
+                  <p class="card-desc">Help schools find you faster</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 4px 0;
+                  "
+                >
+                  <label class="label">Are you TSC Registered?</label>
+                  <div class="toggle-switch active">
+                    <div class="toggle-knob"></div>
+                  </div>
+                </div>
+                <div class="input-field" style="margin-top: 8px">
+                  <span style="color: var(--foreground)">TSC No.</span>
+                  <span
+                    style="margin-left: auto; color: var(--muted-foreground)"
+                    >123456</span
+                  >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Teaching Level</label>
+                <div class="radio-grid">
+                  <div class="radio-card">ECDE</div>
+                  <div class="radio-card active">Primary</div>
+                  <div class="radio-card">JSS</div>
+                  <div class="radio-card">High School</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="label"
+                  >Subjects Taught
+                  <span class="label-optional"
+                    >(Select all that apply)</span
+                  ></label
+                >
+                <div class="chips-container">
+                  <div class="chip selected">
+                    <iconify-icon
+                      icon="lucide:check"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                    Mathematics
+                  </div>
+                  <div class="chip selected">
+                    <iconify-icon
+                      icon="lucide:check"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                    Science
+                  </div>
+                  <div class="chip">English</div>
+                  <div class="chip">Kiswahili</div>
+                  <div class="chip">Social Studies</div>
+                  <div class="chip">CRE</div>
+                  <div
+                    class="chip"
+                    style="color: var(--primary); border-color: var(--primary)"
+                  >
+                    <iconify-icon
+                      icon="lucide:plus"
+                      style="font-size: 14px"
+                    ></iconify-icon>
+                    Add Other
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Experience & Location -->
+            <div class="form-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <iconify-icon
+                    icon="lucide:map-pin"
+                    style="font-size: 20px"
+                  ></iconify-icon>
+                </div>
+                <div>
+                  <h2 class="card-title">Experience &amp; Location</h2>
+                  <p class="card-desc">Where do you want to work?</p>
+                </div>
+              </div>
+
+              <div class="input-row">
+                <div class="form-group">
+                  <label class="label">Years Experience</label>
+                  <div class="select-box">
+                    <span>3-5 Years</span>
+                    <iconify-icon
+                      icon="lucide:chevron-down"
+                      style="font-size: 16px; color: var(--muted-foreground)"
+                    ></iconify-icon>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label">Current Status</label>
+                  <div class="select-box">
+                    <span>Employed</span>
+                    <iconify-icon
+                      icon="lucide:chevron-down"
+                      style="font-size: 16px; color: var(--muted-foreground)"
+                    ></iconify-icon>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Current Location</label>
+                <div class="input-field">
+                  <iconify-icon
+                    icon="lucide:search"
+                    style="
+                      font-size: 16px;
+                      color: var(--muted-foreground);
+                      margin-right: 8px;
+                    "
+                  ></iconify-icon>
+                  Nairobi, Kenya
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Willing to relocate?</label>
+                <div class="radio-grid">
+                  <div class="radio-card active">Yes, anywhere</div>
+                  <div class="radio-card">Within County</div>
+                  <div class="radio-card">No</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Legal -->
+            <div
+              style="
+                text-align: center;
+                margin-top: 8px;
+                color: var(--muted-foreground);
+                font-size: 13px;
+              "
+            >
+              By creating an account, you agree to our
+              <a href="#" style="color: var(--primary)">Terms of Service</a> and
+              <a href="#" style="color: var(--primary)">Privacy Policy</a>.
+            </div>
+          </div>
+        </main>
+
+        <!-- Sticky Footer CTA -->
+        <footer class="sticky-footer">
+          <button class="btn-submit" data-media-type="banani-button">
+            Complete Profile
+            <iconify-icon
+              icon="lucide:arrow-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </button>
+        </footer>
+      </div>
+    </body>
+  </html>
+  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #0f172a;
+      --border: #00000014;
+      --input: #f8fafc;
+      --primary: #0077cc;
+      --primary-foreground: #ffffff;
+      --secondary: #f1f8ff;
+      --secondary-foreground: #0f172a;
+      --muted: #f3f4f6;
+      --muted-foreground: #6b7280;
+      --success: #16a34a;
+      --success-foreground: #ffffff;
+      --accent: #ffb020;
+      --accent-foreground: #0f172a;
+      --destructive: #dc2626;
+      --destructive-foreground: #ffffff;
+      --warning: #f59e0b;
+      --warning-foreground: #0f172a;
+      --card: #ffffff;
+      --card-foreground: #0f172a;
+      --sidebar: #f8fafc;
+      --sidebar-foreground: #0f172a;
+      --sidebar-primary: #e6f2ff;
+      --sidebar-primary-foreground: #0077cc;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 12px;
+      --font-family-body: Inter;
+    }
+  </style>
+</div>

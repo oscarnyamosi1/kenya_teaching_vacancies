@@ -1,0 +1,89 @@
+{% load static %}
+
+{% block headeradditionalcss%}
+{% endblock headeradditionalcss %}
+<!-- Promoted Opportunity -->
+<div class="job-card promoted glass-popup" data-media-type="banani-button">
+    <!-- Promoted Ribbon -->
+    {% if job.is_promoted %}
+        <div class="promoted-ribbon">Promoted</div>
+    {% endif %}
+    {% comment %} <div class="promoted-belt">Promoted</div> {% endcomment %}
+
+    <!-- Job Header -->
+    <div class="job-header">
+        <div class="job-school-info">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F18-25%2FAfrican%2F1"
+                class="school-logo" alt="School Logo">
+            <div class="school-details">
+                <h3>{{job.employer.school}}</h3>
+                <span>
+                <span>{{job.county}} County, {{job.constituency}} Constituency, {{job.location.capitalize}} • {{job.employer.school.school_type}}</span>
+                    <span class="verified-badge">
+                        <iconify-icon icon="lucide:badge-check" style="font-size: 14px"></iconify-icon>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="job-posted">{{job.days_posted}} ago</div>
+    </div>
+
+    <!-- Job Content -->
+    <div class="job-content">
+        <h2>{{job.job_title}}</h2>
+        <div class="job-tags">
+            <span class="tag">{{job.employment_type}}</span>
+            {% if job.tsc_required %}
+            <span class="tag">TSC Required</span>
+            {% endif %}
+            {% if convertSalaryMin is None %}
+            <span class="tag salary-tag">Salary Undisclosed</span>
+            {% else %}
+            <span class="tag salary-tag">KSh {{job.convertSalaryMin}}k - {{job.convertSalaryMax}}k</span>
+            {% endif %}
+        </div>
+        <p class="job-description">{{job.job_description}}</p>
+    </div>
+
+    <!-- Job Actions -->
+    <div class="job-actions">
+        <div class="action-group">
+            <a href="/jobs/savejob.{{job.id}}" class="btn btn-primary">
+                <iconify-icon icon="lucide:heart" style="font-size: 18px"></iconify-icon>
+                Save
+            </a>
+            <button class="btn btn-secondary">
+                <iconify-icon icon="lucide:share-2" style="font-size: 18px"></iconify-icon>
+                Share
+            </button>
+        </div>
+        <div>
+            <a href="/jobs/applyjob/{{job.id}}" class="btn btn-primary apply-btn" data-media-type="banani-button">
+                Apply Now
+            </a>
+            <button class="btn btn-outline viewjobdetails" data-media-type="banani-button">
+                View Details
+            </button>
+        </div>
+
+    </div>
+
+    <!-- WhatsApp Share Button -->
+    <div class="job-actions" style="margin-top: 10px;">
+        <a href="https://wa.me/?text={{ job.job_title|urlencode }}%20at%20{{ job.employer.school|urlencode }}%20in%20{{ job.county|urlencode }}%20%7C%20Apply%20on%20Kenya%20Teaching%20Vacancies:%20{{ request.build_absolute_uri }}" target="_blank" class="btn whatsapp-share" style="background:#25D366;color:#fff;border-radius:6px;padding:6px 14px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:500;">
+            <iconify-icon icon="ic:baseline-whatsapp" style="font-size:20px;"></iconify-icon> Share on WhatsApp
+        </a>
+    </div>
+</div>
+
+<script>
+    // Gradual glassy popup on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        const promotedCards = document.querySelectorAll('.glass-popup');
+        promotedCards.forEach((card, idx) => {
+            setTimeout(() => {
+                card.classList.add('show');
+            }, idx * 0); // stagger each card for nice effect
+        });
+    });
+</script>

@@ -1,0 +1,204 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+K.T.V Teacher Feed
+{% endblock title %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href="{% static 'styling/teacherfeed.css' %}">
+{% endblock headeradditionalcss %}
+
+{% block pagename %}
+teacherfeed
+{% endblock pagename %}
+
+{% block center_feed_content %}
+<div class="main-area colorize">
+
+  <!-- Hero / Search Bar -->
+  <div class="card glass" style="padding:20px;margin-bottom:16px;">
+    <h2 style="margin:0 0 16px;font-size:20px;font-weight:600">
+      Find your next teacher 🇰🇪
+    </h2>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div style="flex:1;display:flex;align-items:center;background:rgba(255,255,255,0.08);border-radius:14px;padding:0 16px;height:48px;">
+        <iconify-icon icon="lucide:search" style="color:rgba(255,255,255,0.55);margin-right:12px;"></iconify-icon>
+        <input type="text" name="q" placeholder="Teacher, subject, qualification" style="background:transparent;border:none;outline:none;color:white;width:100%;">
+      </div>
+
+      <select name="subject" style="flex:1;background:rgba(255,255,255,0.08);color:white;border:none;padding:0 16px;height:48px;border-radius:14px;">
+        <option value="">All Subjects</option>
+        {% for subject in subjects %}
+        <option value="{{subject.id}}">{{subject.name}}</option>
+        {% endfor %}
+      </select>
+
+      <select name="county" style="flex:1;background:rgba(255,255,255,0.08);color:white;border:none;padding:0 16px;height:48px;border-radius:14px;">
+        <option value="">All Counties</option>
+        {% for county in counties %}
+        <option value="{{county.id}}">{{county.name}}</option>
+        {% endfor %}
+      </select>
+
+      <select name="availability" style="flex:1;background:rgba(255,255,255,0.08);color:white;border:none;padding:0 16px;height:48px;border-radius:14px;">
+        <option value="">Any Availability</option>
+        <option value="free">Available</option>
+        <option value="busy">Engaged</option>
+      </select>
+
+      <button class="btn primary">
+        <iconify-icon icon="lucide:filter"></iconify-icon>
+        Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- Featured / Stories Tray -->
+  <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;">
+    {% for teacher in featured_teachers %}
+    <div style="width:140px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;">
+      <div class="story-ring">
+        <div style="width:64px;height:64px;border-radius:50%;overflow:hidden;border:2px solid var(--background);">
+          <img src="{{ teacher.profile_photo.url }}" alt="{{ teacher.full_name }}" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+      <div style="text-align:center;font-size:12px;font-weight:500;">{{ teacher.full_name }}</div>
+    </div>
+    {% endfor %}
+
+    <!-- Add Teacher (Upsell / Premium) -->
+    <div style="width:140px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;opacity:0.7;">
+      <a href="/teachers/postprofile">
+        <div style="width:70px;height:70px;border-radius:50%;border:2px dashed rgba(255,255,255,0.55);display:flex;align-items:center;justify-content:center;">
+          <iconify-icon icon="lucide:plus" style="font-size:24px;color:rgba(255,255,255,0.55);"></iconify-icon>
+        </div>
+        <div style="text-align:center;font-size:12px;font-weight:500;">Post Profile</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Teacher Feed -->
+  <section class="teacher-feed">
+    {% for teacher in teachers %}
+    <article class="card glass">
+      <!-- Header -->
+      <div class="job-card-header">
+        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;">
+          <img src="{{ teacher.profile_photo.url }}" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+        <div style="flex:1">
+          <div style="font-weight:600">{{ teacher.full_name }}</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.55);">
+            {{ teacher.county }} · Active {{ teacher.last_active }}
+          </div>
+        </div>
+
+        {% if teacher.is_available %}
+        <span class="tag" style="background:#22c55e;color:white;">Available</span>
+        {% else %}
+        <span class="tag">Engaged</span>
+        {% endif %}
+      </div>
+
+      <!-- Subjects -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+        {% for subject in teacher.subjects.all %}
+        <span class="tag">{{ subject.name }}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Qualifications -->
+      <p style="font-size:14px;">🎓 {{ teacher.qualifications|truncatechars:120 }}</p>
+
+      <!-- Salary -->
+      <div style="margin-top:10px;font-weight:600;">
+        Expected:
+        <span style="color:#6366f1">
+          KES {{ teacher.expected_salary_min }}k – {{ teacher.expected_salary_max }}k
+        </span>
+      </div>
+
+      <!-- Trust Signals -->
+      <div style="display:flex;gap:14px;font-size:12px;margin-top:10px;">
+        <span>
+          <iconify-icon icon="lucide:eye"></iconify-icon>
+          {{ teacher.profile_views }} views
+        </span>
+        {% if teacher.rating %}
+        <span>
+          <iconify-icon icon="lucide:star"></iconify-icon>
+          {{ teacher.rating }}/5
+        </span>
+        {% endif %}
+      </div>
+
+      <!-- Actions -->
+      <div class="job-card-footer">
+        <a href="/teacher_profile/{{teacher.id}}/" class="btn primary">
+          <iconify-icon icon="lucide:user"></iconify-icon>
+          View Profile
+        </a>
+
+        <div style="display:flex;gap:8px;">
+          <!-- In-app message -->
+          <a href="/teacher_message/{{teacher.id}}" class="btn">
+            <iconify-icon icon="lucide:message-circle"></iconify-icon>
+          </a>
+
+          <!-- External -->
+          {% if teacher.allows_external_contact %}
+          <a href="tel:{{ teacher.phone }}" class="btn">
+            <iconify-icon icon="lucide:phone"></iconify-icon>
+          </a>
+          <a href="mailto:{{ teacher.email }}" class="btn">
+            <iconify-icon icon="lucide:mail"></iconify-icon>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+    {% empty %}
+    <p style="opacity:.6;text-align:center;">No teachers found</p>
+    {% endfor %}
+  </section>
+</div>
+
+<!-- Micro-interactions JS -->
+<script>
+document.querySelectorAll('.glass').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    const rotateX = (y - centerY) / 25
+    const rotateY = (centerX - x) / 25
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+  })
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(800px) rotateX(0) rotateY(0)'
+  })
+})
+
+setInterval(() => {
+  document.querySelectorAll('.glass').forEach(card => {
+    card.animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(1.01)' }, { transform: 'scale(1)' }],
+      { duration: 4000, iterations: 1 }
+    )
+  })
+}, 6000)
+</script>
+
+{% endblock center_feed_content %}
+
+{% block leftsideaddition %}
+{% include "components/sideuserprofile.html" %}
+{% endblock leftsideaddition %}

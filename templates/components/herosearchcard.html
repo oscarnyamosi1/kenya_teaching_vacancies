@@ -1,0 +1,30 @@
+<!-- Hero Search Card -->
+<div class="hero-search-card">
+    <h1 class="hero-title">Find your next teaching role</h1>
+    <p class="hero-subtitle">
+        Connect with top schools across Kenya. Verified positions only.
+    </p>
+    <form class="search-box" action="/jobs/search/" method="get">
+        <div class="navtext">
+            <iconify-icon icon="lucide:search" style="font-size: 20px; color: #999"></iconify-icon>
+        </div>
+        <input type="text" name='jobquery' class="search-input" placeholder="Search by subject, school, or county..." />
+        <button class="btn btn-primary" style="padding: 8px 24px" data-media-type="banani-button">
+            Search
+        </button>
+    </form>
+    <div class="stats-row">
+        <div class="stat">
+            <div class="stat-val">{{active_jobs}}</div>
+            <div class="stat-label">Active Jobs</div>
+        </div>
+        <div class="stat">
+            <div class="stat-val">{{number_of_schools}}</div>
+            <div class="stat-label">Schools</div>
+        </div>
+        <div class="stat">
+            <div class="stat-val">{{teachers_hired}}</div>
+            <div class="stat-label">Teachers Hired</div>
+        </div>
+    </div>
+</div>

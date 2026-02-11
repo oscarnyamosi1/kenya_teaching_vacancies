@@ -1,0 +1,224 @@
+
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static 'styling/profilesettings.css' %}>
+{% endblock headeradditionalcss %}
+
+{% block title %}
+KTV Profile Settings
+{% endblock title %}
+
+{% block pagename %}
+settings
+{% endblock pagename %}
+
+{% block center_feed_content %}
+
+  <!-- Main Content -->
+  <div class="main-area">
+    <div class="content-container">
+      <div class="page-header">
+        <h1 class="page-title">Settings</h1>
+      </div>
+
+      <!-- User Profile Card -->
+      <div class="profile-summary" data-media-type="banani-button">
+        <img
+          src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F2"
+          class="profile-avatar"
+          alt="Your Profile"
+        />
+        <div class="profile-info">
+          <div class="profile-name">{{user.username.capitalize}}</div>
+          <div class="profile-status">Math Teacher • Open to work</div>
+        </div>
+        <div class="chevron-icon">
+          <iconify-icon
+            icon="lucide:qr-code"
+            style="font-size: 24px"
+          ></iconify-icon>
+        </div>
+      </div>
+
+      <!-- Settings Group 1 -->
+      <div class="settings-group">
+        <div class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper">
+            <iconify-icon
+              icon="lucide:key-round"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Account</div>
+            <div class="item-subtitle">Security, email, phone number</div>
+          </div>
+          <div class="chevron-icon">
+            <iconify-icon
+              icon="lucide:chevron-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+
+        <div class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper">
+            <iconify-icon
+              icon="lucide:lock"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Privacy</div>
+            <div class="item-subtitle">
+              Profile visibility, blocked users
+            </div>
+          </div>
+          <div class="chevron-icon">
+            <iconify-icon
+              icon="lucide:chevron-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+
+        <div class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper">
+            <iconify-icon
+              icon="lucide:file-text"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title">CV &amp; Documents</div>
+            <div class="item-subtitle">
+              Manage your resume and certificates
+            </div>
+          </div>
+          <div class="chevron-icon">
+            <iconify-icon
+              icon="lucide:chevron-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Group 2 -->
+      <div class="section-header">Preferences</div>
+      <div class="settings-group">
+        <a href="/teachers/notifications" class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper">
+            <iconify-icon
+              icon="lucide:bell"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Notifications</div>
+            <div class="item-subtitle">
+              Messages, job alerts, application updates
+            </div>
+          </div>
+          <div class="chevron-icon">
+            <iconify-icon
+              icon="lucide:chevron-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </a>
+
+        <div class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper">
+            <iconify-icon
+              icon="lucide:moon"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Appearance</div>
+            <div class="item-subtitle">Theme, font size</div>
+          </div>
+          <div class="chevron-icon">
+            <iconify-icon
+              icon="lucide:chevron-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+
+        <div class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper">
+            <iconify-icon
+              icon="lucide:globe"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Language</div>
+            <div class="item-subtitle">English (US)</div>
+          </div>
+          <div class="chevron-icon">
+            <iconify-icon
+              icon="lucide:chevron-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Group 3 -->
+      <div class="section-header">Support</div>
+      <div class="settings-group">
+        <div class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper">
+            <iconify-icon
+              icon="lucide:help-circle"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title">Help Center</div>
+            <div class="item-subtitle">
+              Contact support, privacy policy
+            </div>
+          </div>
+          <div class="chevron-icon">
+            <iconify-icon
+              icon="lucide:chevron-right"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+        </div>
+
+        <a href="/logout/" class="settings-item" data-media-type="banani-button">
+          <div class="item-icon-wrapper destructive">
+            <iconify-icon
+              icon="lucide:log-out"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="item-content">
+            <div class="item-title destructive">Log out</div>
+          </div>
+        </a>
+      </div>
+
+      <div
+        style="
+          text-align: center;
+          color: var(--muted-foreground);
+          font-size: 13px;
+          margin-top: 16px;
+        "
+      >
+        Kenya Teaching Vacancies v1.0.0
+      </div>
+    </div>
+  </div>
+
+{% endblock center_feed_content %}
+

@@ -1,0 +1,32 @@
+/* pink premium */
+:root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --border: #e8e8e8;
+    --input: #f8f8f7;
+    --primary: #ff272a;
+    --primary-foreground: #ffffff;
+    --secondary: #ffd4d4;
+    --secondary-foreground: #ff272a;
+    --muted: #e8e8e8;
+    --muted-foreground: #949494;
+    --success: #00c417;
+    --success-foreground: #ffffff;
+    --accent: #ff272a;
+    --accent-foreground: #ffffff;
+    --destructive: #ff0000;
+    --destructive-foreground: #ffffff;
+    --warning: #ff7308;
+    --warning-foreground: #ffffff;
+    --card: #fbfaf9;
+    --card-foreground: #000000;
+    --sidebar: #ffffff;
+    --sidebar-foreground: #4a4a4a;
+    --sidebar-primary: #e8e8e8;
+    --sidebar-primary-foreground: #000000;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 24px;
+    --font-family-body: Inter,Arial;
+}

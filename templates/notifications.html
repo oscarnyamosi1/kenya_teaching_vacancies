@@ -1,0 +1,227 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}
+K.T.V Teacher Notifications
+{% endblock title %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static "styling/notifications.css" %} >
+{% endblock headeradditionalcss %}
+
+
+{% block pagename %}
+notifications
+{% endblock pagename %}
+
+
+{% block center_feed_content %}
+
+<!-- Main Content -->
+<div class="main-area">
+  <div class="content-container">
+    <div class="page-header">
+      <h1 class="page-title">Notifications</h1>
+      <div class="mark-read-btn" data-media-type="banani-button">
+        Mark all as read
+      </div>
+    </div>
+
+    <div class="filter-tabs">
+      <div class="filter-tab active" data-media-type="banani-button">
+        All
+      </div>
+      <div class="filter-tab" data-media-type="banani-button">
+        Job Alerts
+      </div>
+      <div class="filter-tab" data-media-type="banani-button">
+        Applications
+      </div>
+      <div class="filter-tab" data-media-type="banani-button">
+        Mentions
+      </div>
+    </div>
+
+    <!-- New Section -->
+    <div class="notification-section">
+      <div class="section-label">New</div>
+
+      <!-- Notif 1: Job Alert (Unread) -->
+      <div
+        class="notification-card unread"
+        data-media-type="banani-button"
+      >
+        <div class="notif-avatar-wrapper">
+          <img
+            src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F2"
+            class="notif-avatar"
+            alt="Recruiter"
+          />
+          <div class="notif-type-icon type-job">
+            <iconify-icon
+              icon="lucide:briefcase"
+              style="font-size: 14px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="notif-content">
+          <div class="notif-text">
+            <strong>Sunnyvale District</strong> posted a new position:
+            <strong>Senior History Teacher</strong> matching your
+            preferences.
+          </div>
+          <div class="notif-time">20 minutes ago</div>
+        </div>
+        <div class="unread-indicator"></div>
+      </div>
+
+      <!-- Notif 2: Application Update (Unread) -->
+      <div
+        class="notification-card unread"
+        data-media-type="banani-button"
+      >
+        <div class="notif-avatar-wrapper">
+          <img
+            src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F50-65%2FAfrican%2F2"
+            class="notif-avatar"
+            alt="Westside Academy"
+          />
+          <div class="notif-type-icon type-view">
+            <iconify-icon
+              icon="lucide:eye"
+              style="font-size: 14px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="notif-content">
+          <div class="notif-text">
+            <strong>Westside Academy</strong> viewed your application
+            for <strong>Head of Science</strong>.
+          </div>
+          <div class="notif-time">2 hours ago</div>
+        </div>
+        <div class="unread-indicator"></div>
+      </div>
+
+      <!-- Notif 3: Message (Unread) -->
+      <div
+        class="notification-card unread"
+        data-media-type="banani-button"
+      >
+        <div class="notif-avatar-wrapper">
+          <img
+            src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4"
+            class="notif-avatar"
+            alt="Principal Sarah"
+          />
+          <div class="notif-type-icon type-message">
+            <iconify-icon
+              icon="lucide:message-circle"
+              style="font-size: 14px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="notif-content">
+          <div class="notif-text">
+            <strong>Principal Sarah</strong> sent you a message: "Is
+            this salary range okay?"
+          </div>
+          <div class="notif-time">3 hours ago</div>
+        </div>
+        <div class="unread-indicator"></div>
+      </div>
+    </div>
+
+    <!-- Earlier Section -->
+    <div class="notification-section">
+      <div class="section-label">Earlier</div>
+
+      <!-- Notif 4: Alert -->
+      <div class="notification-card" data-media-type="banani-button">
+        <div class="notif-avatar-wrapper">
+          <div
+            class="notif-avatar"
+            style="
+              background-color: var(--input);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <iconify-icon
+              icon="lucide:bell-ring"
+              style="font-size: 24px; color: var(--muted-foreground)"
+            ></iconify-icon>
+          </div>
+          <div class="notif-type-icon type-alert">
+            <iconify-icon
+              icon="lucide:zap"
+              style="font-size: 14px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="notif-content">
+          <div class="notif-text">
+            3 new <strong>English Teacher</strong> jobs in
+            <strong>New York</strong> were added today.
+          </div>
+          <div class="notif-meta">Yesterday at 4:30 PM</div>
+        </div>
+      </div>
+
+      <!-- Notif 5: Application Status -->
+      <div class="notification-card" data-media-type="banani-button">
+        <div class="notif-avatar-wrapper">
+          <img
+            src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F25-35%2FSouth%20Asian%2F1"
+            class="notif-avatar"
+            alt="Recruiter Raj"
+          />
+          <div class="notif-type-icon type-job">
+            <iconify-icon
+              icon="lucide:check"
+              style="font-size: 14px"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="notif-content">
+          <div class="notif-text">
+            <strong>Recruiter Raj</strong> marked your application as
+            <strong>Shortlisted</strong>.
+          </div>
+          <div class="notif-meta">Yesterday at 10:15 AM</div>
+        </div>
+      </div>
+
+      <!-- Notif 6: Profile -->
+      <div class="notification-card" data-media-type="banani-button">
+        <div class="notif-avatar-wrapper">
+          <div
+            class="notif-avatar"
+            style="
+              background-color: var(--secondary);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <iconify-icon
+              icon="lucide:user"
+              style="font-size: 24px; color: var(--foreground)"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div class="notif-content">
+          <div class="notif-text">
+            Your profile is getting noticed! 5 recruiters viewed your
+            profile this week.
+          </div>
+          <div class="notif-meta">2 days ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock center_feed_content %}

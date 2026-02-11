@@ -1,0 +1,333 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static 'styling/teacherprofile.css' %}>
+{% endblock headeradditionalcss %}
+
+{% block title %}
+K.T.V Teacher Profile
+{% endblock title %}
+
+{% block pagename %}
+teacherprofile
+{% endblock pagename %}
+
+{% block center_feed_content %}
+<!-- Main Profile Content -->
+{% if teacher is None %}
+   <div class="profilecontainer colorize" style="height: 300px;align-items: center;justify-content: center;">
+    <h1>You currently have no Teacher Profile.</h1>
+    <a href='/teachers/createteacherprofile/' class='btn btn-action'>
+      Create one
+    </a>
+  </div>
+{% else %}
+  <div class="profile-container colorize">
+    <!-- Header -->
+    <div class="profile-header">
+      <div class="profile-image-container">
+        <img
+          src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F4"
+          class="profile-avatar"
+          alt="Profile"
+        />
+        <div class="verified-badge">
+          <iconify-icon
+            icon="lucide:check"
+            style="font-size: 14px"
+          ></iconify-icon>
+        </div>
+      </div>
+
+      <h1 class="profile-name">
+        {{teacher.user.username.capitalize}}
+        <span class="tsc-status">TSC</span>
+      </h1>
+      <p class="profile-title">{{teacher.schoolsExperienced}} School Teacher • {{teacher.classification}}</p>
+
+      <div class="profile-stats-row">
+        <div class="stat-item">
+          <span class="stat-value">7</span>
+          <span class="stat-label">Years Exp</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">4.8</span>
+          <span class="stat-label">Rating</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">15</span>
+          <span class="stat-label">Interviews</span>
+        </div>
+      </div>
+
+      <p class="profile-bio">
+        Passionate History and CRE teacher with 7 years of experience in
+        CBC curriculum implementation. Dedicated to fostering critical
+        thinking and moral development in students.
+      </p>
+
+      <div class="action-buttons">
+        <button
+          class="btn-action btn-edit"
+          data-media-type="banani-button"
+        >
+          Edit Profile
+        </button>
+        <button
+          class="btn-action btn-edit"
+          data-media-type="banani-button"
+        >
+          Share
+        </button>
+      </div>
+    </div>
+
+    <!-- Video Intro -->
+    <div class="section-container">
+      <div class="section-title">
+        <iconify-icon
+          icon="lucide:video"
+          style="font-size: 18px; color: var(--primary)"
+        ></iconify-icon>
+        Video Introduction
+      </div>
+      <div class="video-intro-preview" data-media-type="banani-button">
+        <img
+          data-aspect-ratio="16:9"
+          data-query="teacher introducing herself in classroom kenya"
+          style="
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+          "
+          src="https://storage.googleapis.com/banani-generated-images/generated-images/e5bcea00-bdfc-42d2-a1e6-75a6b3c6c598.jpg"
+        />
+        <div class="play-btn">
+          <iconify-icon
+            icon="lucide:play"
+            style="font-size: 24px"
+          ></iconify-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Grid -->
+    <div class="section-container">
+      <div class="section-title">
+        <iconify-icon
+          icon="lucide:briefcase"
+          style="font-size: 18px; color: var(--primary)"
+        ></iconify-icon>
+        Professional Details
+      </div>
+
+      <div class="info-grid">
+        <div class="info-box">
+          <span class="info-label">TSC Number</span>
+          <span class="info-content">{% if teacher.tscnumber is not None %}{{teacher.tsc_number}}{% else %}Update{% endif %}</span>
+        </div>
+        <div class="info-box">
+          <span class="info-label">Expected Salary</span>
+          <span class="info-content">KES 
+            {% if teacher.expected_salary_min is not None %}
+              {{teacher.expected_salary_min}}
+            {% else %}
+              Update
+            {% endif %}
+            - 
+            {% if teacher.expected_salary_max %}
+              {{teacher.expected_salary_max}}
+            {% else %}
+              Update
+            {% endif %}
+          </span>
+        </div>
+        <div class="info-box">
+          <span class="info-label">Location Pref.</span>
+          <span class="info-content">{{teacher.pref_locations}}</span>
+        </div>
+        <div class="info-box">
+          <span class="info-label">Availability</span>
+          <span class="info-content">{{teacher.availability}} </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subjects & Specializations -->
+    <div class="section-container">
+      <div class="section-title">
+        <iconify-icon
+          icon="lucide:book-open"
+          style="font-size: 18px; color: var(--primary)"
+        ></iconify-icon>
+        Subjects &amp; Skills
+      </div>
+      <div style="margin-bottom: 16px">
+        <span
+          class="info-label"
+          style="display: block; margin-bottom: 8px"
+          >Subjects</span
+        >
+        <div class="tags-container">
+          {% for subject in teacher.teacher_subjects.all %}
+          <span class="profile-tag">{{subject}}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div>
+        <span
+          class="info-label"
+          style="display: block; margin-bottom: 8px"
+          >Specializations</span
+        >
+        <div class="tags-container">
+          {% for specialization in teacher.specializations.all %}
+          <span class="profile-tag">{{specialization}}</span>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Documents -->
+    <div class="section-container" style="border-bottom: none">
+      <div class="section-title">
+        <iconify-icon
+          icon="lucide:file-text"
+          style="font-size: 18px; color: var(--primary)"
+        ></iconify-icon>
+        Documents
+      </div>
+      <div class="doc-list">
+        <div class="doc-item" data-media-type="banani-button">
+          <div class="doc-icon">
+            <iconify-icon
+              icon="lucide:file-check"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="doc-info">
+            <span class="doc-name">Curriculum Vitae (CV)</span>
+            <span class="doc-meta">Updated 2 days ago • PDF</span>
+          </div>
+          <button class="doc-action">
+            <iconify-icon
+              icon="lucide:eye"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </button>
+        </div>
+        <div class="doc-item" data-media-type="banani-button">
+          <div class="doc-icon">
+            <iconify-icon
+              icon="lucide:award"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="doc-info">
+            <span class="doc-name">Bachelor of Education Degree</span>
+            <span class="doc-meta">Kenyatta University • JPG</span>
+          </div>
+          <button class="doc-action">
+            <iconify-icon
+              icon="lucide:eye"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </button>
+        </div>
+        <div class="doc-item" data-media-type="banani-button">
+          <div class="doc-icon">
+            <iconify-icon
+              icon="lucide:badge-check"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </div>
+          <div class="doc-info">
+            <span class="doc-name">TSC Registration Certificate</span>
+            <span class="doc-meta">Verified • PDF</span>
+          </div>
+          <button class="doc-action">
+            <iconify-icon
+              icon="lucide:eye"
+              style="font-size: 20px"
+            ></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+{% endblock center_feed_content %}
+
+{% block rightsidebar %}
+
+
+<!-- Right Sidebar - Teacher Feed Style -->
+<aside class="right-sidebar glass-sidebar">
+
+  <!-- Profile Completeness -->
+  <div class="widget-box">
+    <span class="widget-header">Profile Completeness</span>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 85%;"></div>
+    </div>
+    <span class="widget-subtext">
+      Your profile is 85% complete. Add a video intro to reach 100%.
+    </span>
+  </div>
+
+  <!-- Application Status -->
+  <div class="widget-box">
+    <span class="widget-header">Application Status</span>
+
+    <div class="school-list-item">
+      <div class="status-indicator warning"></div>
+      <div class="school-info">
+        <span class="school-name">Nairobi Elite Academy</span>
+        <span class="school-status">Under Review</span>
+      </div>
+      <span class="school-date">2d</span>
+    </div>
+
+    <div class="school-list-item">
+      <div class="status-indicator muted"></div>
+      <div class="school-info">
+        <span class="school-name">Greenwood Primary</span>
+        <span class="school-status">Viewed</span>
+      </div>
+      <span class="school-date">5d</span>
+    </div>
+  </div>
+
+  <!-- Similar Profiles -->
+  <div class="widget-box">
+    <span class="widget-header">Similar Profiles</span>
+
+    <div class="school-list-item connect-item">
+      <img src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F25-35%2FAfrican%2F1" class="profile-pic"/>
+      <div class="profile-info">
+        <span class="profile-name">John Kamau</span>
+        <span class="profile-subjects">History / Geog</span>
+      </div>
+      <button class="btn connect-btn">Connect</button>
+    </div>
+
+    <div class="school-list-item connect-item">
+      <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F6" class="profile-pic"/>
+      <div class="profile-info">
+        <span class="profile-name">Alice O.</span>
+        <span class="profile-subjects">CRE / English</span>
+      </div>
+      <button class="btn connect-btn">Connect</button>
+    </div>
+
+  </div>
+
+</aside>
+
+
+{% endblock rightsidebar %}

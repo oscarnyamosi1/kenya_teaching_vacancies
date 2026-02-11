@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K.T.V Signup Flow</title>
+  <link rel="stylesheet" href={% static "styling/signupflow.css" %}>
+  <link rel="stylesheet" href={% static 'styling/index.css' %}>
+</head>
+
+<body>
+
+
+  <nav class="navbar glass-nav">
+    <div class="navbar-left">
+      <div class="logo-mark">
+        <div style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;">
+          <iconify-icon icon="lucide:graduation-cap"
+            style="font-size: 18px; color: var(--primary-foreground);"></iconify-icon>
+        </div>
+      </div>
+      <div class="logo-text">Kenya Teaching Vacancies</div>
+    </div>
+    <div class="navbar-right">
+      <span>Already have an account?</span>
+      <a href="/login/">
+        <div class="btn btn-ghost" data-media-type="banani-button">
+          <span>Log in</span>
+        </div>
+      </a>
+      <!-- <div class="avatar-shell">
+        <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F3" alt="User avatar" style="width: 100%; height: 100%; object-fit: cover;">
+      </div> -->
+    </div>
+  </nav>
+  <main class="shell-main">
+    <form class="glass-card signup-shell">
+      <div class="light-orbit"></div>
+
+      <div class="signup-main">
+        <div class="step-strip">
+          <div class="step-dot step-dot--active"></div>
+          <div class="step-dot"></div>
+          <div class="step-dot"></div>
+          <span class="step-text">Step 1 · Create account</span>
+        </div>
+
+        <h1 class="headline">Create your teaching profile</h1>
+        <p class="headline-sub">Sign up to join Kenyan schools, tutors, and academies hiring on TeachKenya.</p>
+
+        <div class="field-group">
+          <div class="field-label">Full name</div>
+          <div class="field-shell" data-media-type="banani-button">
+            <div class="field-icon">
+              <iconify-icon icon="lucide:user-2" style="font-size: 18px;"></iconify-icon>
+            </div>
+            <input class="field-input" required placeholder="Jane Wanjiku"></input>
+          </div>
+        </div>
+
+        <div class="inline-row">
+          <div class="field-group">
+            <div class="field-label">Email</div>
+            <div class="field-shell" data-media-type="banani-button">
+              <div class="field-icon">
+                <iconify-icon icon="lucide:mail" style="font-size: 18px;"></iconify-icon>
+              </div>
+              <input class="field-input" placeholder="mwalimu@example.com" type='email' required>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div class="field-label">Phone (Kenya)</div>
+            <div class="field-shell" data-media-type="banani-button">
+              <div class="field-icon">
+                <span style="font-size: 0.8rem; color: var(--muted-foreground);">+254</span>
+              </div>
+              <input class="field-input" placeholder="7XX XXX XXX"></input>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Create password</div>
+          <div class="field-shell" data-media-type="banani-button">
+            <div class="field-icon">
+              <iconify-icon icon="lucide:lock" style="font-size: 18px;"></iconify-icon>
+            </div>
+            <input class="field-input" placeholder='••••••••' type='password'>
+            <div class="field-icon">
+              <iconify-icon icon="lucide:eye-off" style="font-size: 18px;"></iconify-icon>
+            </div>
+          </div>
+          <div class="hint">Use at least 8 characters with a mix of letters and numbers.</div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Repeat password</div>
+          <div class="field-shell" data-media-type="banani-button">
+            <div class="field-icon">
+              <iconify-icon icon="lucide:lock" style="font-size: 18px;"></iconify-icon>
+            </div>
+            <input class="field-input" placeholder='••••••••' type='password' required>
+            <div class="field-icon">
+              <iconify-icon icon="lucide:eye-off" style="font-size: 18px;"></iconify-icon>
+            </div>
+          </div>
+          <div class="hint">Use at least 8 characters with a mix of letters and numbers.</div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Teaching focus</div>
+          <div class="field-shell field-shell--multiline" data-media-type="banani-button">
+            <div class="field-icon" style="margin-top: 2px;">
+              <iconify-icon icon="lucide:sparkles" style="font-size: 18px;"></iconify-icon>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+              <div class="pill-input-row">
+                <div class="pill-chip pill-glass pill-chip--active" data-media-type="banani-button">
+                  Primary
+                </div>
+                <div class="pill-chip pill-glass" data-media-type="banani-button">
+                  High school
+                </div>
+                <div class="pill-chip pill-glass" data-media-type="banani-button">
+                  University
+                </div>
+                <div class="pill-chip pill-glass" data-media-type="banani-button">
+                  Special needs
+                </div>
+              </div>
+              <div class="pill-add" data-media-type="banani-button">
+                <div style="width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;">
+                  <iconify-icon icon="lucide:plus" style="font-size: 14px;"></iconify-icon>
+                </div>
+                <span>Add subject (e.g. Mathematics, Kiswahili)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-label">Short bio</div>
+          <div class="field-shell field-shell--multiline" data-media-type="banani-button">
+            <div class="field-icon" style="margin-top: 2px;">
+              <iconify-icon icon="lucide:edit-3" style="font-size: 18px;"></iconify-icon>
+            </div>
+            <input class="field-input field-input--multiline"
+              placeholder="Passionate teacher with 5+ years experience in CBC and KCSE preparation... ">
+            </input>
+          </div>
+        </div>
+
+        <div class="toggle-row" data-media-type="banani-button">
+          <div class="toggle-copy">
+            <div class="toggle-title">I’m open to remote or online classes</div>
+            <div class="toggle-sub">Schools and parents will see this on your profile.</div>
+          </div>
+          <div class="toggle-shell-off">
+            <div class="toggle-knob"></div>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <div class="btn btn-primary" data-media-type="banani-button">
+            <span>Continue to documents</span>
+            <iconify-icon icon="lucide:arrow-right" style="font-size: 18px;"></iconify-icon>
+          </div>
+          <div class="btn btn-ghost" data-media-type="banani-button">
+            <iconify-icon icon="lucide:play" style="font-size: 16px;"></iconify-icon>
+            <span>Preview profile</span>
+          </div>
+        </div>
+
+        <div class="or-strip">
+          <div class="or-line"></div>
+          <span>or continue with</span>
+          <div class="or-line"></div>
+        </div>
+
+        <div class="social-row">
+          <div class="social-btn" data-media-type="banani-button">
+            <iconify-icon icon="lucide:linkedin" style="font-size: 18px;"></iconify-icon>
+            <span>LinkedIn</span>
+          </div>
+          <div class="social-btn" data-media-type="banani-button">
+            <iconify-icon icon="lucide:facebook" style="font-size: 18px;"></iconify-icon>
+            <span>Facebook</span>
+          </div>
+          <div class="social-btn" data-media-type="banani-button">
+            <iconify-icon icon="lucide:mail" style="font-size: 18px;"></iconify-icon>
+            <span>Google</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px; font-size: 0.75rem; color: var(--muted-foreground);">
+          By continuing you agree to the <span style="color: var(--accent);">Terms</span> and <span
+            style="color: var(--accent);">Privacy Policy</span>.
+        </div>
+      </div>
+
+      <aside class="signup-side">
+        <div class="side-header">Live preview</div>
+
+        <div class="side-card">
+          <div style="width: 40px; height: 40px; border-radius: 999px; overflow: hidden;">
+            <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F3" alt="Profile"
+              style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="side-card-main">
+            <span style="font-size: 0.9rem; font-weight: 500;">Jane Wanjiku</span>
+            <span style="color: var(--muted-foreground);">Primary · Mathematics · Nairobi</span>
+            <div class="mini-meter">
+              <div class="mini-meter-fill"></div>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--muted-foreground);">Profile strength: Strong</span>
+          </div>
+        </div>
+
+        <div class="side-tag-row">
+          <div class="side-tag">CBC trained</div>
+          <div class="side-tag">TSC registered</div>
+          <div class="side-tag">Available this term</div>
+        </div>
+
+        <div class="side-card">
+          <div
+            style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: var(--accent);">
+            <iconify-icon icon="lucide:sparkle" style="font-size: 18px;"></iconify-icon>
+          </div>
+          <div class="side-card-main">
+            <span style="font-size: 0.86rem; font-weight: 500;">Next · Verify documents</span>
+            <span style="color: var(--muted-foreground);">We’ll ask for your ID, certificates, and TSC details.</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 4px; font-size: 0.76rem; color: var(--muted-foreground);">
+          Your details are kept private until you apply or share your profile with a school.
+        </div>
+
+        <div style="margin-top: auto; font-size: 0.72rem; color: var(--muted-foreground);">
+          Need help? <span style="color: var(--accent);" data-media-type="banani-button">Chat with support</span>
+        </div>
+      </aside>
+    </form>
+  </main>
+
+</body>
+
+</html>

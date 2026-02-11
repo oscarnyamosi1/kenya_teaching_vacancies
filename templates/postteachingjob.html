@@ -1,0 +1,498 @@
+
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static 'styling/postteachingjob.css' %}>
+{% endblock headeradditionalcss %}
+
+{% block title %}
+KTV Post Job
+{% endblock title %}
+
+
+
+{% block pagename %}
+postjob
+{% endblock pagename %}
+
+
+{% block center_feed_content %}
+        <!-- Main Post Composer Area -->
+        <div class="main-area">
+          <div
+            style="
+              width: 100%;
+              max-width: 960px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 12px;
+            "
+          >
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <div style="font-size: 20px; font-weight: 700">
+                Post a teaching job
+              </div>
+              <div style="font-size: 13px; color: var(--muted-foreground)">
+                Share your schools next teaching role like a social post  fast,
+                easy, and engaging.
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 12px;
+                color: var(--muted-foreground);
+              "
+            >
+              <div class="icon-24">
+                <iconify-icon
+                  icon="lucide:eye"
+                  style="font-size: 18px; color: currentColor"
+                ></iconify-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="composer-layout">
+            <!-- Left: Composer -->
+            <div class="composer-column">
+              <div class="composer-card">
+                <div class="composer-header">
+                  <div class="poster-info">
+                    <img
+                      src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4"
+                      class="poster-avatar"
+                      alt="Principal avatar"
+                    />
+                    <div class="poster-details">
+                      <span class="poster-name">Greenwood High School</span>
+                      <span class="poster-meta"
+                        >Posting as: Principal account</span
+                      >
+                    </div>
+                  </div>
+                  <div class="composer-tabs">
+                    <div
+                      class="composer-tab active"
+                      data-media-type="banani-button"
+                    >
+                      Compose
+                    </div>
+                    <div class="composer-tab" data-media-type="banani-button">
+                      Settings
+                    </div>
+                  </div>
+                </div>
+
+                <div class="composer-body">
+                  <!-- Job title -->
+                  <div class="field-group">
+                    <div class="field-label-row">
+                      <div class="field-label">Role title</div>
+                      <div class="field-hint">
+                        E.g.  Middle School Math Teacher
+                      </div>
+                    </div>
+                    <div
+                      class="text-input-large"
+                      data-media-type="banani-button"
+                    >
+                      <div class="text-input-placeholder">
+                        Describe the teaching role...
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- School, location row -->
+                  <div style="display: flex; gap: 12px">
+                    <div class="field-group" style="flex: 1">
+                      <div class="field-label">School / organisation</div>
+                      <div
+                        class="text-input-large"
+                        data-media-type="banani-button"
+                      >
+                        <div class="text-input-placeholder">
+                          Greenwood High School
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field-group" style="flex: 1">
+                      <div class="field-label">Location</div>
+                      <div
+                        class="text-input-large"
+                        data-media-type="banani-button"
+                      >
+                        <div class="text-input-placeholder">
+                          City, country or remote
+                        </div>
+                        <div class="icon-24">
+                          <iconify-icon
+                            icon="lucide:map-pin"
+                            style="
+                              font-size: 18px;
+                              color: var(--muted-foreground);
+                            "
+                          ></iconify-icon>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Subjects & Grades chips -->
+                  <div class="field-group">
+                    <div class="field-label-row">
+                      <div class="field-label">Subjects</div>
+                      <div class="chip-count">3 selected</div>
+                    </div>
+                    <div class="chips-row">
+                      <div
+                        class="chip-select active"
+                        data-media-type="banani-button"
+                      >
+                        Mathematics
+                      </div>
+                      <div
+                        class="chip-select active"
+                        data-media-type="banani-button"
+                      >
+                        STEM
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        English
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        Science
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        <div class="icon-24">
+                          <iconify-icon
+                            icon="lucide:plus"
+                            style="font-size: 18px; color: currentColor"
+                          ></iconify-icon>
+                        </div>
+                        Add subjects
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <div class="field-label-row">
+                      <div class="field-label">Grade level</div>
+                      <div class="chip-count">Choose multiple</div>
+                    </div>
+                    <div class="chips-row">
+                      <div class="chip-select" data-media-type="banani-button">
+                        Elementary
+                      </div>
+                      <div
+                        class="chip-select active"
+                        data-media-type="banani-button"
+                      >
+                        Middle school
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        High school
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        IB / AP
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Contract & schedule -->
+                  <div class="field-group">
+                    <div class="field-label-row">
+                      <div class="field-label">Contract &amp; schedule</div>
+                      <div class="field-hint">Tap to select</div>
+                    </div>
+                    <div class="chips-row">
+                      <div
+                        class="chip-select active"
+                        data-media-type="banani-button"
+                      >
+                        Full-time
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        Part-time
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        Permanent
+                      </div>
+                      <div class="chip-select" data-media-type="banani-button">
+                        1-year contract
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Story-style description -->
+                  <div class="field-group">
+                    <div class="field-label-row">
+                      <div class="field-label">
+                        Tell teachers about this role
+                      </div>
+                      <div class="field-hint">
+                        What makes this class special?
+                      </div>
+                    </div>
+                    <div
+                      class="multiline-input"
+                      data-media-type="banani-button"
+                    >
+                      <div class="multiline-placeholder">
+                        Share class size, teaching style, curriculum, timetable,
+                        and what your ideal teacher is like...
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                          font-size: 11px;
+                          color: var(--muted-foreground);
+                        "
+                      >
+                        <span>0 / 600 characters</span>
+                        <div style="display: flex; gap: 8px">
+                          <div class="icon-24" data-media-type="banani-button">
+                            <iconify-icon
+                              icon="lucide:smile"
+                              style="
+                                font-size: 18px;
+                                color: var(--muted-foreground);
+                              "
+                            ></iconify-icon>
+                          </div>
+                          <div class="icon-24" data-media-type="banani-button">
+                            <iconify-icon
+                              icon="lucide:image"
+                              style="
+                                font-size: 18px;
+                                color: var(--muted-foreground);
+                              "
+                            ></iconify-icon>
+                          </div>
+                          <div class="icon-24" data-media-type="banani-button">
+                            <iconify-icon
+                              icon="lucide:hash"
+                              style="
+                                font-size: 18px;
+                                color: var(--muted-foreground);
+                              "
+                            ></iconify-icon>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Salary & Monetization -->
+              <div class="salary-card">
+                <div class="section-title-row">
+                  <div>
+                    <div class="section-title">Salary &amp; visibility</div>
+                    <div class="section-tagline">
+                      Transparent pay gets 2x more qualified teachers.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="salary-type-row">
+                  <div
+                    class="salary-type-pill active"
+                    data-media-type="banani-button"
+                  >
+                    Annual
+                  </div>
+                  <div class="salary-type-pill" data-media-type="banani-button">
+                    Monthly
+                  </div>
+                  <div class="salary-type-pill" data-media-type="banani-button">
+                    Daily
+                  </div>
+                  <div class="salary-type-pill" data-media-type="banani-button">
+                    Hourly
+                  </div>
+                </div>
+
+                <div class="salary-range-row">
+                  <div
+                    class="salary-slider-track"
+                    data-media-type="banani-button"
+                  >
+                    <div class="salary-slider-fill"></div>
+                    <div class="salary-slider-handle left"></div>
+                    <div class="salary-slider-handle right"></div>
+                  </div>
+                  <div class="salary-range-labels">
+                    <span>$30k</span>
+                    <span class="salary-current">$48k  $62k / year</span>
+                    <span>$90k+</span>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-text">
+                    <div class="toggle-title">Featured job</div>
+                    <div class="toggle-subtitle">
+                      Pin this role to the top of feeds for nearby teachers.
+                    </div>
+                  </div>
+                  <div class="toggle-switch on" data-media-type="banani-button">
+                    <div class="toggle-knob"></div>
+                  </div>
+                </div>
+
+                <div class="toggle-row">
+                  <div class="toggle-text">
+                    <div class="toggle-title">Applications via JobSocial</div>
+                    <div class="toggle-subtitle">
+                      Use our chat-style applications with voice notes and short
+                      answers.
+                    </div>
+                  </div>
+                  <div class="toggle-switch" data-media-type="banani-button">
+                    <div class="toggle-knob"></div>
+                  </div>
+                </div>
+
+                <div class="boost-card">
+                  <div class="boost-header">
+                    <div class="boost-title-wrap">
+                      <div class="icon-24">
+                        <iconify-icon
+                          icon="lucide:rocket"
+                          style="font-size: 18px; color: var(--primary)"
+                        ></iconify-icon>
+                      </div>
+                      <div class="boost-title">Boost this job</div>
+                      <div class="boost-pill">+3x teacher reach</div>
+                    </div>
+                    <div class="boost-price">From $1 / day</div>
+                  </div>
+                  <div class="boost-body">
+                    Show your role above other schools for teachers who match
+                    your subject, grade, and location.
+                  </div>
+                  <div class="boost-footer">
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                        color: var(--muted-foreground);
+                      "
+                    >
+                      <iconify-icon
+                        icon="lucide:sparkles"
+                        style="font-size: 14px; color: var(--primary)"
+                      ></iconify-icon>
+                      <span>Best for urgent hires in the next 30 days.</span>
+                    </div>
+                    <div class="boost-cta" data-media-type="banani-button">
+                      Add boost
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+{% endblock center_feed_content %}
+
+{% block rightsidebar %}
+<!-- Right: Live Preview & actions -->
+<div class="preview-column">
+  <div class="preview-card">
+    <div class="preview-header">
+      <div class="preview-title">Preview in teacher feed</div>
+      <div style="display: flex; align-items: center; gap: 6px">
+        <div class="preview-pill">Mobile view</div>
+        <div class="preview-pill">Public</div>
+      </div>
+    </div>
+
+    <div class="preview-body">
+      <div class="preview-poster-row">
+        <div class="preview-poster-info">
+          <img
+            src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4"
+            class="preview-poster-avatar"
+            alt="Principal avatar"
+          />
+          <div class="preview-poster-text">
+            <span class="preview-poster-name"
+              >Greenwood High School</span
+            >
+            <span class="preview-meta"
+              >Hiring now  City, Country</span
+            >
+          </div>
+        </div>
+        <div class="icon-24" style="color: var(--muted-foreground)">
+          <iconify-icon
+            icon="lucide:more-horizontal"
+            style="font-size: 18px; color: currentColor"
+          ></iconify-icon>
+        </div>
+      </div>
+
+      <div class="preview-job-title">
+        Middle School Math Teacher (Grades 6 8)
+      </div>
+
+      <div class="preview-tags">
+        <div class="preview-tag">Middle school</div>
+        <div class="preview-tag">Mathematics</div>
+        <div class="preview-tag">Full-time</div>
+        <div class="preview-tag">$48k  $62k / year</div>
+      </div>
+    </div>
+
+    <div class="preview-media">
+      <img
+        data-aspect-ratio="16:9"
+        data-query="bright modern classroom, students raising hands, large windows, warm light, red and white accents to match UI palette"
+        alt="Classroom preview"
+        src="https://storage.googleapis.com/banani-generated-images/generated-images/06ca86c9-0e83-4197-bd11-e6cbe4c07a6c.jpg"
+      />
+      <div class="preview-salary-badge">
+        Featured  shown first to nearby teachers
+      </div>
+    </div>
+  </div>
+
+  <div class="primary-actions-row">
+    <div class="primary-actions-left">
+      <div class="icon-24">
+        <iconify-icon
+          icon="lucide:clock"
+          style="font-size: 18px; color: currentColor"
+        ></iconify-icon>
+      </div>
+      <span>Draft autosaved  only you can see this now.</span>
+    </div>
+    <div class="primary-actions-right">
+      <div
+        class="btn-secondary-outline"
+        data-media-type="banani-button"
+      >
+        Preview full post
+      </div>
+      <div class="btn-primary" data-media-type="banani-button">
+        Post job
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock rightsidebar %}
+
+

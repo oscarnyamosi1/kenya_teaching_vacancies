@@ -1,0 +1,126 @@
+{% extends 'index2.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+K.T.V Home
+{% endblock title %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href="{% static 'styling/jobfeed.css' %}">
+{% endblock headeradditionalcss %}
+
+{% block pagename %}
+home
+{% endblock pagename %}
+
+
+
+{% block center_feed_content %}
+<div class="feed-container">
+
+  <!-- Hero / Search Card -->
+{% block jobsearchbar %}
+  {% include 'components/jobsearchbar.html' %}
+{% endblock jobsearchbar %}
+  
+
+
+  <!-- Featured Stories / Schools -->
+  <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 4px;">
+    {% for school in featured_schools %}
+    <div style="
+      width: 140px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    " data-media-type="banani-button">
+      <div class="story-ring">
+        <div style="
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 2px solid var(--background);
+        ">
+          <img src="{{ school.logo_url }}" alt="{{ school.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      </div>
+      <div style="text-align: center; font-size: 12px; font-weight: 500;">{{ school.name }}</div>
+    </div>
+    {% endfor %}
+
+    <!-- Add Story / Post Job -->
+    <div style="
+      width: 140px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      opacity: 0.7;
+    " data-media-type="banani-button">
+      <a href="/jobs/postjob">
+        <div style="
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          border: 2px dashed var(--muted-foreground);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        ">
+          <iconify-icon icon="lucide:plus" style="font-size: 24px; color: var(--muted-foreground);"></iconify-icon>
+        </div>
+        <div style="text-align: center; font-size: 12px; font-weight: 500;">Post Job</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Job Cards -->
+  {% for job in all_jobs %}
+  <article class="card glass">
+    <div class="job-card-header">
+      <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;">
+        <img src="{{ job.employer.logo_url|default:'https://images.unsplash.com/photo-1599839575945-a9e5af0c3fa5?q=80&w=150&h=150&fit=crop' }}" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="flex:1">
+        <div style="font-weight:600;">{{ job.employer.school }}</div>
+        <div style="font-size:12px;color:var(--muted-foreground);">
+          {{ job.days_posted }} ago · {{ job.county }} · {{ job.days_to_deadline }} left
+        </div>
+      </div>
+      <button class="btn"><iconify-icon icon="lucide:bookmark"></iconify-icon></button>
+    </div>
+
+    <h3 style="font-size:18px;margin-bottom:8px;">{{ job.job_title }}</h3>
+
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+      <span class="tag">{{ job.employment_type }}</span>
+      {% if job.is_urgent %}<span class="tag">Urgent</span>{% endif %}
+      {% if job.salary_min %}<span class="tag">KES {{ job.convertSalaryMin }}k+</span>{% endif %}
+    </div>
+
+    <p style="font-size:14px;color:var(--muted-foreground);">
+      {{ job.job_description|truncatechars:140 }}
+    </p>
+
+    <div class="job-card-footer">
+      <button class="btn"><iconify-icon icon="lucide:heart"></iconify-icon> Save</button>
+      <a href="/job_detail/{{job.id}}" class="easyapply">View Job</a>
+    </div>
+  </article>
+  {% endfor %}
+
+</div>
+
+{% endblock center_feed_content %}
+
+{% block leftsideaddition %}
+{% include "components/sideuserprofile.html" %}
+{% endblock leftsideaddition %}

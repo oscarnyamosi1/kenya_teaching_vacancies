@@ -1,0 +1,488 @@
+@import url('themes/macglass.css');
+/* @import url('themes/glassmorphism.css'); */
+@import url('uploaddocuments.css');
+@import url('themes/jobfeed.css');
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+a {
+    all: unset;
+}
+.export-wrapper {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-family-body);
+}
+
+/* Layout Grid */
+.app-container {
+    display: grid;
+    grid-template-columns: 280px minmax(600px, 1fr) 320px;
+    gap: 24px;
+    /* max-width: 1280px; */
+    margin: 0 auto;
+    padding-top: 24px;
+    align-items: start;
+}
+
+/* Header */
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(14px);
+}
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--primary);
+}
+.logo {
+    width: 32px;
+    height: 32px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+.nav-item {
+    text-decoration: none;
+    color: var(--muted-foreground);
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+}
+.navtext{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-item:hover,
+.nav-item.active {
+    color: var(--foreground);
+}
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+}
+.easyapply {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    padding: 8px 24px;
+    border-radius: 99px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn {
+    padding: 8px 16px;
+    border-radius: var(--radius-xl);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    transition: opacity 0.2s;
+}
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--foreground);
+}
+.btn-ghost {
+    background: transparent;
+    color: var(--muted-foreground);
+}
+
+/* Sidebar Left */
+.sidebar-left {
+    position: sticky;
+    top: 88px;
+    left: 20px;
+}
+.menu-card {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    color: var(--foreground);
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+.menu-item:hover {
+    background-color: var(--secondary);
+}
+.menu-item.active {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+/* Feed Center */
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 40px;
+
+
+}
+
+
+
+/* Search Hero Card */
+.hero-search-card {
+    background: linear-gradient(135deg, var(--primary) 0%, #004d40 100%);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+.hero-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.hero-subtitle {
+    opacity: 0.9;
+    margin-bottom: 24px;
+    font-size: 15px;
+}
+.search-box {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 8px 8px 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.search-input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 15px;
+    color: #333;
+}
+
+/* Job Post Card */
+.job-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+.job-school-info {
+    display: flex;
+    gap: 12px;
+}
+.school-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    border: 1px solid var(--border);
+}
+.school-details h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--foreground);
+}
+.school-details span {
+    font-size: 13px;
+    color: var(--muted-foreground);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+
+
+.verified-badge {
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+}
+.job-content h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--foreground);
+}
+.job-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.tag {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    padding: 4px 12px;
+    border-radius: var(--radius-md);
+    font-size: 12px;
+    font-weight: 500;
+}
+.salary-tag {
+    background: #e6f4ea;
+    color: #137333;
+}
+.job-actions {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.action-group {
+    display: flex;
+    gap: 16px;
+}
+.icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--muted-foreground);
+    font-weight: 500;
+}
+.icon-btn:hover {
+    color: var(--foreground);
+}
+
+/* Sponsored Card Style */
+.job-card.sponsored {
+    border: 1px solid var(--primary);
+    background: linear-gradient(to bottom, #285736,#0f0540);
+}
+.sponsored-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Sidebar Right */
+.sidebar-right {
+    width: 260px;
+    position: sticky;
+    top: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-right: 20px;
+}
+.promo-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    text-align: center;
+}
+.promo-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+.promo-text {
+    font-size: 13px;
+    color: var(--muted-foreground);
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+.trending-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.trending-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+}
+.trending-item:last-child {
+    border-bottom: none;
+}
+.trending-info h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+.trending-info p {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: var(--muted-foreground);
+}
+
+/* Floating Action Button (Mobile concept but shown here for modern feel) */
+.fab {
+    display: none; /* Desktop focused */
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.stat {
+    text-align: center;
+}
+.stat-val {
+    font-weight: 700;
+    font-size: 18px;
+}
+.stat-label {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+/* Utility */
+.text-sm {
+    font-size: 13px;
+}
+.text-muted {
+    color: var(--muted-foreground);
+}
+
+.scrollview {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    border-radius: 8px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollview ::-webkit-scrollbar-track ::-webkit-scrollbar-button {
+    display: none;
+    background: transparent;
+}
+
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--secondary);
+    align-items: center;
+}
+
+.promo-belt {
+    display: grid;
+    position: absolute;
+    right: -8%;
+    top: 10px;;
+    height: 20px;
+    width: 40%;
+    border-radius: 5px;
+    font-weight: bolder;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    rotate: 50deg;
+    margin-top: 50px;
+}
+.tag {
+    background:transparent;
+    color:var(--muted-foreground);
+    font-weight:600
+}
+
+/* Sleek Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 32px 0 16px 0;
+    gap: 8px;
+}
+.pagination .step-links {
+    display: flex;
+    gap: 8px;
+}
+.pagination a {
+    background: rgba(255,255,255,0.15);
+    color: var(--primary, #2a2a2a);
+    border: 1px solid var(--border, #e0e0e0);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+.pagination a:hover {
+    background: var(--primary, #2a2a2a);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.pagination .current {
+    background: var(--primary, #2a2a2a);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 600;
+    margin: 0 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}

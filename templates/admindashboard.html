@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+
+{% block center_feed_content %}
+<!-- Analytics Graph -->
+<div class="analytics-section glass colorize" style="padding:20px; border-radius:12px; backdrop-filter:blur(10px); margin-top:24px;">
+  <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+    <div class="section-title" style="font-weight:600; font-size:16px; color:var(--foreground)">Application Activity</div>
+    <div style="display:flex; gap:8px;">
+      <button class="chart-toggle btn btn-outline" data-type="line">Line</button>
+      <button class="chart-toggle btn btn-outline" data-type="bar">Bar</button>
+      <button class="chart-toggle btn btn-outline" data-type="pie">Pie</button>
+    </div>
+  </div>
+
+  <canvas id="appActivityChart" style="width:600px; height:300px; color:white;"></canvas>
+</div>
+
+<!-- Chart.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('appActivityChart').getContext('2d');
+  // Sample Data
+  const labels = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const dataValues = [40, 65, 55, 80, 95, 30, 25];
+  
+  // Pie chart data (same for demo)
+  const pieLabels = ['Applied','Viewed','Approved','Rejected'];
+  const pieData = [50, 30, 15, 5];
+
+  let currentType = 'line';
+
+  const chartConfig = {
+    type: currentType,
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Applications',
+        data: dataValues,
+        backgroundColor: currentType === 'pie' ? ['#4f46e5','#10b981','#f59e0b','#ef4444'] : 'rgba(79,70,229,0.3)',
+        borderColor: currentType === 'pie' ? undefined : '#4f46e5',
+        borderWidth: 2,
+        fill: currentType !== 'pie',
+        tension: 0.4 // smooth line
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: currentType === 'pie',
+          labels: { color: 'var(--foreground)' }
+        },
+        tooltip: { mode: 'index', intersect: false }
+      },
+      scales: currentType !== 'pie' ? {
+        y: { 
+          beginAtZero:true, 
+          ticks: { color: 'var(--muted-foreground)' },
+          grid: { color: 'rgba(255,255,255,0.1)' }
+        },
+        x: { 
+          ticks: { color: 'var(--muted-foreground)' },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      } : {}
+    }
+  };
+
+  let appActivityChart = new Chart(ctx, chartConfig);
+
+  // Toggle Chart Type
+  document.querySelectorAll('.chart-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.type;
+      currentType = type;
+
+      appActivityChart.destroy();
+
+      let dataset = type === 'pie' 
+        ? { data: pieData, backgroundColor: ['#4f46e5','#10b981','#f59e0b','#ef4444'] }
+        : { data: dataValues, backgroundColor: 'rgba(79,70,229,0.3)', borderColor: '#4f46e5', fill:true, tension:0.4 };
+
+      appActivityChart = new Chart(ctx, {
+        type: type,
+        data: {
+          labels: type === 'pie' ? pieLabels : labels,
+          datasets: [dataset]
+        },
+        options: {
+          responsive:true,
+          plugins:{
+            legend: { display: type==='pie', labels:{ color: 'var(--foreground)' } },
+            tooltip:{ mode:'index', intersect:false }
+          },
+          scales: type!=='pie' ? {
+            y: { beginAtZero:true, ticks:{ color: 'var(--muted-foreground)' }, grid:{ color:'rgba(255,255,255,0.1)' } },
+            x: { ticks:{ color: 'var(--muted-foreground)' }, grid:{ color:'rgba(255,255,255,0.05)' } }
+          } : {}
+        }
+      });
+    });
+  });
+</script>
+
+{% endblock center_feed_content %}

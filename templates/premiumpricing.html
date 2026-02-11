@@ -1,0 +1,234 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static "styling/premiumpricing.css" %}>
+{% endblock headeradditionalcss %}
+
+{% block title %}K.T.V Premium Plans{% endblock title %}
+
+{% block center_feed_content %}
+<div class="main-area">
+  <div class="content-container">
+    <div class="pricing-header">
+      <h1 class="pricing-title">Accelerate your teaching career</h1>
+      <div class="pricing-subtitle">
+        Get hired 3x faster with premium insights, direct messaging, and
+        featured application status.
+      </div>
+    </div>
+
+    <div class="toggle-container">
+      <div class="toggle-option active" data-media-type="banani-button">
+        Monthly
+      </div>
+      <div class="toggle-option" data-media-type="banani-button">
+        Annually (Save 20%)
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Free Plan -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Basic</div>
+          <div class="plan-price">Free</div>
+          <div class="plan-description">
+            Essential tools for job searching and creating a
+            professional profile.
+          </div>
+        </div>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Standard profile visibility</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Apply to 10 jobs/month</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Basic job alerts</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon disabled">
+              <iconify-icon
+                icon="lucide:x"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span class="feature-text disabled"
+              >Who viewed your profile</span
+            >
+          </div>
+        </div>
+        <button
+          class="cta-button outline"
+          data-media-type="banani-button"
+        >
+          Current Plan
+        </button>
+      </div>
+
+      <!-- Premium Plan (Recommended) -->
+      <div class="plan-card recommended">
+        <div class="recommend-badge">Most Popular</div>
+        <div class="plan-header">
+          <div class="plan-name">Pro Teacher</div>
+          <div class="plan-price">
+            $19<span class="plan-period">/mo</span>
+          </div>
+          <div class="plan-description">
+            Stand out to schools and get exclusive insights on your
+            applications.
+          </div>
+        </div>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Featured applicant status</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Unlimited job applications</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>See who viewed your profile</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Direct message recruiters</span>
+          </div>
+        </div>
+        <button
+          class="cta-button primary"
+          data-media-type="banani-button"
+        >
+          Try Free for 1 Month
+        </button>
+      </div>
+
+      <!-- Elite Plan -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Career Plus</div>
+          <div class="plan-price">
+            $39<span class="plan-period">/mo</span>
+          </div>
+          <div class="plan-description">
+            Comprehensive support including CV review and interview
+            coaching.
+          </div>
+        </div>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>All Pro Teacher features</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Monthly CV expert review</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Interview prep materials</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <iconify-icon
+                icon="lucide:check"
+                style="font-size: 18px"
+              ></iconify-icon>
+            </div>
+            <span>Salary insights dashboard</span>
+          </div>
+        </div>
+        <button
+          class="cta-button outline"
+          data-media-type="banani-button"
+        >
+          Upgrade to Plus
+        </button>
+      </div>
+    </div>
+
+    <div
+      style="
+        display: flex;
+        gap: 16px;
+        margin-top: 24px;
+        color: var(--muted-foreground);
+        font-size: 14px;
+        align-items: center;
+      "
+    >
+      <div style="display: flex; align-items: center; gap: 8px">
+        <iconify-icon
+          icon="lucide:shield-check"
+          style="font-size: 18px"
+        ></iconify-icon>
+        Secure payment
+      </div>
+      <span>•</span>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <iconify-icon
+          icon="lucide:history"
+          style="font-size: 18px"
+        ></iconify-icon>
+        Cancel anytime
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock center_feed_content %}

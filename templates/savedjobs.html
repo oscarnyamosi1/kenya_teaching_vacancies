@@ -1,0 +1,167 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+K.T.V Saved Jobs
+{% endblock title %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href={% static "styling/savedjobs.css" %} >
+{% endblock headeradditionalcss %}
+
+{% block pagename %}
+savedjobs
+{% endblock pagename %}
+
+{% block center_feed_content %}
+  <!-- Header -->
+  <header class="page-header glass">
+    <div class="header-left">
+      <iconify-icon icon="lucide:bookmark"></iconify-icon>
+      <div>
+        <h1>Saved Jobs</h1>
+        <p>Jobs you have bookmarked for later</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <span class="job-count">{{.count}} Saved</span>
+    </div>
+  </header>
+
+  <!-- Job List -->
+  <div class="jobs-list">
+
+    <!-- Job Card -->
+
+  {% for job in saved_jobs_page.object_list %}
+  <article class="job-card glass featured urgent">
+
+      <!-- Top row -->
+      <div class="job-top">
+        <div class="job-title">
+          <h2>{{job.job_title}}</h2>
+          <span class="badge featured">Featured</span>
+          <span class="badge urgent">Urgent</span>
+        </div>
+
+        <button class="tag" style="background:transparent;color:var(--muted-foreground);font-weight:600">
+          <iconify-icon icon="lucide:bookmark-check"></iconify-icon>
+          {{job.date_posted |date:"M j, Y"}}
+        </button>
+      </div>
+
+      <!-- Meta -->
+      <div class="job-meta">
+        <span>
+          <iconify-icon icon="lucide:school"></iconify-icon>
+          High School · CBC
+        </span>
+
+        <span>
+          <iconify-icon icon="lucide:map-pin"></iconify-icon>
+          {{job.county}},{{job.location}}
+        </span>
+
+        <span>
+          <iconify-icon icon="lucide:briefcase"></iconify-icon>
+          {{job.employment_type}}
+        </span>
+      </div>
+
+      <!-- Subjects -->
+      <div class="subjects">
+        {% for subject in job.subjects_required.all %}
+          <span class="subject">{{subject.title.capitalize}}</span>
+        {% endfor %}
+      </div>
+
+      <!-- Info Row -->
+      <div class="job-info">
+        <span>
+          <iconify-icon icon="lucide:clock"></iconify-icon>
+          Posted {{job.days_posted}} ago
+        </span>
+
+        <span>
+          <iconify-icon icon="lucide:hourglass"></iconify-icon>
+          Deadline in {{job.days_to_deadline}}
+        </span>
+
+        <span>
+          <iconify-icon icon="lucide:award"></iconify-icon>
+        Min Exp:  {% if job.min_experience is None %}
+                    0
+                  {% else %}
+                  {{job.min_experience}} 
+                  {% endif %} yrs
+      </span>
+        <span>
+          <iconify-icon icon="lucide:badge-check"></iconify-icon>
+          {% if job.tsc_required %}
+            TSC Required
+          {%else%}
+            TSC NOT Mandatory
+          {% endif %}
+          </span>
+      </div>
+
+      <!-- Salary -->
+      <div class="salary">
+        <iconify-icon icon="lucide:wallet"></iconify-icon>
+        {% if job.convertSalaryMin %}
+        KES {{job.convertSalaryMin}} k – {{job.convertSalaryMax}} k
+        {% else %}
+        Salary is Unspecified.
+        {% endif %}
+      </div>
+
+      <!-- Actions -->
+      <div class="job-actions">
+        <button class="btn ghost">
+          <iconify-icon icon="lucide:eye"></iconify-icon>
+          View
+        </button>
+
+        <a href='/jobs/applyjob/{{job.id}}' class="btn primary">
+          Apply Now
+          <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+        </a>
+
+        <a href="/jobs/withdrawsave/{{job.id}}/" class="btn danger">
+          <iconify-icon icon="lucide:trash-2"></iconify-icon>
+          Remove
+        </a>
+      </div>
+
+    </article>
+
+
+    {% endfor %}
+
+    <div class="pagination">
+      <span class="step-links">
+        {% if saved_jobs_page.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ saved_jobs_page.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Page {{ saved_jobs_page.number }} of {{ saved_jobs_page.paginator.num_pages }}
+        </span>
+
+        {% if saved_jobs_page.has_next %}
+          <a href="?page={{ saved_jobs_page.next_page_number }}">next</a>
+          <a href="?page={{ saved_jobs_page.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+
+
+  </div>
+
+
+
+{% endblock center_feed_content %}
