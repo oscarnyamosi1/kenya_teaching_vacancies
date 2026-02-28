@@ -5,3 +5,4 @@ pythonenv/
 db.sqlite3
 requirementsML.txt
 requirementsWEBDEV.txt
+.readme
