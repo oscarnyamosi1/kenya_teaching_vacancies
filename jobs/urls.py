@@ -10,6 +10,7 @@ urlpatterns = [
     path('postjob/',views.postjob,name='postjob'),
     path('savejob/<int:jobid>',views.savejob,name='savejob'),
     path('search/',views.search,name='search'),
+    path('search/?page=<int:page_no>/',views.search,name='search'),
     path('premiumurgent/',views.premiumurgent,name='premiumurgent'),
     path('applyjob/<int:jobid>',views.applyjob,name='applyjob'),
     path('withdrawsave/<int:jobid>/',views.withdrawsave,name='withdrawsave')

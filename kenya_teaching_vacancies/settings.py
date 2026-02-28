@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'payments',
     'applications',
     'superuser',
+    'messagesapp',
 
     'corsheaders',
     'rest_framework',

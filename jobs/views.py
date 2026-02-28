@@ -14,28 +14,23 @@ from schools.models import School
 from main.models import County,Constituency
 
 
-
-
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 @login_required(login_url='login')
 def savedjobs(request):
     context = createContext(request)
-    saved_jobs = getTeacherSavedJobs(request)
-    paginator = Paginator(saved_jobs, 50)
-    page_number = request.GET.get('page')
-    try:
-        saved_jobs_page = paginator.page(page_number)
-    except PageNotAnInteger:
-        saved_jobs_page = paginator.page(1)
-    except EmptyPage:
-        saved_jobs_page = paginator.page(paginator.num_pages)
-    context = context | {"saved_jobs_page": saved_jobs_page}
+    savedjobs =  getTeacherSavedJobs(request).order_by('-id')
+    units_per_page = 10
+    condition = f'savedjobs > {units_per_page} '
+    saved_jobs_page = paginateList(request,list = savedjobs,units_per_page=units_per_page)
+    context = context | {"saved_jobs_page": saved_jobs_page,'condition':condition}
     return render(request, "savedjobs.html", context)
+
 
 
 def jobfeed(request):
     context = createContext(request)
+    alljobs = context.get('all_jobs',[])
+    jobs_feed_page = paginateList(request,list=alljobs,units_per_page=20)
+    context = context | {'jobs_feed_page':jobs_feed_page}
     return render(request,'jobfeed.html',context)
 
 @login_required(login_url='login')
@@ -57,154 +52,131 @@ def savejob(request,jobid):
     else:
         messages.info(request,"Job doesn't exist !",extra_tags='warning')
     return returnToPrevPage(request)
-def search(request):
-    tearm = request.GET.get('jobquery') or request.GET.get('county/location')
-    location_query = request.GET.get('county/location')
-
-    if location_query is not None:
-        if len(location_query) < 4:
-            try:
-                if tearm != '':
-                    locations = County.objects.filter(
-                        Q(title__icontains=tearm)
-                    )
-                    # jobs_frm_locations = [job for job in Job.objects.filter(county = location)]
-                    jobs_frm_locations = []
-                    for location in locations:
-                        jobs = list(Job.objects.filter(county = location))
-                        jobs_frm_locations.extend(jobs)
-            
-                elif location_query != '':
-                    locations = County.objects.filter(
-                        Q(title__icontains=tearm)
-                    )
-                    # jobs_frm_locations = [job for job in Job.objects.filter(county = location)]
-                    jobs_frm_locations = []
-                    for location in locations:
-                        jobs = list(Job.objects.filter(county = location))
-                        jobs_frm_locations.extend(jobs)
-                    else:
-                        jobs_frm_locations = []
-            except:
-                return HttpResponse('Location error !')
-            
-            try:
-                if tearm != '':
-                    results = Job.objects.filter(
-                        Q(job_title__icontains=tearm)|
-                        Q(job_description__icontains=tearm)
-                        )
-                    subject_results = list(Subject.objects.filter(
-                        Q(title__icontains = tearm)
-                    ))
-                    subject_required_jobs = []
-                    for subject in subject_results:
-                        small_list_subjects_required_jobs = list(Job.objects.filter(subjects_required = subject))
-                        print(f'''
-                        
 
 
+def search(request,filter='',page_no=None):
+    context = createContext(request)
+    tearm = request.GET.get('jobquery','')
 
-
-                    subject required jobs small list
-                    
-                    
-                    
-                    
-                    
-                    --------------->             ({small_list_subjects_required_jobs})
-                                
-
-
-                    
-                    
-                    ''')
-                        subject_required_jobs.extend(small_list_subjects_required_jobs)
-            
-                    subject_required_jobs
-                else:
-                    results = []
-            except:
-                return  HttpResponse('Jobsearch operation error !')
-            
-            try:
-                if tearm != '':
-                    schools =list(
-                            School.objects.filter(
-                            Q(name__icontains=tearm)
-                        )
-                    )
-                        # school_results.append(Job.objects.filter(employer = employer))
-                    list_of_employers_for_search = []
-                    for school in schools:
-                        small_list_of_employers_for_search = list(Employer.objects.filter(
-                            school = school
-                        ))
-                        list_of_employers_for_search += small_list_of_employers_for_search
-                    for employer in list_of_employers_for_search:
-                        jobs = list(Job.objects.filter(employer = employer))
-                        schools += jobs
-
-
-                else:
-                    schools = []
-            except:
-                return HttpResponse('School search operational error !')
-            
-
-            results = list(chain(jobs_frm_locations,results,schools,subject_required_jobs))
-        if len(results)<1:
-            messages.info(request,'No results!')
-            return returnToPrevPage(request)
-    else:
-        try:
-            if location_query != '':
-                results = []
-
-                locations = County.objects.filter(
-                    Q(title__icontains=location_query)
-                )
-                # jobs_frm_locations = [job for job in Job.objects.filter(county = location)]
-                jobs_frm_locations = []
-                for location in locations:
-                    jobs = list(Job.objects.filter(county = location))
-                    jobs_frm_locations.extend(jobs)
-                
-              
-                matching_subject_results = list(Subject.objects.filter(
-                    Q(title__icontains = tearm)
-                ))
-
-              
-                location_query_locked_jobs = []
-                for job in jobs_frm_locations:
-                    if job in matching_subject_results:
-                        location_query_locked_jobs.append(job)
-
-                print(f'''
-                
-                location or query locked searches !
-                                
-                                {location_query_locked_jobs}
-                                
-                                
-                ''')
-                results += location_query_locked_jobs
-            results = list(chain(results,location_query_locked_jobs))
-            if len(results)<1:
-                messages.info(request,'No results!')
-                return returnToPrevPage(request)
-        except:
-            return HttpResponse('Location error !')
+    def searchLocations():
+        locations = County.objects.filter(
+            Q(title__icontains=tearm)
+        ).order_by('title')
+        jobs_frm_locations = []
+        for location in locations:
+            jobs = list(Job.objects.filter(county = location))
+            jobs_frm_locations.extend(jobs)
+        
+        return jobs_frm_locations
+    def searchSchools():
+        schools = School.objects.filter(
+            Q(name__icontains = tearm)
+        ).order_by('-id')
         
 
+        school_employers = []
+        for school in schools:
+            school_employers_small = list(Employer.objects.filter(school = school))
+            school_employers.extend(school_employers_small)
+       
+        jobs_frm_schools = []
+        for employer in school_employers:
+            jobs = list(Job.objects.filter(employer = employer ))
+            jobs_frm_schools.extend(jobs)
+        return jobs_frm_schools
+    def searchSubjects():
+        subjects = Subject.objects.filter(
+            Q(title__icontains = tearm)
+        ).order_by('-id')
 
-    # random.shuffle(results)
-    context = createContext(request)
+        subject_jobs = []
+        for subject in subjects:
+            jobs_per_subject= list(Job.objects.filter(subjects_required = subject))
+            subject_jobs.extend(jobs_per_subject)
+        return subject_jobs
+        
+    def searchTitles():
+        jobs = Job.objects.filter(
+            Q(job_title__icontains = tearm)|
+            Q(job_description__icontains = tearm)
+        ).order_by('-id')
+        return jobs
+    
+    def searchSchools():
+        schools = School.objects.filter(
+            Q(name__icontains = tearm)
+        )
 
-    context = context | {'search_results':results}
-    return render(request,'searchresults.html',context)
+        print(f'school results {schools}')
+        print(f'school results {schools}')
+        # find employers to link us to jobs due to their common relationship(employer->job->school)
+        school_employers = []
 
+        # one must be an employer in order to post a job (or become an employer automatically once he posts a job) hence this may get broken as the prints will reveal
+
+        for school in schools:
+            small_school_employers = list(Employer.objects.filter(school = school))
+            school_employers+=small_school_employers
+
+        print(f'school employers --> {school_employers}')
+        print(f'school employers --> {school_employers}')
+
+
+        jobs = []
+        for employer in school_employers:
+            small_jobs = list(Job.objects.filter(employer = employer))
+
+            print(f'school small_jobs {small_jobs}')
+            print(f'school small_jobs {small_jobs}')
+
+            jobs.extend(small_jobs)
+            
+        print(f'school jobs {jobs}')
+        print(f'school jobs {jobs}')
+        return jobs
+    # profile_based_results = []
+
+    if filter == '':
+        r1 = searchLocations()
+        r2 = searchSchools()
+        r3 = searchSubjects()
+        r4 = searchTitles()
+        r5 = searchSchools()
+
+        results = list(chain(r1,r2,r3,r4,r5))
+    elif filter == 'location':
+        results = searchLocations()
+    elif filter == 'school' :
+        results = searchSchools()
+    elif filter == 'subject':
+        results = searchSubjects()
+    elif filter == 'title':
+        results = searchTitles()
+    else:
+        r1 = searchLocations()
+        r2 = searchSchools()
+        r3 = searchSubjects()
+        r4 = searchTitles()
+        r5 = searchSchools()
+
+        results = list(chain(r1,r2,r3,r4,r5))
+
+    # else:
+    #     return redirect('home')
+    try:
+        if page_no == None:
+            search_page = paginateList(request,list=results,units_per_page= 10)
+        else:
+            search_page = paginateList(request,list=results,units_per_page= 10,page=int(page_no))
+
+        context = context|{'search_page':search_page}
+
+        return render(request,'searchresults.html',context)
+    except UnboundLocalError or ValueError:
+        # search(request,filter = 'location')
+        return HttpResponse('Error while searching')
+    
+    
 
 @login_required(login_url='login')
 def applyjob(request,jobid):

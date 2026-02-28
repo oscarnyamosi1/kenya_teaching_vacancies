@@ -1,0 +1,89 @@
+      {% comment %} <div class="menu-card" style="display:flex;gap:12px;align-items:center;padding:12px;margin-bottom:12px">
+        <input id="searchInput" class="form-input" style="
+        flex: 1;
+        display: flex;
+        position:relative;
+        align-items: center;
+        background: var(--muted);
+        border-radius: var(--radius-md);
+        padding: 0 16px;
+        height: 48px;
+        width:80%;
+        color: var(--foreground);
+        font-size:16px;
+        font-weight: 800;
+        border:none;
+      " placeholder="Search schools or subjects..." />
+        <select id="countyFilter" style="
+        flex: 1;
+        display: flex;
+        position:relative;
+        align-items: center;
+        background: var(--muted);
+        border-radius: var(--radius-md);
+        padding: 0 16px;
+        height: 48px;
+        width:80%;
+        color: var(--foreground);
+        font-size:16px;
+        font-weight: 800;
+        border:none;
+      " class="form-select">
+          <option value="">All Counties</option>
+          <option value="Nairobi">Nairobi</option>
+          <option value="Kisumu">Kisumu</option>
+          <option value="Homa Bay">Homa Bay</option>
+        </select>
+        <label style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="vacancyOnly" /> <span class="muted">Only schools with vacancies</span>
+        </label>
+      </div> {% endcomment %}
+
+
+
+
+
+
+
+
+      <form action='/schools/searchschools/' method="get" class="menu-card" style="display:flex;gap:12px;align-items:center;padding:12px;margin-bottom:12px">
+        <input id="searchInput" name='tearm' class="form-input" style="
+        flex: 1;
+        display: flex;
+        position:relative;
+        align-items: center;
+        background: var(--muted);
+        border-radius: var(--radius-md);
+        padding: 0 16px;
+        height: 48px;
+        width:80%;
+        color: var(--foreground);
+        font-size:16px;
+        font-weight: 800;
+        border:none;
+      " placeholder="Search schools or subjects..." />
+        <select id="countyFilter" style="
+        flex: 1;
+        display: flex;
+        position:relative;
+        align-items: center;
+        background: var(--muted);
+        border-radius: var(--radius-md);
+        padding: 0 16px;
+        height: 48px;
+        width:80%;
+        color: var(--foreground);
+        font-size:16px;
+        font-weight: 800;
+        border:none;
+      " class="form-select">
+          <option value="">All Counties</option>
+          <option value="Nairobi">Nairobi</option>
+          <option value="Kisumu">Kisumu</option>
+          <option value="Homa Bay">Homa Bay</option>
+        </select>
+        <label style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="vacancyOnly" /> <span class="muted">Only schools with vacancies</span>
+        </label>
+        <button class="pri btn" type="submit">Search</button>
+      </form>

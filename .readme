@@ -1,0 +1,1 @@
+from messagesapp models.py on the final upload delete the null fields from the Message model since they are needed during development to avoid deleting the database everytime.

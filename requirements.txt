@@ -6,3 +6,7 @@ requests
 whitenoise
 psycopg2-binary
 fastapi
+django-filter
+djangorestframework-simplejwt
+python-dotenv
+gunicorn

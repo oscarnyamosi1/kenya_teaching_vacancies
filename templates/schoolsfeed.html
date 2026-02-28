@@ -1,64 +1,11 @@
 {% extends "index.html" %}
 {% load static %}
 {% load humanize %}
+{% load my_tags %}
 
 {% block headeradditionalcss %}
 <link rel="stylesheet" href="{% static 'styling/themes/glassmorphism.css' %}">
 <link rel="stylesheet" href="{% static 'styling/schools.css' %}">
-<style>
-  .feed-container {
-    position: relative;
-    z-index: 3;
-  }
-
-  .feed-container::before {
-    content: '';
-    position: fixed;
-    /* fixed so it doesn't move when scrolling */
-    inset: 0;
-    display: block;
-    background-image: url("{% static 'images/logo/ktvlogo.png' %}");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 48%;
-    /* increased by 20% from 40% */
-    opacity: 0.8;
-    /* visible as requested */
-    filter: grayscale(0.12) saturate(80%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* stronger glass effect for front cards */
-  .glass-card,
-  .menu-card,
-  .school-card,
-  .hero-card {
-    position: relative;
-    z-index: 3;
-    background: rgba(255, 255, 255, 0.10);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(12px) saturate(140%);
-    -webkit-backdrop-filter: blur(12px) saturate(140%);
-    box-shadow: 0 12px 40px rgba(2, 6, 23, 0.28);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-    border-radius: 12px;
-  }
-
-  .glass-card:hover,
-  .school-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(2, 6, 23, 0.38);
-  }
-
-  .school-thumb {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border-radius: 12px;
-    flex-shrink: 0;
-  }
-</style>
 <style>
   /* Responsive adjustments */
   .schools-grid {
@@ -148,28 +95,17 @@
   <div style="display:flex;gap:20px;margin-top:16px;align-items:start">
     <div style="flex:1;min-width:0">
 
-      <div class="menu-card" style="display:flex;gap:12px;align-items:center;padding:12px;margin-bottom:12px">
-        <input id="searchInput" class="form-input" placeholder="Search schools or subjects..." />
-        <select id="countyFilter" class="form-select">
-          <option value="">All Counties</option>
-          <option value="Nairobi">Nairobi</option>
-          <option value="Kisumu">Kisumu</option>
-          <option value="Homa Bay">Homa Bay</option>
-        </select>
-        <label style="margin-left:auto;display:flex;align-items:center;gap:8px">
-          <input type="checkbox" id="vacancyOnly" /> <span class="muted">Only schools with vacancies</span>
-        </label>
-      </div>
+      {% include 'components/schoolsearchbar.html' %}
 
       <section class="schools-grid">
-        {% if schools %}
-        {% for school in schools %}
+        {% if schools_page %}
+        {% for school in schools_page.object_list %}
         <article class="school-card menu-card glass-card post" data-county="{{ school.county|default:'' }}"
           data-subject="{{ school.main_subject|default:'' }}">
           <div style="display:flex;gap:12px;align-items:center">
             {% if school.logo %}
             <img src="{{ school.logo.url }}" alt="{{ school.name }}" class="school-thumb"
-              onerror="this.src='{% static 'images/logo/ktvlogo.png' %}'">
+              onerror="this.src="{% static 'images/logo/ktvlogo.png' %}">
             {% else %}
             <img src="{% static 'images/logo/ktvlogo.png' %}" alt="{{ school.name }}" class="school-thumb">
             {% endif %}
@@ -181,14 +117,24 @@
               <p class="muted small" style="margin-top:8px">{{ school.description|truncatechars:160 }}</p>
               <div style="margin-top:10px;display:flex;gap:8px">
                 <a href="//schools/vacancies/{{ school.id }}" class="btn btn-outline">View Vacancies</a>
-                <form action="//schools/follow/{{ school.id }}" method="post" style="display:inline">
+                <form action="/schools/follow/{{ school.id }}" method="post" style="display:inline">
                   {% csrf_token%}
-                  <button class="btn btn-primary">Follow</button></form>
+                  
+                  {% if school in followed_schools %}
+                    <button style="background-color: rgba(211, 10, 10, 0.575);" class="btn btn-primary ">Unfollow</button>
+                  {% else %}
+                    <button class="btn btn-primary">Follow</button>
+                  {% endif %}
+                    
+                </form>
               </div>
             </div>
           </div>
         </article>
         {% endfor %}
+
+        {% rename_var schools_page as items_page %}
+        {% include 'components/pagination.html' %}
         {% else %}
         <div class="menu-card glass-card">No schools found at the moment. Try adjusting your filters.</div>
         {% endif %}
@@ -251,26 +197,22 @@
 
   <div class="menu-card glass-card" style="margin-top:12px">
     <h4 style="margin:0 0 8px">Followed Schools</h4>
-    
+
     {% if user.is_authernticated %}
-      {% if followed_schools %}
-      <ul class="followed-list" style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px">
-        {% for fs in followed_schools %}
-        <li><a href="//schools/detail/{{ fs.slug }}">{{ fs.name }}</a></li>
-        {% endfor %}
-      </ul>
-      {% else %}
-      <div class="muted">You are not following any schools yet.</div>
-      {% endif %}
+    {% if followed_schools %}
+    <ul class="followed-list" style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px">
+      {% for fs in followed_schools %}
+      <li><a href="//schools/detail/{{ fs.slug }}">{{ fs.name }}</a></li>
+      {% endfor %}
+    </ul>
     {% else %}
-      Login to view.
+    <div class="muted">You are not following any schools yet.</div>
     {% endif %}
-      
+    {% else %}
+    Login to view.
+    {% endif %}
+
 
   </div>
 </aside>
 {% endblock rightsidebar %}
-
-
-
-

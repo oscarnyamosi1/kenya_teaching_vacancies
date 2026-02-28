@@ -7,28 +7,23 @@ from django.contrib.auth.models import User
 from applications.models import Application
 from myutils import *
 from django.contrib.auth.decorators import login_required
-
-
-
-# from .models import createConstituencies,createCounties
-# Create your views here.
-
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
     context = maincontext(request)
-    createCountynConstituencies()
-    all_jobs = context.get('all_jobs', [])
-    paginator = Paginator(all_jobs, 50)
-    page_number = request.GET.get('page')
-    try:
-        jobs_page = paginator.page(page_number)
-    except PageNotAnInteger:
-        jobs_page = paginator.page(1)
-    except EmptyPage:
-        jobs_page = paginator.page(paginator.num_pages)
-    context['jobs_page'] = jobs_page
+    # createCountynConstituencies()
+    # all_jobs = context.get('all_jobs', [])
+    all_jobs = Job.objects.all()
+    promoted_jobs=Job.objects.filter(is_promoted=True)
+    print(f"""
+    
+    all jobs {all_jobs[0:10]}
+    
+""")
+    jobs_page = paginateList(request,list=all_jobs,units_per_page=20)
+    context = context | {'jobs_page':jobs_page,"promoted_jobs":promoted_jobs}
     return render(request, "index.html", context)
+
 
 def login(request):
     if request.method == 'POST':

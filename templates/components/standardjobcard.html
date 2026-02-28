@@ -1,7 +1,14 @@
+
+{% load static %}
+{% block headeradditionalcss %}
+    <link rel="stylesheet" href= {% static 'styling/promotedjobcard.css' %} >
+{% endblock headeradditionalcss %}
+    
+
 <!-- Standard Job 2 -->
 <div class="job-card card glass" data-media-type="banani-button">
     {% if job.is_promoted %}
-        <div class="promo-belt">Promoted</div>
+        <div class="promoted-belt">Promoted</div>
     {% endif %}
 
     <div class="job-header">
@@ -31,7 +38,7 @@
             {% endif %}
             
             {% for subject in job.subjects_required.all %}
-                <span class='tag menu-item active'><h4>{{subject.title.capitalize}}</h4></span>
+                <span class='btn primary'><h4>{{subject.title.capitalize}}</h4></span>
             {% endfor %}
                 
         </div>

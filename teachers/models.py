@@ -75,6 +75,9 @@ class Teacher(models.Model):
     saved_jobs = models.ManyToManyField('jobs.Job',related_name='teacher_saved_job',blank=True)
     applied_jobs = models.ManyToManyField('jobs.Job',related_name='teacher_applied_job',blank=True)
 
+    schools_followed = models.ManyToManyField('schools.School',related_name='teacher_followed_schools',blank=True)
+    teachers_followed = models.ManyToManyField('teachers.Teacher',blank=True)
+
     is_teacher = models.BooleanField(default=True)
     @property
     def teachersubjects(self):
@@ -137,22 +140,22 @@ class TeacherRating(models.Model):
     rating = models.CharField(max_length=10,choices=ratings,default=0)
 
 document_types = (
-    ('national id','national id'),
-    ('C.V','C.V'),
+    ('National ID','National ID'),
+    ('Carriculum Vitae','Carriculum Vitae'),
     ('Degree Certificate','Degree Cerificate'),
     ('Transcript','Transcript'),
     ('Diploma Certificate','Diploma Certificate'),
-    ('Other Certificate','Other Certificate')
-
+    ('TSC Certificate','TSC Certificate'),
+    ('Other Document','Other Document')
 
 )
 
 
 class TeacherDocument(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    document_type = models.CharField(max_length=10000,choices=document_types)
+    document_type = models.CharField(max_length=10000,choices=document_types,blank=True)
     user = auth.get_user_model().username
-    file = models.FileField(upload_to=f'teacher_documents/{user}')
+    file = models.FileField(upload_to=f'teacher_documents/')
     
     def __str__(self):
         return f'''Documents {self.teacher}.'''
@@ -162,3 +165,4 @@ class TeacherRecommendation(models.Model):
     comment = models.TextField(blank=True,null=True)
     recommender = models.ForeignKey(Employer,on_delete=models.CASCADE)
 
+# from jobs.models import employment_choices

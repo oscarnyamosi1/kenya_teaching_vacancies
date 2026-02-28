@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
+# from teachers.models import Teacher
 
 
 
@@ -10,10 +11,13 @@ from django.contrib.auth.models import User
 
 class Employer(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
     school = models.OneToOneField('schools.School', on_delete=models.CASCADE,null=True,blank=True)
+
     employer_location = models.ForeignKey('main.County',on_delete=models.CASCADE)
     verified = models.BooleanField(default=False)
+
+    is_employer = models.BooleanField(default=True)
 
     def __str__(self):
         return f'''Employer {self.user.username}.'''

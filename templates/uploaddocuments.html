@@ -17,20 +17,42 @@
       </p>
     </header>
 
-    <div class="upload-list">
+    <form id="uploadDocs" action='/teachers/uploaddocuments/' class="upload-list" method='post' enctype="multipart/form-data">
+      {% csrf_token %}
 
-      <div class="upload-item">
+        
+      <div class="upload-item {% if national_id_exists %}
+        completed
+      {% endif %} ">
         <div class="icon-box">
           <iconify-icon icon="lucide:id-card"></iconify-icon>
         </div>
         <div class="item-content">
           <div class="item-label">National ID</div>
           <div class="item-meta">Front & back required</div>
+          <div class="file-preview">
+            <iconify-icon icon="lucide:file-check"></iconify-icon>
+            <span id="file-chosen1"></span>
+          </div>
         </div>
-        <button class="upload-btn">Upload</button>
+
+        {% if national_id_exists %}
+          <div class="status">
+            <iconify-icon icon="lucide:check"></iconify-icon>
+          </div>
+        {% else %}
+          <label for="nationalidinput" class="upload-btn">Upload</label>
+          <input style="display: none;"  id="nationalidinput" name="national-id" type="file" class="upload-btn" onchange="updateFileName(this,'file-chosen1')" accept=".jpg,.jpeg,.png,.pdf,.docx">
+        {% endif %}
       </div>
 
-      <div class="upload-item completed">
+      <div class="upload-item
+      
+      {% if academic_certificates_exists %}
+        completed
+      {% endif %}
+        
+      ">
         <div class="icon-box success">
           <iconify-icon icon="lucide:award"></iconify-icon>
         </div>
@@ -38,37 +60,88 @@
           <div class="item-label">Academic Certificates</div>
           <div class="file-preview">
             <iconify-icon icon="lucide:file-check"></iconify-icon>
-            BEd_Certificate_2023.pdf
+            <span id="file-chosen2"></span>
           </div>
         </div>
-        <div class="status">
-          <iconify-icon icon="lucide:check"></iconify-icon>
-        </div>
+        {% if academic_certificates_exists %}
+          <div class="status">
+              <iconify-icon icon="lucide:check"></iconify-icon>
+          </div>
+        {% else %}
+          <label class="upload-btn outline" for="academic-certificates" >Browse</label>
+          <input type="file" style="display: none;" name="academic-certificates" id="academic-certificates" onchange="updateFileName(this,'file-chosen2')"  accept=".jpg,.pdf,.docx">
+        {% endif %}
       </div>
 
-      <div class="upload-item">
+      <div class="upload-item 
+      
+      {% if internship_letter_exists %}
+        completed
+      {% endif %}
+        
+      ">
         <div class="icon-box">
           <iconify-icon icon="lucide:school"></iconify-icon>
         </div>
         <div class="item-content">
           <div class="item-label">TP / Internship Letter</div>
           <div class="item-meta">Signed by institution head</div>
+
+          <div class="file-preview">
+            <iconify-icon icon="lucide:file-check"></iconify-icon>
+            <span id="file-chosen3"></span>
+          </div>
         </div>
-        <button class="upload-btn">Upload</button>
+        
+        {% if internship_letter_exists %}
+          <div class="status">
+            <iconify-icon icon="lucide:check"></iconify-icon>
+          </div>
+        {% else %}
+          <label class="upload-btn" for="tp-letter">Upload</label>
+          <input style="display: none;"  type="file" onchange="updateFileName(this,'file-chosen3')" name="tp-letter" id="tp-letter" accept=".jpg,.jpeg,.png,.pdf,.docx">
+        {% endif %}
+          
+
       </div>
 
-      <div class="upload-item">
+      <div class="upload-item 
+      
+      {% if carriculum_vitae_exists %}
+        completed
+      {% endif %}
+        
+      ">
         <div class="icon-box">
           <iconify-icon icon="lucide:file-text"></iconify-icon>
         </div>
         <div class="item-content">
           <div class="item-label">Curriculum Vitae</div>
           <div class="item-meta">PDF only</div>
+          <div class="file-preview">
+            <iconify-icon icon="lucide:file-check"></iconify-icon>
+            <span id="file-chosen4"></span>
+          </div>
         </div>
-        <button class="upload-btn">Upload</button>
+        
+        {% if carriculum_vitae_exists %}
+          <div class="status">
+            <iconify-icon icon="lucide:check"></iconify-icon>
+          </div>
+        {% else %}
+          <label class="upload-btn" for="cv-upload">Upload</label>
+          <input type="file" style="display: none;" name="carriculum-vitae" id="cv-upload" accept=".pdf" onchange="updateFileName(this,'file-chosen4')" >
+        {% endif %}
+          
       </div>
 
-      <div class="upload-item optional">
+      <div class="upload-item optional
+      
+      {% if tsc_certificate_exists %}
+        completed
+      {% endif %}
+        
+      ">
         <div class="icon-box muted">
           <iconify-icon icon="lucide:badge-check"></iconify-icon>
         </div>
@@ -76,21 +149,86 @@
           <div class="item-label">
             TSC Certificate <span class="badge">Optional</span>
           </div>
+
+          <div class="file-preview">
+            <iconify-icon icon="lucide:file-check"></iconify-icon>
+            <span id="file-chosen5">PDF,JPG and docx only</span>
+          </div>
+
           <div class="item-meta">If registered</div>
         </div>
-        <button class="upload-btn outline">Browse</button>
+        
+        {% if tsc_certificate_exists %}
+          <div class="status">
+              <iconify-icon icon="lucide:check"></iconify-icon>
+          </div>
+        {% else %}
+          <label class="upload-btn outline" for="tsc-certificate" >Browse</label>
+          <input type="file" style="display: none;" name="tsc-certificate" id="tsc-certificate" onchange="updateFileName(this,'file-chosen5')"  accept=".jpg,.pdf,.docx">
+        {% endif %}
+          
       </div>
 
-    </div>
+    </form>
 
     <footer class="card-actions">
-      <button class="btn primary">
+      <button type="submit" form="uploadDocs" class="btn primary">
         Submit Documents
         <iconify-icon icon="lucide:arrow-right"></iconify-icon>
       </button>
-      <button class="btn ghost">Save & Continue Later</button>
+      <button class="btn ghost" onclick="saveFormProgress()">Save & Continue Later</button>
     </footer>
 
   </section>
 </main>
+
+<script>
+    function updateFileName(input,id){
+      const filenameDisplay = document.getElementById(id)
+      if (input.files && input.files.length > 0){
+        filenameDisplay.textContent = input.files[0].name;
+      } else {
+        filenameDisplay.textContent = 'No file Selected';
+      }
+    }
+
+    function saveFormProgress() {
+      const national_id = document.getElementById('nationalidinput').value;
+      const academic_certificates  = document.getElementById('academic').value;
+      const internship_letter = document.getElementById('tp-letter').value;
+      const carriculum_vitae =  document.getElementById('cv-upload').value;
+      const tsc_certificate = document.getElementById('tsc-certificate').value;
+      
+      if (national_id && academic_certificates && internship_letter && carriculum_vitae && tsc_certificate ){
+
+        // Create an object to store the data
+        const formData = {
+            nationalid: name,
+            academic_certificates:academic_certificates ,
+            internship_letter:internship_letter,
+            carriculum_vitae:carriculum_vitae,
+            tsc_certificate:tsc_certificat
+    
+        };
+
+        // Convert the object to a JSON string and save it to localStorage
+        localStorage.setItem('savedFormData', JSON.stringify(formData));
+        alert('Form progress saved!');
+        itional
+      } else {
+        alert('Incomplete form data !')
+      }
+  
+
+    }
+
+</script>
+
+
 {% endblock center_feed_content %}
+
+
+{% block rightsidebar %}
+  {% include 'components/trending.html' %}
+{% endblock rightsidebar %}
+  

@@ -3,14 +3,16 @@
       Find your next teaching role 🇰🇪
     </h2>
     <div style="display: flex; gap: 12px;">
-      <input name='jobquery' placeholder="Subject or Job Title" style="
+      <input name='jobquery' placeholder="Subject,Town,County,School or Job Title" style="
         flex: 1;
         display: flex;
+        position:relative;
         align-items: center;
         background: var(--muted);
         border-radius: var(--radius-md);
         padding: 0 16px;
         height: 48px;
+        width:80%;
         color: var(--foreground);
         font-size:16px;
         font-weight: 800;
@@ -18,21 +20,7 @@
       ">
         <iconify-icon icon="lucide:search" style="color: var(--foreground); margin-right: 12px;"></iconify-icon>
       </input>
-      <input name='county/location' placeholder='County or Town' style="
-        flex: 1;
-        display: flex;
-        align-items: center;
-        background: var(--muted);
-        border-radius: var(--radius-md);
-        padding: 0 16px;
-        height: 48px;
-        font-size:16px;
-        font-weight: 800;
-        border:none;
-        color: var(--foreground);
-      ">
-        <iconify-icon icon="lucide:map-pin" style="color: var(--foreground); margin-right: 12px;"></iconify-icon>
-      </input>
+    
       <button type='submit' style="
         background: var(--primary);
         color: var(--primary-foreground);

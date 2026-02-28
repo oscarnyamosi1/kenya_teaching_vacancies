@@ -11,19 +11,28 @@
     <div style="display: flex; flex-direction: column; gap: 8px">
         <label
             style="display: flex; items-center; gap: 8px; font-size: 14px; color: var(--foreground); cursor: pointer;">
-            <input type="checkbox" checked="" style="accent-color: var(--primary)" />
+            <input class='jobfilter' type="checkbox" style="accent-color: var(--primary)" />
             Full Time
         </label>
         <label
             style="display: flex; items-center; gap: 8px; font-size: 14px; color: var(--foreground); cursor: pointer;">
-            <input type="checkbox" /> Part Time / TSC
+            <input class='jobfilter' type="checkbox" /> Part Time / TSC
         </label>
         <label
             style="display: flex; items-center; gap: 8px; font-size: 14px; color: var(--foreground); cursor: pointer;">
-            <input type="checkbox" /> Remote / Online
+            <input class='jobfilter' type="checkbox" /> Remote / Online
         </label>
         <label
             style="display: flex; items-center; gap: 8px; font-size: 14px; color: var(--foreground); cursor: pointer;">
-            <input type="checkbox" /> Nairobi County
+            <input class='jobfilter' type="checkbox" /> Nairobi County
         </label>
     </div>
+
+<script>
+    const job_filters = document.querySelectorAll('.jobfilter')
+    job_filter.forEach(filter,()=>{
+        filter.addEventListener('click',()=>{
+            filter.checked = true
+        })
+    })
+</script>

@@ -1,7 +1,8 @@
-{% extends 'index2.html' %}
+{% extends 'index.html' %}
 
 {% load static %}
 {% load humanize %}
+{% load my_tags %}
 
 {% block title %}
 K.T.V Home
@@ -83,7 +84,7 @@ home
   </div>
 
   <!-- Job Cards -->
-  {% for job in all_jobs %}
+  {% for job in jobs_feed_page.object_list %}
   <article class="card glass">
     <div class="job-card-header">
       <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;">
@@ -116,7 +117,8 @@ home
     </div>
   </article>
   {% endfor %}
-
+  {% rename_var jobs_feed_page as items_page %}
+  {% include 'components/pagination.html' %}
 </div>
 
 {% endblock center_feed_content %}

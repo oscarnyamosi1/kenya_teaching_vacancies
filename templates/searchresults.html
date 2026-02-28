@@ -9,7 +9,7 @@
         {% include 'components/jobsearchbar.html' %}
     {% endblock jobsearchbar %}
 
-    {% for item in search_results  %}
+    {% for item in search_page.object_list  %}
         
         {% if item.is_job %}
             
@@ -33,7 +33,7 @@
             
             
     {% endfor %}
-        
-{% endblock center_feed_content %}
     
-{{alerts|json_script:"alerts-json"}}
+    {% rename_var search_page as items_page %}
+    {% include 'components/pagination.html' %}
+{% endblock center_feed_content %}

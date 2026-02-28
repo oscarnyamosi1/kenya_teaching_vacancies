@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load my_tags %}
 {% block title %}
 K.T.V My Applications
 {% endblock title %}
@@ -16,7 +17,7 @@ myapplications
 
 {% if applications %}
 	<div class="applications-list" style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
-		{% for app in applications %}
+		{% for app in applications_page.object_list %}
 			<div class="job-card" style="display:flex;gap:16px;align-items:flex-start;">
 				<div style="width:64px;height:64px;flex-shrink:0">
 					{% if app.school.logo %}
@@ -51,42 +52,26 @@ myapplications
 					{% endif %}
 					<div style="margin-top:12px;display:flex;gap:8px">
 						<a href="/jobs/{{ app.id }}/" class="btn btn-outline">View Job</a>
+						<a href="/jobs/{{ app.id }}/" class="btn btn-outline">View Application</a>
 						<a href="/applications/withdrawapplication/{{app.id}}" class="btn btn-ghost">Withdraw</a>
-						<a href="/applications/{{ app.id }}/message" class="btn btn-primary">Message School</a>
+						<a href="/applications/messageschool/{{app.id}}" class="btn btn-primary">Message School</a>
 					</div>
 				</div>
 			</div>
 		{% endfor %}
 	</div>
-	{% if page_obj and page_obj.has_other_pages %}
+
+	{% rename_var applications_page as items_page %}
+	{% include 'components/pagination.html' %}
+
+	{% comment %} {% if page_obj and page_obj.has_other_pages %}
 		<div style="margin-top:12px;display:flex;gap:8px;align-items:center">
 			{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline">Previous</a>{% endif %}
 			<span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
 			{% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline">Next</a>{% endif %}
 		</div>
-	{% endif %}
-{% elif jobs_applied %}
-	<div class="applications-list" style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
-		{% for job in jobs_applied %}
-			<div class="job-card" style="display:flex;gap:16px;align-items:flex-start;">
-				<div style="width:64px;height:64px;flex-shrink:0">
-					{% if job.school.logo %}
-						<img src="{{ job.school.logo.url }}" class="school-logo" alt="{{ job.school.name }}">
-					{% else %}
-						<img src="{% static 'images/logo/ktvlogo.png' %}" class="school-logo" alt="{{ job.school.name }}">
-					{% endif %}
-				</div>
-				<div style="flex:1;min-width:0">
-					<h3 style="margin:0;font-size:16px"><a href="/jobs/{{ job.id }}/" style="text-decoration:none;color:inherit">{{ job.title }}</a></h3>
-					<div style="color:var(--muted-foreground);font-size:13px;margin-top:6px">{{ job.school.name }} • {{ job.location }}</div>
-					<div style="margin-top:12px;display:flex;gap:8px">
-						<a href="/jobs/{{ job.id }}/" class="btn btn-outline">View Job</a>
-						<a href="/jobs/{{ job.id }}/apply" class="btn btn-primary">View Application</a>
-					</div>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+	{% endif %} {% endcomment %}
+
 {% else %}
 	<div class="empty-state" style="margin-top:24px;padding:28px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
 		<h3 style="margin:0">No applications yet</h3>

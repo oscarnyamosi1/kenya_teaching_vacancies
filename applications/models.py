@@ -26,3 +26,12 @@ class Application(models.Model):
     def __str__(self):
         return f'''Application {self.job.job_title}.'''
     
+
+class ApplicationResponse(models.Model):
+    applicant = models.ForeignKey("teachers.Teacher",on_delete=models.CASCADE)
+    employer = models.ForeignKey('employers.Employer',on_delete=models.CASCADE)
+    message = models.TextField()
+    sent_by_applicant = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.applicant.user.username.capitalize()} application responses.'

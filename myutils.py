@@ -25,10 +25,14 @@ def countHires():
     elif (count > 10000) and (count < 20000):
         return '17k+'
 
+def getTrendingJobs(request):
+    pass
+
 def createContext(request):
     all_jobs = Job.objects.all().order_by('-is_featured', '-date_posted')
     teachers_hired = countHires()
-    context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired}
+    trendingjobs = getTrendingJobs(request)
+    context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trendingjobs}
     return context
 
 
@@ -136,3 +140,36 @@ def maincontext(request):
     context = context|context2
     return context
 
+def getJobApplicationById(appid):
+    return Application.objects.get(id = appid)
+
+
+# pagination stuff
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+def paginateList(request,list:set,units_per_page:int):
+    saved_jobs = list
+    paginator = Paginator(saved_jobs, units_per_page)
+    page_number = request.GET.get("page")
+    try:
+        saved_jobs_page = paginator.page(page_number)
+    except PageNotAnInteger:
+        saved_jobs_page = paginator.page(1)
+    except EmptyPage:
+        saved_jobs_page = paginator.page(paginator.num_pages)
+    
+    return saved_jobs_page
+
+
+# end pagination stuff
+
+def listToQuerySet(list,model):
+    ids = [item.id for item in list]
+    query_set = model.objects.filter(id__in = ids)
+    return query_set
+
+def getTeacherFollowedSchools(request):
+    teacher = getTeacherProfile(request)
+    teacher_followed_schools = teacher.saved_jobs.all()
+    return teacher_followed_schools

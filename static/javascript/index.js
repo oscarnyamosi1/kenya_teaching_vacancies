@@ -34,4 +34,22 @@ document.addEventListener('DOMContentLoaded',()=>{
         card.addEventListener('mouseleave', () => card.style.removeProperty('--glow'));
     });
 
+
+    const viewtrending = document.getElementById('viewtrending')
+    const trendingcard = document.getElementById('trendingcard')
+    const closetrending = document.getElementById('closetrending')
+    viewtrending.addEventListener('click',()=>{
+        trendingcard.classList.remove('menu-card')
+        trendingcard.classList.add('trending-card')
+        closetrending.style.display = 'inline-block'
+        viewtrending.style.display = 'none'
+    })
+
+    closetrending.addEventListener('click',()=>{
+        trendingcard.classList.add('menu-card')
+        trendingcard.classList.remove('trending-card')
+        closetrending.style.display = 'none'
+        viewtrending.style.display = 'inline-block'
+
+    })
 })
