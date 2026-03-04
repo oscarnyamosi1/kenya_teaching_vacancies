@@ -99,9 +99,9 @@ span{
   background:var(--glass-bg);
 }
 
-.badge.urgent {
+/* .badge.urgent {
   background:var(--glass-bg);
-}
+} */
 
 /* ---------- META ---------- */
 
@@ -166,7 +166,7 @@ span{
 
 .btn.danger {
   background:var(--card);
-  color: #f87171;
+  color: var(--destructive);
 }
 
 

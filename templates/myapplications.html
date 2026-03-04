@@ -18,7 +18,7 @@ myapplications
 {% if applications %}
 	<div class="applications-list" style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
 		{% for app in applications_page.object_list %}
-			<div class="job-card" style="display:flex;gap:16px;align-items:flex-start;">
+			<div class="job-card glass-card" style="display:flex;gap:16px;align-items:flex-start;">
 				<div style="width:64px;height:64px;flex-shrink:0">
 					{% if app.school.logo %}
 						<img src="{{ app.school.logo.url }}" class="school-logo" alt="{{ app.school.name }}">
@@ -36,11 +36,11 @@ myapplications
 							<div class="tag" style="background:transparent;color:var(--muted-foreground);font-weight:600">Posted {{ app.date_posted|date:"M j, Y" }}</div>
 							<div style="margin-top:8px">
 								{% if app.is_active %}
-								<span class="badge" style="background:transparent;color:var(--primary);font-weight:700;border:1px solid var(--border);padding:6px 8px;border-radius:8px">
+								<span class="badge">
 										Active
 								</span>
 								{% else %}
-								<span class="badge" style="background:transparent;color:var(--primary);font-weight:700;border:1px solid var(--border);padding:6px 8px;border-radius:8px">
+								<span class="badge">
 										Inactive
 								</span>
 								{% endif %}

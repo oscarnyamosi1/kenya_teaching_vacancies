@@ -12,8 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
+  
   <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'styling/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'styling/index.css' %}">
   <link rel="stylesheet" href="{% static 'styling/jobfeedlayout.css' %}">
 
@@ -24,29 +25,37 @@
 
 </head>
 
-<body>
+<body id='body' >
   <!-- Top Navigation -->
   <nav class="top-nav glass">
     <div class="logo-area">
       <img src="{% static 'images/logo/ktvlogo.png' %}" alt="KTV" class="site-logo" style="width:54px;height:54px">
       <span class="logo-text">Kenya Teaching Vacancies</span>
     </div>
+    <div class="themer dark">
+      <i class="fa fa-moon-o"></i> 
+    </div>
+
+<div id="overlay"></div> 
+
+<!-- For dimming background -->
 
     <div class="nav-links">
       <a href='/jobs/jobfeed'>Feed</a>
       <a href='/jobs/premiumurgent'>Quick Jobs</a>
       <a href='/schools/schoolsfeed'>Schools</a>
       <a href='/schools/blog'>Blog</a>
+      <div class="auth-buttons">
+        {% if user.is_authenticated %}
+        <a href="/logout" class="btn btn-outline">Log Out <br>{{ user.username.capitalize }}</a>
+        {% else %}
+        <a href="/login" class="btn btn-outline">Log In</a>
+        {% endif %}
+        {% comment %} <a href="/jobs/postjob" class="btn btn-primary">Post a Job</a> {% endcomment %}
+      </div>
     </div>
 
-    <div class="auth-buttons">
-      {% if user.is_authenticated %}
-      <a href="/logout" class="btn btn-outline">Log Out <br>{{ user.username.capitalize }}</a>
-      {% else %}
-      <a href="/login" class="btn btn-outline">Log In</a>
-      {% endif %}
-      <a href="/jobs/postjob" class="btn btn-primary">Post a Job</a>
-    </div>
+
   </nav>
 
   <div class="app-container">
@@ -59,7 +68,7 @@
     </aside>
 
     <!-- Center Feed -->
-    <main class="feed-container">
+    <main class="feed-container scrollview">
       <div class ="content-forwarder">
 
 

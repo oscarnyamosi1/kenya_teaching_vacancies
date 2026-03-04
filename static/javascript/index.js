@@ -1,13 +1,41 @@
-document.addEventListener('DOMContentLoaded',()=>{
-    let navbuttons = document.querySelectorAll('.menu-item')
+let navbuttons = document.querySelectorAll('.menu-item')
+const themer = document.querySelector('.themer')
+const body = document.getElementById('body')
+let pageName = document.querySelector('.pagename').value.trim()
+let is_dark_mode = JSON.parse(localStorage.getItem("is_dark_mode")) || false
 
-    let pageName = document.querySelector('.pagename').value.trim()
 
+
+function handleThemes(){
+    if (is_dark_mode == true){  
+        themer.innerHTML = "<i class='fa fa-sun-o'></i>"
+        body.classList.remove('lightmode')
+    } else {
+        themer.innerHTML = "<i class='fa fa-moon-o'></i>"
+        body.classList.add('lightmode')
+    }    
+    
+    themer.addEventListener('click',()=>{
+        body.classList.toggle('lightmode')
+        body.classList.contains('lightmode')?(localStorage.setItem('is_dark_mode',JSON.stringify(false))):(localStorage.setItem('is_dark_mode',JSON.stringify(true)))
+        
+    })    
+
+}    
+
+function highlightNav(){
     navbuttons.forEach((navbutton)=>{
         if(navbutton.classList.contains(`${pageName}`)){
             navbutton.classList.toggle('active')
         }
     })
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+    handleThemes()
+    highlightNav()
+
 
     // view job details
 
@@ -39,15 +67,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     const trendingcard = document.getElementById('trendingcard')
     const closetrending = document.getElementById('closetrending')
     viewtrending.addEventListener('click',()=>{
-        trendingcard.classList.remove('menu-card')
-        trendingcard.classList.add('trending-card')
+        trendingcard.classList.toggle('trending-card')
         closetrending.style.display = 'inline-block'
         viewtrending.style.display = 'none'
     })
 
     closetrending.addEventListener('click',()=>{
-        trendingcard.classList.add('menu-card')
-        trendingcard.classList.remove('trending-card')
+        trendingcard.classList.toggle('trending-card')
         closetrending.style.display = 'none'
         viewtrending.style.display = 'inline-block'
 

@@ -109,7 +109,7 @@
 
 .conversation-item,
 .notification-card {
-    background-color: var(--card);
+    /* background-color: var(--card); */
     border-radius: var(--radius-lg);
     padding: 16px;
     display: flex;
@@ -127,7 +127,7 @@
 }
 
 .notification-card.unread {
-    background-color: var(--input);
+    /* background-color: var(--input); */
     border-color: var(--primary);
 }
 

@@ -11,9 +11,10 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.4s ease, opacity 0.4s ease;
     overflow: hidden;
-    color: white;
+    /* color: white; */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
+
 
 /* Promoted Ribbon */
 .promoted-ribbon {
@@ -60,7 +61,7 @@
 
 .school-details span {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--muted-foreground);
     display: flex;
     align-items: center;
     gap: 4px;
@@ -68,7 +69,7 @@
 
 .job-posted {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--muted-foreground);
 }
 
 /* Job Content */
@@ -85,7 +86,7 @@
 }
 
 .tag {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--tag-background);
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 12px;
@@ -138,8 +139,9 @@
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: var(--secondary-foreground);
+    color:black;
+    
 }
 
 .btn-primary:hover {

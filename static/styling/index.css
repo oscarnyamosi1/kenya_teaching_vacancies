@@ -24,7 +24,7 @@ a {
 /* Layout Grid */
 .app-container {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: minMax(200px,1fr) minMax(300px,2fr) minMax(200px,1fr);
     gap: 24px;
     /* max-width: 1280px; */
     margin: 0 auto;
@@ -44,6 +44,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    justify-items:center;
     backdrop-filter: blur(14px);
 }
 
@@ -67,9 +68,19 @@ a {
     color: white;
 }
 
+.badge{
+    background: transparent;
+    color: var(--primary);
+    font-weight: 700;
+    border: 1px solid var(--border);
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+
 .nav-links {
     display: flex;
     gap: 24px;
+    align-items:center;
 }
 
 .nav-item {
@@ -138,11 +149,7 @@ a {
 }
 
 /* Sidebar Left */
-.sidebar-left {
-    position: sticky;
-    top: 88px;
-    left: 20px;
-}
+
 
 .menu-card {
     background: var(--card);
@@ -155,7 +162,7 @@ a {
 .menu-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    /* gap: 12px; */
     padding: 12px;
     border-radius: var(--radius-md);
     color: var(--foreground);
@@ -344,7 +351,8 @@ a {
 /* Sponsored Card Style */
 .job-card.sponsored {
     border: 1px solid var(--primary);
-    background: linear-gradient(to bottom, #285736, #0f0540);
+    background: linear-gradient(to bottom, var(--success), var(--input));
+ 
 }
 
 .sponsored-label {
@@ -359,19 +367,19 @@ a {
 
 /* Sidebar Right */
 .sidebar-right {
-    /* position: sticky; */
-    top: 88px;
-    right: 20px;
-    
-    width: 260px;
-    position: sticky;
-    top: 88px;
+    /* width: 260px; */
+    position:relative;
     display: flex;
     flex-direction: column;
     gap: 24px;
     margin-right: 20px;
 }
-
+.sidebar-left {
+    position: relative;
+    margin-top: 5%;
+    padding-left:10px;
+    margin-right:10px;
+}
 .promo-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -625,4 +633,139 @@ a {
     object-fit: cover;
     border-radius: 12px;
     flex-shrink: 0;
+}
+.fa {
+    cursor:pointer;
+}
+
+/* ai content for mobile compatiability */
+/* Hide navigation by default on small screens */
+.top-nav {
+  /* display: none; */
+  /* Or position off-screen and animate in */
+  /* position: fixed;
+  left: -200px;
+  width: 200px;
+  height: 100vh;
+  transition: left 0.3s ease-out; */
+}
+
+/* Show navigation when active class is applied */
+.top-nav.active {
+  display: block;
+  /* Or animate in */
+  /* left: 0; */
+}
+
+/* Hamburger icon for small screens */
+.menu-toggle {
+  display: none; /* Hide by default on large screens */
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .top-nav {
+    /* Styles for mobile navigation when hidden */
+  }
+
+  .menu-toggle {
+    display: block; /* Show hamburger on small screens */
+  }
+}
+#aside-panel {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Hidden by default */
+  width: 300px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+  transition: right 0.3s ease-out;
+  z-index: 1000;
+}
+
+#aside-panel.open {
+  right: 0; /* Show panel */
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+  z-index: 999;
+}
+
+#overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: #333;
+  color: #eee;
+}
+
+@media only screen and (max-width: 767px) {
+    /* Layout Grid */
+    .body{
+        font-size:8px;
+    }
+    .app-container {
+        display: grid;
+        grid-template-columns: minMax(20%,1fr) minMax(300px,2fr);
+        gap: 10px;
+        /* max-width: 1280px; */
+        margin: 0 auto;
+        padding-top: 24px;
+        align-items: start;
+    }
+    .sidebar-left{
+        width:100%;
+        padding-right:0px;
+        padding-left:0px;
+    }
+    .main-area{
+        padding-left:0px;
+    }
+    .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        text-decoration: none;
+        font-weight: 400;
+    }
+    .logo-area {
+        gap: 8px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+    .themer {
+        padding-left:20px;
+        padding-right:20px;
+    }
+    .auth-buttons{
+        font-size:8px;
+    }
+    .sidebarleft{
+        max-height:500px;
+    }
+    .sidebar-right {
+        position:absolute;
+        top:0px;
+        display:block;
+        flex-direction: column;
+        gap: 24px;
+        top:100px;
+        margin-right: 10px;
+        margin-left: 10px;
+        padding:10px;
+        background:#1a2ba552;
+        z-index:10;
+    }
 }

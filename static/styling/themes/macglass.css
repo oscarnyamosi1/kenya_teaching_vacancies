@@ -10,7 +10,7 @@
     --secondary: #111827;
     --secondary-foreground: #e5e7eb;
     --muted: #020617;
-    --muted-foreground: #9ca3af;
+    --muted-foreground: #7d818b;
     
     --success: #22c55e;
     --success-foreground: #0de667;
@@ -37,6 +37,112 @@
     --radius-lg: 16px;
     --radius-xl: 24px;
     --font-family-body: Inter,Arial;
+    --tag-background:rgba(255, 255, 255, 0.1);
+    body {
+        background:var(--background);
+    }
+}
+
+.lightmode{
+    --background: #5c91f180;
+    --glass-bg:rgba(74, 85, 107, 0.623);
+    --foreground: #000000;
+    --border: #678abb;
+    --input: #020617;me
+    --primary: #38bdf8;
+    --primary-foreground: #020617;
+    --secondary: #4568b4;
+    --secondary-foreground: #4f5665;
+    --muted: #44485f;
+    --muted-foreground: #332f5bdb;
+
+    --success: #22c55e;
+    --success-foreground: #0de667;
+
+    --success: #0b8a3a;
+    --success-foreground: #01ad40;
+
+    --accent: #38bdf8;
+    --accent-foreground: #020617;
+    --destructive: #ec0505;
+    --destructive-foreground: #fef2f2;
+    --warning: #f59e0b;
+    --warning-foreground: #0c49cc;
+    --card: #020617;
+    --card:transparent;
+    --card-foreground: #f9fafb;
+    --sidebar: #3a5ae9;
+    --sidebar-foreground: #e5e7eb;
+    --sidebar-primary: #111827;
+    --sidebar-primary-foreground: #e5e7eb;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-family-body: Inter,Arial;
+    --tag-background:rgb(9 31 96 / 22%); 
+    color:var(--foreground);
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color:var(--foreground);
+    }
+    .job-card.sponsored {
+        color:white;
+        .btn,
+        .btn-outline,
+         p,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color:white;
+        }
+    }
+    .logo-area{
+        color: var(--foreground);
+    }
+    .pagination a{
+        background:var(--accent-foreground);
+    }
+    .btn-secondary{
+        color:var(--foreground);
+    }
+    .badge{
+        background:var(--accent-foreground);
+        color: var(--success);
+    }
+    .btn{
+        color:var(--accent-foreground);
+    }
+    .profile-container {
+        a,
+        div,
+        span,
+        button,
+        p{
+         color:var(--destructive-foreground);
+        }
+        
+    }
+    .btn-secondary {
+        color:white;
+    }
+    .date-divider {
+        backdrop-filter:15px;
+        background-color:transparent;
+    }
+    .search-bar {
+        background-color:var(--muted-foreground);
+        color:white;
+    }
+    .conv-search{
+        color:white;
+    }
 }
 
 .colorize {

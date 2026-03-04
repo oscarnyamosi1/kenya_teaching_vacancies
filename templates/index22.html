@@ -58,28 +58,28 @@
 
 		<div class="nav-links">
 			
-			<a href='/jobs/jobfeed' class="menu-item jobfeed" data-media-type="banani-button">Feed</a>
-			<a href='/jobs/premiumurgent' class="menu-item" data-media-type="banani-button">Find Jobs Quick</a>
-			<a href='/schools/schoolsfeed' class="menu-item" data-media-type="banani-button">Schools</a>
-			<a href='/schools/blog' class="menu-item" data-media-type="banani-button">Blog</a>
+			<a href='/jobs/jobfeed' class="menu-item jobfeed" data-media-type="kenya-teaching-vacancies-button">Feed</a>
+			<a href='/jobs/premiumurgent' class="menu-item" data-media-type="kenya-teaching-vacancies-button">Find Jobs Quick</a>
+			<a href='/schools/schoolsfeed' class="menu-item" data-media-type="kenya-teaching-vacancies-button">Schools</a>
+			<a href='/schools/blog' class="menu-item" data-media-type="kenya-teaching-vacancies-button">Blog</a>
 		</div>
 		<div class="auth-buttons">
 			{% if user.is_authenticated %}
 			<a href="/logout">
-				<button class="btn btn-outline" data-media-type="banani-button">
+				<button class="btn btn-outline" data-media-type="kenya-teaching-vacancies-button">
 					Log Out <br>{{user.username.capitalize}}
 				</button>
 			</a>
 			{% else %}
 
 			<a href="/login">
-				<button class="btn btn-outline" data-media-type="banani-button">
+				<button class="btn btn-outline" data-media-type="kenya-teaching-vacancies-button">
 					Log In
 				</button>
 			</a>
 
 			{% endif %}
-			<a href="/jobs/postjob" class="btn btn-primary" data-media-type="banani-button">
+			<a href="/jobs/postjob" class="btn btn-primary" data-media-type="kenya-teaching-vacancies-button">
 				Post a Job
 			</a>
 		</div>

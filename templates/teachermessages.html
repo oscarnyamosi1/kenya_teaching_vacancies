@@ -48,13 +48,13 @@
         {% endif %}
 
         <div class="chat-actions">
-          <div class="action-icon" data-media-type="banani-button">
+          <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
             <iconify-icon icon="lucide:phone" style="font-size: 20px"></iconify-icon>
           </div>
-          <div class="action-icon" data-media-type="banani-button">
+          <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
             <iconify-icon icon="lucide:video" style="font-size: 20px"></iconify-icon>
           </div>
-          <div class="action-icon" data-media-type="banani-button">
+          <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
             <iconify-icon icon="lucide:more-vertical" style="font-size: 20px"></iconify-icon>
           </div>
         </div>
@@ -130,19 +130,19 @@
           <form action="/applications/messageschool/" method="post">
             {% csrf_token %}
             <div class="chat-input-wrapper">
-              <div class="action-icon" title="Attach CV/File" data-media-type="banani-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:paperclip" style="font-size: 20px"></iconify-icon></div>
-              <div class="action-icon" title="Emoji" data-media-type="banani-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:smile" style="font-size: 20px"></iconify-icon></div>
+              <div class="action-icon" title="Attach CV/File" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:paperclip" style="font-size: 20px"></iconify-icon></div>
+              <div class="action-icon" title="Emoji" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:smile" style="font-size: 20px"></iconify-icon></div>
               <textarea name="content" class="chat-textarea" placeholder="Reply ..." rows="1"></textarea>
-              <button type="submit" class="send-btn" data-media-type="banani-button"><iconify-icon icon="lucide:send-horizontal" style="font-size: 18px"></iconify-icon></button>
+              <button type="submit" class="send-btn" data-media-type="kenya-teaching-vacancies-button"><iconify-icon icon="lucide:send-horizontal" style="font-size: 18px"></iconify-icon></button>
             </div>
           </form>
         {% else %}
           <form class="chat-input-wrapper" action="/applications/messageschool/{{application_id}}" method="post">
             {% csrf_token %}
-            <div class="action-icon" title="Attach CV/File" data-media-type="banani-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:paperclip" style="font-size: 20px"></iconify-icon></div>
-            <div class="action-icon" title="Emoji" data-media-type="banani-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:smile" style="font-size: 20px"></iconify-icon></div>
+            <div class="action-icon" title="Attach CV/File" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:paperclip" style="font-size: 20px"></iconify-icon></div>
+            <div class="action-icon" title="Emoji" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:smile" style="font-size: 20px"></iconify-icon></div>
             <textarea name='content' class="chat-textarea" placeholder="New message" rows="1"></textarea>
-            <button type='submit' class="send-btn" data-media-type="banani-button"><iconify-icon icon="lucide:send-horizontal" style="font-size: 18px"></iconify-icon></bu>
+            <button type='submit' class="send-btn" data-media-type="kenya-teaching-vacancies-button"><iconify-icon icon="lucide:send-horizontal" style="font-size: 18px"></iconify-icon></bu>
           </div>
         {% endif %}
       </div>
@@ -164,7 +164,7 @@
         <img src="{% static 'images/logo/ktvlogo.png' %}" alt="KTV" style="width:28px;height:28px;object-fit:contain;filter:grayscale(100%) brightness(120%);opacity:0.95">
         <div style="font-weight:700">Messages</div>
       </div>
-      <div class="action-icon" data-media-type="banani-button">
+      <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
         <iconify-icon icon="lucide:edit" style="font-size: 18px"></iconify-icon>
       </div>
     </div>
@@ -176,7 +176,7 @@
 
     <div class="conversation-list scrollview" style="padding:8px;">
       {% comment %} Example conversation items - replace with loop where needed {% endcomment %}
-      <div class="conversation-item active" data-media-type="banani-button">
+      <div class="conversation-item active" data-media-type="kenya-teaching-vacancies-button">
         <div class="conv-avatar-container">
           <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4" class="conv-avatar" alt="Principal Sarah" />
           <div class="online-indicator"></div>
@@ -193,7 +193,7 @@
         </div>
       </div>
 
-      <div class="conversation-item" data-media-type="banani-button">
+      <div class="conversation-item" data-media-type="kenya-teaching-vacancies-button">
         <div class="conv-avatar-container">
           <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F3" class="conv-avatar" alt="Maria Garcia" />
         </div>
@@ -206,7 +206,7 @@
         </div>
       </div>
 
-      <div class="conversation-item" data-media-type="banani-button">
+      <div class="conversation-item" data-media-type="kenya-teaching-vacancies-button">
         <div class="conv-avatar-container">
           <img src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F50-65%2FAfrican%2F2" class="conv-avatar" alt="Westside Academy" />
         </div>
