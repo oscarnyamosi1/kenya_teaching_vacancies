@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from applications.models import Application
 from jobs.models import Job
 
-
+@login_required(login_url='login')
 def countHires():
     count = 0
     all_teachers = Teacher.objects.filter(has_been_hired_here=True)
