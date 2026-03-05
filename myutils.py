@@ -11,8 +11,10 @@ def countHires():
     all_teachers = Teacher.objects.all()
     if all_teachers.__len__() > 0:
         for teacher in all_teachers:
-            if teacher.has_been_hired_here:
+            if teacher.has_been_hired_here == False:
                 count +=1
+                teacher.has_been_hired_here = True
+
         if count < 1000:
             return '500+'
         elif (count > 1000) and (count < 2000 ):
