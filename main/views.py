@@ -12,8 +12,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def home(request):
     context = maincontext(request)
     # createCountynConstituencies()
-    # all_jobs = context.get('all_jobs', [])
-    all_jobs = Job.objects.all()
+    all_jobs = context.get('all_jobs', [])
+    # all_jobs = Job.objects.all()
     promoted_jobs=Job.objects.filter(is_promoted=True)
     print(f"""
     

@@ -9,21 +9,24 @@ from jobs.models import Job
 def countHires():
     count = 0
     all_teachers = Teacher.objects.all()
-    for teacher in all_teachers:
-        if teacher.has_been_hired_here:
-            count +=1
-    if count < 1000:
-        return '500+'
-    elif (count > 1000) and (count < 2000 ):
-        return '1.8k+'
-    elif (count > 2000) and (count < 3000):
-        return '2.9k+'
-    elif (count > 3000) and (count < 5000):
-        return '5k+'
-    elif (count > 5000) and (count < 10000):
-        return '8k+'
-    elif (count > 10000) and (count < 20000):
-        return '17k+'
+    if all_teachers.__len__() > 0:
+        for teacher in all_teachers:
+            if teacher.has_been_hired_here:
+                count +=1
+        if count < 1000:
+            return '500+'
+        elif (count > 1000) and (count < 2000 ):
+            return '1.8k+'
+        elif (count > 2000) and (count < 3000):
+            return '2.9k+'
+        elif (count > 3000) and (count < 5000):
+            return '5k+'
+        elif (count > 5000) and (count < 10000):
+            return '8k+'
+        elif (count > 10000) and (count < 20000):
+            return '17k+'
+    return '0'
+
 
 def getTrendingJobs(request):
     pass
