@@ -8,23 +8,25 @@ from jobs.models import Job
 @login_required(login_url='login')
 def countHires():
     count = 0
-    all_teachers = Teacher.objects.filter(has_been_hired_here=True)
-    if all_teachers.__len__() > 0:
-        for teacher in all_teachers:
-            count +=1
+    all_teachers_exist= Teacher.objects.filter(has_been_hired_here=True).exists()
+    if all_teachers_exist:
+        all_teachers= Teacher.objects.filter(has_been_hired_here=True)
+        if all_teachers.__len__() > 0:
+            for teacher in all_teachers:
+                count +=1
 
-        if count >0 and count< 500:
-            return f"{len(all_teachers)} +"
-        elif (count >= 500) and (count < 2000 ):
-            return '1.8k+'
-        elif (count >= 2000) and (count < 3000):
-            return '2.9k+'
-        elif (count >= 3000) and (count < 5000):
-            return '5k+'
-        elif (count >= 5000) and (count < 10000):
-            return '8k+'
-        elif (count >= 10000) and (count < 20000):
-            return '17k+'
+            if count >0 and count< 500:
+                return f"{len(all_teachers)} +"
+            elif (count >= 500) and (count < 2000 ):
+                return '1.8k+'
+            elif (count >= 2000) and (count < 3000):
+                return '2.9k+'
+            elif (count >= 3000) and (count < 5000):
+                return '5k+'
+            elif (count >= 5000) and (count < 10000):
+                return '8k+'
+            elif (count >= 10000) and (count < 20000):
+                return '17k+'
   
 
 
