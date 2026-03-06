@@ -5,18 +5,38 @@ from django.contrib.auth.decorators import login_required
 from applications.models import Application
 from jobs.models import Job
 
-@login_required(login_url='login')
+
+def maincontext(request):
+    # import school helper functions here to avoid circular imports at module load
+    try:
+        from schools.views import createschoolsponsor, createschoolcategory
+        createschoolsponsor()
+        createschoolcategory()
+    except Exception:
+        # If import fails (for example during migrations or when models not ready), continue
+        pass
+
+    context = createContext(request)
+    context2 = {
+        "number_of_schools":countSchools(),
+        "active_jobs":countActiveJobs(),
+        "job_applications":getAllJobApplications(request),
+        "jobs_applied":getAllJobsApplied(request),
+        "jobs_saved":getTeacherSavedJobs(request),
+    }
+    context = context|context2
+    return context
+
 def countHires():
     count = 0
-    all_teachers_exist= Teacher.objects.filter(has_been_hired_here=True).exists()
-    if all_teachers_exist:
-        all_teachers= Teacher.objects.filter(has_been_hired_here=True)
-        if all_teachers.__len__() > 0:
-            for teacher in all_teachers:
-                count +=1
+    all_teachers_hired_exist= Teacher.objects.filter(has_been_hired_here=True).exists()
+    if all_teachers_hired_exist:
+        all_teachers_hired= Teacher.objects.filter(has_been_hired_here=True)
+        if all_teachers_hired.__len__() > 0:
+            count = all_teachers_hired.__len__()
 
-            if count >0 and count< 500:
-                return f"{len(all_teachers)} +"
+            if (count > 0 )and (count< 500):
+                return f"{len(all_teachers_hired)} +"
             elif (count >= 500) and (count < 2000 ):
                 return '1.8k+'
             elif (count >= 2000) and (count < 3000):
@@ -27,6 +47,14 @@ def countHires():
                 return '8k+'
             elif (count >= 10000) and (count < 20000):
                 return '17k+'
+            elif count >=20000:
+                return '25k+'
+            elif count == 0:
+                return '0'
+            else:
+                return '40k+'
+    else:
+        return '0'
   
 
 
@@ -34,7 +62,7 @@ def getTrendingJobs(request):
     pass
 
 def createContext(request):
-    all_jobs = Job.objects.all().order_by('-is_featured', '-date_posted')
+    all_jobs = Job.objects.all().order_by('-is_featured', '-date_posted','-is_promoted')
     teachers_hired = countHires()
     trendingjobs = getTrendingJobs(request)
     context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trendingjobs}
@@ -124,26 +152,6 @@ def getAllJobsApplied(request):
     teacher = getTeacherProfile(request)
     return teacher.applied_jobs.all()
 
-def maincontext(request):
-    # import school helper functions here to avoid circular imports at module load
-    try:
-        from schools.views import createschoolsponsor, createschoolcategory
-        createschoolsponsor()
-        createschoolcategory()
-    except Exception:
-        # If import fails (for example during migrations or when models not ready), continue
-        pass
-
-    context = createContext(request)
-    context2 = {
-        "number_of_schools":countSchools(),
-        "active_jobs":countActiveJobs(),
-        "job_applications":getAllJobApplications(request),
-        "jobs_applied":getAllJobsApplied(request),
-        "jobs_saved":getTeacherSavedJobs(request),
-    }
-    context = context|context2
-    return context
 
 def getJobApplicationById(appid):
     return Application.objects.get(id = appid)
