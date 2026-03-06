@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
 
 
 # from teachers.models import Teacher
@@ -24,7 +25,6 @@ class Profile(models.Model):
         default='fallback.jpg'
     )
     joined = models.DateTimeField(auto_now_add=True)
-    skills = models.ManyToManyField(Skill,related_name='this_profile_skills')
     @property
     def age(self):
         today = date.today()
