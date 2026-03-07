@@ -58,14 +58,29 @@
 
   </nav>
 
-  <div class="app-container">
+  <div class="
+  
+  {% if user.is_authenticated %}  
+    app-container
+  {% else %}
+    app
+  {% endif %}
+  ">
     <!-- Left Sidebar -->
-    <aside class="sidebar-left scrollview">
-      {% include "components/navmenu.html" %}
-      {% block leftsideaddition %}
-      {% include "components/filters.html" %}
-      {% endblock leftsideaddition %}
-    </aside>
+    
+    {% if user.is_authenticated %}
+
+      <aside class="sidebar-left scrollview">
+              
+        {% include "components/navmenu.html" %}
+        {% block leftsideaddition %}
+        {% include "components/filters.html" %}
+        {% endblock leftsideaddition %}
+      </aside>
+    {% else %}
+      <div></div>
+    {% endif %}
+      
 
     <!-- Center Feed -->
     <main class="feed-container scrollview">
@@ -107,21 +122,27 @@
     </main>
     
     <!-- Right Sidebar -->
-    <aside class="sidebar-right scrollview">
-      {% block rightsidebar %}
-        {% include "components/editprofilereminder.html" %}
-        {% include "components/trending.html" %}
-      {% endblock rightsidebar %}
+    
+    {% if user.is_authenticated %}
+      <aside class="sidebar-right scrollview">
+        {% block rightsidebar %}
+          {% include "components/editprofilereminder.html" %}
+          {% include "components/trending.html" %}
+        {% endblock rightsidebar %}
 
+        
+        <div class="footer-links">
+          <a href="#">Privacy</a> •
+          <a href="#">Terms</a> •
+          <a href="#">Pricing</a> •
+          <a href="#">Contact</a>
+          <br>© 2024 Kenya Teaching Vacancies
+        </div>
+      </aside>
+    {% else %}
+      <div></div>
+    {% endif %}
       
-      <div class="footer-links">
-        <a href="#">Privacy</a> •
-        <a href="#">Terms</a> •
-        <a href="#">Pricing</a> •
-        <a href="#">Contact</a>
-        <br>© 2024 Kenya Teaching Vacancies
-      </div>
-    </aside>
   </div>
 
   <!-- Scripts -->

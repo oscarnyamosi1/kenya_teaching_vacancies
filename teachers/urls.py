@@ -9,7 +9,6 @@ urlpatterns = [
     path('profilesettings/',views.profilesettings,name='profilesettings'),
     path("notifications/", views.notifications, name="notifications"),
     path('settings/',views.settings,name='settings'),
-    path('messages/',views.teachermessages,name='messages'),
     path('editprofile/',views.editprofile,name='editprofile'),
     path('createteacherprofile/',views.editprofile,name='editprofile'),
     path('uploaddocuments/',views.uploaddocuments,name='uploaddocuments')

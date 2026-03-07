@@ -2,21 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 
-
-# from teachers.models import Teacher
-# from employers.models import Employer
-
-# Create your models here.
-class Message(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    content = models.TextField()
-    receiver = models.ForeignKey("teachers.Teacher",on_delete=models.CASCADE,related_name="received_messages",null=True)
-
-    def __str__(self):
-        return f"{self.content[0:10]}"
-
 class Profile(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.OneToOneField("teachers.Teacher",on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20)
     profile_pic_uploaded = models.BooleanField(default=False)
     birthday = models.DateField(blank=True,null=True)
@@ -38,12 +25,12 @@ class Profile(models.Model):
         return active_time
 
     def __str__(self):
-        return self.user.username + "'s Profile."
+        return self.user.user.username + "'s Profile."
     
     
 
 class Inbox(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.OneToOneField("teachers.Teacher",on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,blank=True,null=True)
 
     @property 
@@ -60,16 +47,16 @@ class Inbox(models.Model):
 
 
     def __str__(self):
-        return self.user.username +"'s inbox."
+        return self.user.user.username +"'s inbox."
     
 class Sentbox(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
+    user = models.OneToOneField("teachers.Teacher",on_delete=models.CASCADE,blank=True,null=True)
     inbox = models.ForeignKey(Inbox,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
-        return self.user.username +"'s sentbox."
+        return self.user.user.username +"'s sentbox."
 class Message(models.Model):
-    sender = models.ForeignKey(Teacher,on_delete=models.CASCADE,blank=True,null=True)
+    sender = models.ForeignKey("teachers.Teacher",on_delete=models.CASCADE,blank=True,null=True)
     inbox = models.ForeignKey(Inbox,on_delete=models.CASCADE,blank=True,null=True)
     sentbox = models.ForeignKey(Sentbox,on_delete=models.CASCADE,blank=True,null=True)
     

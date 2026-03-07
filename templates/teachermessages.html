@@ -147,10 +147,6 @@
         {% endif %}
       </div>
 
-    
-
- 
-
 {% endblock center_feed_content %}
 
 
@@ -193,18 +189,27 @@
         </div>
       </div>
 
-      <div class="conversation-item" data-media-type="kenya-teaching-vacancies-button">
-        <div class="conv-avatar-container">
-          <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F3" class="conv-avatar" alt="Maria Garcia" />
-        </div>
-        <div class="conv-content">
-          <div class="conv-top-row">
-            <span class="conv-name">Maria Garcia</span>
-            <span class="conv-time">Tue</span>
+      
+      {% for item in inboxitems  %}
+        
+        <a href='/messages/person1' >
+          <div class="conversation-item" data-media-type="kenya-teaching-vacancies-button">
+            <div class="conv-avatar-container">
+              <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F3" class="conv-avatar" alt="Maria Garcia" />
+            </div>
+            <div class="conv-content">
+              <div class="conv-top-row">
+                <span class="conv-name">Maria Garcia</span>
+                <span class="conv-time">Tue</span>
+              </div>
+              <div class="conv-snippet">Thanks for the interview opportunity!</div>
+            </div>
           </div>
-          <div class="conv-snippet">Thanks for the interview opportunity!</div>
-        </div>
-      </div>
+        </a>
+
+      {% endfor %}
+        
+
 
       <div class="conversation-item" data-media-type="kenya-teaching-vacancies-button">
         <div class="conv-avatar-container">
@@ -221,5 +226,85 @@
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const conversations = document.querySelectorAll('.conversation-item');
+  const chatUserName = document.querySelector('.chat-user-name');
+  const chatUserStatus = document.querySelector('.chat-user-status');
+  const messagesArea = document.querySelector('.messages-area');
+  const chatForm = document.querySelector('.chat-input-wrapper');
+  const chatTextarea = document.querySelector('.chat-textarea');
+
+  // Sample conversation data (for demo)
+  const chatData = {
+    "Principal Sarah": [
+      { type: 'received', content: 'Hello! Is this salary range okay?', time: '10:40 AM' },
+      { type: 'sent', content: 'Yes, that works.', time: '10:42 AM' },
+    ],
+    "Westside Academy": [
+      { type: 'received', content: "Let's schedule a call for next week.", time: 'Mon 09:00 AM' }
+    ]
+  };
+
+  // Helper: render messages
+  function renderMessages(name) {
+    messagesArea.innerHTML = '';
+    if (!chatData[name]) {
+      chatUserName.textContent = name;
+      chatUserStatus.textContent = 'No messages yet';
+      return;
+    }
+
+    chatUserName.textContent = name;
+    chatUserStatus.textContent = 'Online';
+
+    chatData[name].forEach(msg => {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('chat-message', msg.type);
+      msgDiv.innerHTML = `
+        <div class="message-content">${msg.content}</div>
+        <div class="message-time">${msg.time}</div>
+      `;
+      messagesArea.appendChild(msgDiv);
+    });
+
+    // Scroll to bottom
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+  }
+
+  // Conversation click
+  conversations.forEach(conv => {
+    conv.addEventListener('click', () => {
+      conversations.forEach(c => c.classList.remove('active'));
+      conv.classList.add('active');
+      const name = conv.querySelector('.conv-name').textContent;
+      renderMessages(name);
+    });
+  });
+
+  // Handle sending new message (frontend simulation)
+  chatForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const content = chatTextarea.value.trim();
+    if (!content) return;
+
+    const activeConv = document.querySelector('.conversation-item.active .conv-name').textContent;
+
+    // Add to chatData (simulated)
+    if (!chatData[activeConv]) chatData[activeConv] = [];
+    const now = new Date();
+    const hours = now.getHours() > 12 ? now.getHours() - 12 : now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+    const time = `${hours}:${minutes} ${ampm}`;
+
+    chatData[activeConv].push({ type: 'sent', content, time });
+    renderMessages(activeConv);
+    chatTextarea.value = '';
+  });
+});
+</script>
+
 {% endblock rightsidebar %}
 

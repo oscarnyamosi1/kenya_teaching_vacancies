@@ -27,5 +27,7 @@ urlpatterns = [
     path('payments/',include("payments.urls")),
     path('schools/',include("schools.urls")),
     path('teachers/',include("teachers.urls")),
-    path('su/',include("superuser.urls"))
+    path('su/',include("superuser.urls")),
+    path('messages/',include("messagesapp.urls")),
+
 ]

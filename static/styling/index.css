@@ -1,7 +1,9 @@
+/* index.css */
 @import url('themes/macglass.css');
 /* @import url('themes/glassmorphism.css'); */
 @import url('uploaddocuments.css');
 @import url('themes/jobfeed.css');
+@import url('communications.css');
 
 * {
     box-sizing: border-box;
@@ -709,6 +711,62 @@ a {
 body.dark-mode {
   background: #333;
   color: #eee;
+}
+
+/* footer css */
+
+/* Footer styling */
+.site-footer {
+  position: sticky; /* stays at bottom of viewport when scrolling */
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  backdrop-filter: blur(15px); /* glass effect */
+  border-radius: 20px 20px 0 0; /* rounded top corners */
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  color: white;
+  font-family: sans-serif;
+  font-size: 14px;
+  z-index: 100;
+}
+
+.site-footer a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: #1DA1F2; /* hover highlight */
+}
+
+.footer-left, .footer-right {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 20px;
+    border-radius: 20px;
+  }
+
+  .footer-right {
+    margin-top: 10px;
+  }
+
+  .footer-right a {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 @media only screen and (max-width: 767px) {

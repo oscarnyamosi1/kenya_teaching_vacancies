@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block center_feed_content %}
+<section class="glass-card">
+  <h1>Contact Us</h1>
+  <p>We value your questions, feedback, and support requests. Please reach out using any of the methods below:</p>
+
+  <ul>
+    <li><strong>Email:</strong> <a href="mailto:support@kenyateachingvacancies.com">support@kenyateachingvacancies.com</a> (coming soon) / <a href="mailto:kenyateachingvacancies@gmail.com">kenyateachingvacancies@gmail.com</a> (temporary)</li>
+    <li><strong>Phone:</strong> 0795404843 *(subject to change)*</li>
+    <li><strong>WhatsApp:</strong> 0795404843</li>
+    <li><strong>Contact Form:</strong> Use the form below to send a message</li>
+  </ul>
+
+  <form action="{% url 'contact_submit' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+{% endblock %}

@@ -13,8 +13,24 @@ def maincontext(request):
         createschoolsponsor()
         createschoolcategory()
     except Exception:
-        # If import fails (for example during migrations or when models not ready), continue
+        print(f"""
+        
+        Didn't do this (
+                            from schools.views import createschoolsponsor, createschoolcategory
+                            createschoolsponsor()
+                            createschoolcategory()
+              )
+        
+""")
         pass
+
+    try:
+        from main.models import createCountynConstituencies
+        createCountynConstituencies()
+    except:
+        print(f"""
+              Din't create counties !
+              """)
 
     context = createContext(request)
     context2 = {

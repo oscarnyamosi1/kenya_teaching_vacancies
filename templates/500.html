@@ -1,6 +1,11 @@
 {% extends "index.html" %}
 
-{% block centerfeedcontent %}
+
+<div class="sidebar-left">
+    left
+</div>
+    
+{% block center_feed_content %}
 
 <style>
 
@@ -138,7 +143,7 @@
 
 <div class="error-wrapper">
 
-```
+
 <div class="error-card">
 
     <div class="error-code">
@@ -181,14 +186,14 @@
 
 
     <div class="error-links">
-        <a href="/">Feed</a>
+        <a href="/jobs/jobfeed/">Feed</a>
         <a href="/explore">Explore</a>
         <a href="/profile">Profile</a>
         <a href="/help">Help</a>
     </div>
 
 </div>
-```
+
 
 </div>
 
@@ -208,4 +213,4 @@ document.addEventListener("keydown",function(e){
 
 </script>
 
-{% endblock %}
+{% endblock center_feed_content %}

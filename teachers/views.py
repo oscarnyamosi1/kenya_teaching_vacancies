@@ -23,10 +23,6 @@ def profilesettings(request):
     return render(request,'profilesettings.html')
 
 @login_required(login_url='login')
-def teachermessages(request):
-    return render(request,'teachermessages.html')
-
-@login_required(login_url='login')
 def notifications(request):
     return render(request,'notifications.html')
 

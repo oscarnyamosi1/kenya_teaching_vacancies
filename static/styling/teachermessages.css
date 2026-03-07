@@ -1,4 +1,4 @@
-/* layout-styles */
+/* teachermessages.css*/
 
 
 .messaging-container {
@@ -412,4 +412,45 @@
     margin-bottom: 8px;
     font-size: 13px;
     font-weight: 500;
+}
+
+
+/* ################################################################################ */
+.messages-area {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: calc(100% - 100px);
+}
+
+.chat-message {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  display: inline-block;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.chat-message.sent {
+  align-self: flex-end;
+  background: rgba(0, 132, 255, 0.15);
+  color: #000;
+  border-top-right-radius: 0;
+}
+
+.chat-message.received {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.15);
+  color: #000;
+  border-top-left-radius: 0;
+}
+
+.message-time {
+  font-size: 10px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+  text-align: right;
 }

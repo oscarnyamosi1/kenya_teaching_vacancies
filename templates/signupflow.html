@@ -118,7 +118,7 @@
             </div>
             <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
               <div class="pill-input-row">
-                <div class="pill-chip pill-glass pill-chip--active" data-media-type="kenya-teaching-vacancies-button">
+                <div class="pill-chip pill-glass" data-media-type="kenya-teaching-vacancies-button">
                   Primary
                 </div>
                 <div class="pill-chip pill-glass" data-media-type="kenya-teaching-vacancies-button">
@@ -164,11 +164,13 @@
         </div>
 
         <div class="button-row">
-          <div class="btn btn-primary" data-media-type="kenya-teaching-vacancies-button">
-            <span>Continue to documents</span>
-            <iconify-icon icon="lucide:arrow-right" style="font-size: 18px;"></iconify-icon>
+          <div class="btn btn-primary profilecontinue" data-media-type="kenya-teaching-vacancies-button">
+            <!-- <a href='/signup?q=1'> -->
+              <span>Continue to documents</span>
+              <iconify-icon icon="lucide:arrow-right" style="font-size: 18px;"></iconify-icon>
+            <!-- </a> -->
           </div>
-          <div class="btn btn-ghost" data-media-type="kenya-teaching-vacancies-button">
+          <div class="btn btn-ghost profilecontinue" data-media-type="kenya-teaching-vacancies-button">
             <iconify-icon icon="lucide:play" style="font-size: 16px;"></iconify-icon>
             <span>Preview profile</span>
           </div>
@@ -248,5 +250,22 @@
   </main>
 
 </body>
+<script>
+  let specializationButtons = document.querySelectorAll('.pill-chip')
 
+  let profilecontinuebtns = document.querySelectorAll('.profilecontinue')
+
+  specializationButtons.forEach((specializationButton)=>{
+    specializationButton.addEventListener('click',()=>{
+      specializationButton.classList.toggle('pill-chip--active')
+    })
+  })
+
+  profilecontinuebtns.forEach((profilecontinuebtn)=>{
+    profilecontinuebtn.addEventListener('click',()=>{
+      profilecontinuebtn.classList.contains('btn-primary')?profilecontinuebtn.classList.remove('btn-primary') :profilecontinuebtn.classList.add('btn-ghost')
+      profilecontinuebtn.classList.contains('btn-ghost')?profilecontinuebtn.classList.remove('btn-ghost'):profilecontinuebtn.classList.add('btn-primary')
+    })
+  })
+</script>
 </html>

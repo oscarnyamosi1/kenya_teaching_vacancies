@@ -6,6 +6,7 @@ from myutils import *
 from django.db.models import Q
 # Create your views here.
 
+@login_required(login_url='login')
 def schoolsfeed(request):
     schools = School.objects.all()
     schools_page = paginateList(request,list=schools,units_per_page= 20)
@@ -14,6 +15,7 @@ def schoolsfeed(request):
     context = context |{'schools_page':schools_page,'followed_schools':followed_schools}
     return render(request,'schoolsfeed.html',context)
 
+@login_required(login_url='login')
 def blog(request):
     context = createContext(request)
     posts = getAllSchools(request)
