@@ -319,3 +319,9 @@ def createCountynConstituencies():
 
 
     # create constituencies
+
+class Theme(models.Model):
+    title = models.CharField(max_length=20,blank=True,null=True)
+
+    def __str__(self):
+        return f'{self.title.capitalize()}  theme.'

@@ -1,9 +1,14 @@
 /* index.css */
-@import url('themes/macglass.css');
+
 /* @import url('themes/glassmorphism.css'); */
 @import url('uploaddocuments.css');
 @import url('themes/jobfeed.css');
 @import url('communications.css');
+
+/* smooth transition like macos */
+* {
+    transition: background 0.3s, color 0.3s;
+}
 
 * {
     box-sizing: border-box;
@@ -26,7 +31,7 @@ a {
 /* Layout Grid */
 .app-container {
     display: grid;
-    grid-template-columns: minMax(200px,1fr) minMax(300px,2fr) minMax(200px,1fr);
+    grid-template-columns: minMax(150px,1fr) minMax(300px,3fr) minMax(150px,1fr);
     gap: 24px;
     /* max-width: 1280px; */
     margin: 0 auto;
@@ -39,9 +44,10 @@ a {
     position: sticky;
     top: 0;
     z-index: 50;
+    width:100%;
     background: var(--card);
     border-bottom: 1px solid var(--border);
-    padding: 0 32px;
+    padding: 0 20px 0px 20px;
     height: 64px;
     display: flex;
     align-items: center;
@@ -81,8 +87,12 @@ a {
 
 .nav-links {
     display: flex;
-    gap: 24px;
+    /* gap: 24px; */
     align-items:center;
+    justify-content:space-evenly;
+    align-content:space-evenly;
+    min-width:80%;
+    font-size:small;
 }
 
 .nav-item {
@@ -132,6 +142,7 @@ a {
     gap: 8px;
     border: none;
     transition: opacity 0.2s;
+    margin-top:10px;
 }
 
 .btn-primary {
@@ -154,9 +165,11 @@ a {
 
 
 .menu-card {
+    margin-top:10px;
     background: var(--card);
     border-radius: var(--radius-lg);
     padding: 16px;
+    max-width:35vw;
     border: 1px solid var(--border);
     margin-bottom: 24px;
 }
@@ -370,6 +383,7 @@ a {
 /* Sidebar Right */
 .sidebar-right {
     /* width: 260px; */
+    /* margin-top:5vh; */
     position:relative;
     display: flex;
     flex-direction: column;
@@ -383,11 +397,13 @@ a {
     margin-right:10px;
 }
 .promo-card {
+    margin-top:10px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 20px;
     text-align: center;
+    z-index: 9;
 }
 
 .promo-title {
@@ -483,6 +499,10 @@ a {
     font-size: 13px;
 }
 
+.hidden{
+    display:none;
+}
+
 .text-muted {
     color: var(--muted-foreground);
 }
@@ -507,9 +527,14 @@ a {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    /* background:transparent;
+    background:var(--background); */
+    border-radius:var(--radius-lg);
     align-items: center;
 }
-
+.menu-item div {
+    color:var(--background);
+}
 .promo-belt {
     display: grid;
     position: absolute;
@@ -621,10 +646,20 @@ a {
     box-shadow: 0 12px 40px rgba(2, 6, 23, 0.28);
     transition: transform 0.18s ease, box-shadow 0.18s ease;
     border-radius: 12px;
+    padding:8px;
 }
-
+.menu-card{
+    background-color: var(--glass-bg);
+}
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    border: 1px solid;
+    border-radius: var(--radius-lg);
+}
 .glass-card:hover,
 .school-card:hover {
+    border-radius: var(--radius-lg);
     transform: translateY(-6px);
     box-shadow: 0 20px 60px rgba(2, 6, 23, 0.38);
 }
@@ -640,7 +675,7 @@ a {
     cursor:pointer;
 }
 
-/* ai content for mobile compatiability */
+/* content for mobile compatiability */
 /* Hide navigation by default on small screens */
 .top-nav {
   /* display: none; */
@@ -659,19 +694,38 @@ a {
   /* left: 0; */
 }
 
+
 /* Hamburger icon for small screens */
 .menu-toggle {
   display: none; /* Hide by default on large screens */
 }
-
+.mobilethemer {
+    display:none;
+}
+.logo-text{
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size:80%;
+}
 @media (max-width: 768px) { /* Adjust breakpoint as needed */
   .top-nav {
     /* Styles for mobile navigation when hidden */
   }
-
+  .menu-card{
+      backdrop-filter:blur(400px) saturate(200%);
+  }
   .menu-toggle {
     display: block; /* Show hamburger on small screens */
+      /* margin-left:-10px; */
   }
+  .themer{
+      display:none;
+  }
+    .mobilethemer{
+        display:inline-block;
+    }
+
+    
 }
 #aside-panel {
   position: fixed;
@@ -695,16 +749,22 @@ a {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.5);
   visibility: hidden;
   opacity: 0;
+  background: var(--overlay);
+  backdrop-filter: blur(14px) saturate(100%);
+  border-radius:8px;
+
   transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
   z-index: 999;
 }
 
 #overlay.active {
+  top:0px;
+  bottom:10px;
   visibility: visible;
   opacity: 1;
+  align-content:center;
 }
 
 /* Dark mode styles */
@@ -746,6 +806,11 @@ body.dark-mode {
   color: #1DA1F2; /* hover highlight */
 }
 
+.settings-item:hover {
+    background-color:#584d4dc9 ;
+    border-radius:8px;
+}
+
 .footer-left, .footer-right {
   display: flex;
   align-items: center;
@@ -775,21 +840,31 @@ body.dark-mode {
         font-size:8px;
     }
     .app-container {
-        display: grid;
-        grid-template-columns: minMax(20%,1fr) minMax(300px,2fr);
-        gap: 10px;
+        /* display: grid; */
+        /* grid-template-columns: minMax(20%,1fr) minMax(300px,2fr);
+        gap: 10px; */
         /* max-width: 1280px; */
+        display:block;
+        width:100%;
+        
         margin: 0 auto;
         padding-top: 24px;
-        align-items: start;
+        align-items: center;
+        justify-content:center;
+        align-content:center;
+        
     }
     .sidebar-left{
-        width:100%;
+        display:none;
+        /* width:100%;
         padding-right:0px;
-        padding-left:0px;
+        padding-left:0px; */
     }
     .main-area{
         padding-left:0px;
+    }
+    .menu-card{
+        background:var(--glass-bg);
     }
     .menu-item {
         display: flex;
@@ -803,9 +878,17 @@ body.dark-mode {
         font-weight: 600;
         font-size: 15px;
     }
+    .logo-text{
+        font-size:10px;
+    }
+    .nav-links{
+        font-size:10px;
+        margin-left:-10px;
+    }
     .themer {
         padding-left:20px;
         padding-right:20px;
+        
     }
     .auth-buttons{
         font-size:8px;
@@ -814,7 +897,6 @@ body.dark-mode {
         max-height:500px;
     }
     .sidebar-right {
-        position:absolute;
         top:0px;
         display:block;
         flex-direction: column;
@@ -825,5 +907,7 @@ body.dark-mode {
         padding:10px;
         background:#1a2ba552;
         z-index:10;
+        display:none;
+
     }
 }

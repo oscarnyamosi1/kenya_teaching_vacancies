@@ -4,6 +4,7 @@ from schools.models import School,SchoolBlog
 from django.contrib.auth.decorators import login_required
 from applications.models import Application
 from jobs.models import Job
+from main.models import Theme
 
 
 def maincontext(request):
@@ -81,7 +82,17 @@ def createContext(request):
     all_jobs = Job.objects.all().order_by('-is_featured', '-date_posted','-is_promoted')
     teachers_hired = countHires()
     trendingjobs = getTrendingJobs(request)
-    context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trendingjobs}
+
+    # theme = Theme.objects.filter(title='macglass').exists()
+    theme = getTeacherProfile(request).theme
+    if theme:
+        theme = getTeacherProfile(request).theme.title
+        string = f"styling/themes/{theme}.css"
+        theme=string
+    else:
+        theme = "styling/themes/macglass.css"
+
+    context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trendingjobs,'theme':theme}
     return context
 
 

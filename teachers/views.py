@@ -20,20 +20,24 @@ def teacherprofile(request):
 
 @login_required(login_url='login')
 def profilesettings(request):
-    return render(request,'profilesettings.html')
+    context = createContext(request)
+    return render(request,'profilesettings.html',context)
 
 @login_required(login_url='login')
 def notifications(request):
-    return render(request,'notifications.html')
+    context = createContext(request)
+    return render(request,'notifications.html',context)
 
 
 @login_required(login_url='login')
 def settings(request):
-    return render(request,"settings.html")
+    context = createContext(request)
+    return render(request,"settings.html",context)
 
 @login_required(login_url='login')
 def editprofile(request):
-    return render(request,'editprofile.html')
+    context = createContext(request)
+    return render(request,'editprofile.html',context)
 
 @login_required(login_url='login')
 def uploaddocuments(request):
@@ -135,7 +139,7 @@ def uploaddocuments(request):
             messages.info(request,'Please upload TSC certificate.')
 
 
-    return render(request,'uploaddocuments.html',context)
+    return render(request,'settings/uploaddocuments.html',context)
 
 @login_required(login_url='login')
 def createteacherprofile(request):
@@ -146,3 +150,58 @@ def teacherfeed(request):
     context = {'teachers':teachers}
     return render(request,'teacherfeed.html',context)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@login_required
+def account_settings(request):
+    context = createContext(request)
+    return render(request,"settings/account.html",context)
+
+
+@login_required
+def privacy_settings(request):
+    context = createContext(request)
+    return render(request,"settings/privacy.html",context)
+
+
+@login_required
+def documents_settings(request):
+    context = createContext(request)
+    return render(request,"settings/documents.html",context)
+
+
+@login_required
+def notifications_settings(request):
+    context = createContext(request)
+    return render(request,"settings/notifications.html",context)
+
+
+@login_required
+def appearance_settings(request):
+    context = createContext(request)
+    return render(request,"settings/appearance.html",context)
+
+
+@login_required
+def language_settings(request):
+    context = createContext(request)
+    return render(request,"settings/language.html",context)
+
+
+@login_required
+def help_settings(request):
+    context = createContext(request)
+    return render(request,"settings/help.html",context)

@@ -1,0 +1,19 @@
+
+.colorize {
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background: linear-gradient(45deg, var(--background) 0%, #045c4dad 30%,#020144b9 100%);
+}
+.colorize2 {
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background: linear-gradient(45deg, var(--background) 0%, #e2090991 30%,#6deb06b9 60%,rgba(50, 3, 218, 0.651) 100%); 
+}
+.colorize3 {
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background: linear-gradient(45deg, var(--background) 0%, #2fbda5ad 30%,#300a5cb9 100%);   
+}

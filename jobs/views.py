@@ -35,11 +35,13 @@ def jobfeed(request):
 
 @login_required(login_url='login')
 def postjob(request):
-    return render(request,'postteachingjob.html')
+    context = createContext(request)
+    return render(request,'postteachingjob.html',context)
 
 @login_required(login_url='login')
 def premiumurgent(request):
-    return render(request,"premiumpricing.html")
+    context = createContext(request)
+    return render(request,"premiumpricing.html",context)
 
 @login_required(login_url='login')
 def savejob(request,jobid):

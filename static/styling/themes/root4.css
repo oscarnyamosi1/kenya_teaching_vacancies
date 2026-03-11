@@ -1,12 +1,16 @@
 /* pink premium */
 :root {
-    --background: #ffffff;
-    --foreground: #000000;
+    --background: #130610e6;
+    --glass-bg:rgba(134, 153, 190, 0.623);
+
+    --glass-sidebar:rgba(255, 255, 255, 0.06);
+
+    --overlay:#d3dae373;
     --border: #e8e8e8;
     --input: #f8f8f7;
     --primary: #ff272a;
     --primary-foreground: #ffffff;
-    --secondary: #ffd4d4;
+    --secondary: #000000;
     --secondary-foreground: #ff272a;
     --muted: #e8e8e8;
     --muted-foreground: #949494;
@@ -18,7 +22,8 @@
     --destructive-foreground: #ffffff;
     --warning: #ff7308;
     --warning-foreground: #ffffff;
-    --card: #fbfaf9;
+    /* --card: #fbfaf9; */
+    --card:transform;
     --card-foreground: #000000;
     --sidebar: #ffffff;
     --sidebar-foreground: #4a4a4a;
@@ -29,4 +34,125 @@
     --radius-lg: 12px;
     --radius-xl: 24px;
     --font-family-body: Inter,Arial;
+
+    body {
+        background:var(--background);
+        color:var(--primary-foreground);
+    }
+}
+
+
+.lightmode{
+    --background: #f15c9f80;
+    
+    --glass-bg:rgba(74, 85, 107, 0.623);
+    --glass-bg:rgba(139, 142, 235, 0.623);
+    --glass-bg:rgb(194 211 213 / 14%);
+
+
+    --foreground: #000000;
+    --border: #678abb;
+    --input: #020617;
+    --primary: #04b1fe;
+    --primary-foreground: #020617;
+    --secondary: #0d182f9e;
+    --secondary-foreground: #4f5665;
+    --muted: #44485f;
+    --muted-foreground: #332f5bdb;
+
+    --success: #22c55e;
+    --success-foreground: #0de667;
+
+    --success: #0b8a3a;
+    --success-foreground: #01ad40;
+
+    --accent: #38bdf8;
+    --accent-foreground: #020617;
+    --destructive: #ec0505;
+    --destructive-foreground: #fef2f2;
+    --warning: #f59e0b;
+    --warning-foreground: #0c49cc;
+    --card:transparent;
+    --card-foreground: #f9fafb;
+    --sidebar: #3a5ae9;
+    --sidebar-foreground: #e5e7eb;
+    --sidebar-primary: #111827;
+    --sidebar-primary-foreground: #e5e7eb;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-family-body: Inter,Arial;
+    --tag-background:rgb(9 31 96 / 22%); 
+    --text-black:black;
+    color:var(--foreground);
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color:var(--foreground);
+    }
+    .job-card.sponsored {
+        color:white;
+        .btn,
+        .btn-outline,
+         p,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color:white;
+        }
+    }
+    .logo-area{
+        color: var(--foreground);
+    }
+    .pagination a{
+        background:var(--accent-foreground);
+    }
+    .btn-secondary{
+        color:var(--foreground);
+    }
+    .badge{
+        background:var(--accent-foreground);
+        color: var(--success);
+    }
+    .btn{
+        color:var(--accent-foreground);
+    }
+    .profile-container {
+        a,
+        div,
+        span,
+        button,
+        p{
+         color:var(--destructive-foreground);
+        }
+        
+    }
+    .btn-secondary {
+        color:white;
+    }
+    .date-divider {
+        backdrop-filter:15px;
+        background-color:transparent;
+    }
+    .search-bar {
+        background-color:var(--muted-foreground);
+        color:white;
+    }
+    .conv-search{
+        color:white;
+    }
+    .glass-card{
+        background-color: var(--glass-bg);
+        backdrop-filter:blur(13px);
+        
+    }
+    .settings-item:hover {
+        background-color:#a39d9d11 ;
+    }
 }

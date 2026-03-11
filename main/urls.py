@@ -11,7 +11,7 @@ urlpatterns = [
     path('blog/',views.blog,name='blog'),
     path('errorr/',views.errorr,name='errorr'),
 
-    
+    path('changetheme/',views.changeTheme,name='changetheme'),
     path('privacy/', views.privacy, name='privacy'),
     path('terms/', views.terms, name='terms'),
     path('pricing/', views.pricing, name='pricing'),

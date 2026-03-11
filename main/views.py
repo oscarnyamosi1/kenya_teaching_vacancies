@@ -33,6 +33,7 @@ def home(request):
         pass
 
     # createCountynConstituencies()
+
     all_jobs = context.get('all_jobs', [])
     promoted_jobs=Job.objects.filter(is_promoted=True)
     jobs_page = paginateList(request,list=all_jobs,units_per_page=20)
@@ -100,7 +101,7 @@ def searchSite(request):
     return render(request,'jobfeed.html',context)
 
 
-# communications pages
+# communications 
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -128,3 +129,16 @@ def contact_submit(request):
         # TODO: process message (save to DB or send email)
         return HttpResponseRedirect(reverse('contact'))
     return HttpResponseRedirect(reverse('contact'))
+@login_required(login_url='login')
+def changeTheme(request):
+    teacher = getTeacherProfile(request)
+    requestedtheme = request.GET.get('q')
+ 
+    newtheme_exists = Theme.objects.filter(title=requestedtheme).exists()
+    if newtheme_exists:
+        newtheme = Theme.objects.get(title=requestedtheme)
+    else:
+        newtheme = Theme.objects.get(title='macglass')
+    teacher.theme = newtheme
+    teacher.save()
+    return returnToPrevPage(request)

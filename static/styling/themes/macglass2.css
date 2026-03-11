@@ -1,6 +1,46 @@
-
+@import url('glassmorphism.css');
+@import url('colorize.css');
 /* Dark Theme Base */
 :root {
+    --background: #0b1220;
+    --glass-bg:rgba(134, 153, 190, 0.623);
+
+    --glass-sidebar:rgba(255, 255, 255, 0.06);
+
+    --foreground: #f9fafb;
+    --border: #1f2937;
+    --input: #020617;
+    --primary: #38bdf8;
+    --primary-foreground: #020617;
+    --secondary: #111827;
+    --secondary-foreground: #e5e7eb;
+    --muted: #020617;
+    --muted-foreground: #7d818b;
+    
+    --success: #22c55e;
+    --success-foreground: #0de667;
+
+    --overlay:#d3dae373;
+
+    --accent: #38bdf8;
+    --accent-foreground: #020617;
+    --destructive: #ef4444;
+    --destructive-foreground: #fef2f2;
+    --warning: #f59e0b;
+    --warning-foreground: #0c49cc;
+
+    --card:transparent;
+    --card-foreground: #f9fafb;
+    --sidebar: #020617;
+    --sidebar-foreground: #e5e7eb;
+    --sidebar-primary: #111827;
+    --sidebar-primary-foreground: #e5e7eb;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-family-body: Inter,Arial;
+    --tag-background:rgba(255, 255, 255, 0.1);
     --background: #111111;
     --card-bg: rgba(9, 17, 26, 0.75);
     --glass-bg: rgba(25, 25, 25, 0.6);
@@ -14,11 +54,142 @@
     --font-family-body: 'Inter', 'DM Sans', sans-serif;
     --radius-md: 8px;
     --shadow-md: rgba(0, 0, 0, 0.5) 0px 4px 16px;
+
+    body {
+        background:var(--background);
+        color:var(--primary-foreground);
+    }
 }
+
+.lightmode{
+    --background: #5c91f180;
+    --background: #e8eaef80;
+
+    
+    --glass-bg:rgba(74, 85, 107, 0.623);
+    --glass-bg:rgba(139, 142, 235, 0.623);
+    --glass-bg:rgb(194 211 213 / 14%);
+
+
+    --foreground: #000000;
+    --border: #678abb;
+    --input: #020617;
+    --primary: #04b1fe;
+    --primary-foreground: #020617;
+    --secondary: #0d182f9e;
+    --secondary-foreground: #4f5665;
+    --muted: #44485f;
+    --muted-foreground: #332f5bdb;
+
+    --success: #22c55e;
+    --success-foreground: #0de667;
+
+    --success: #0b8a3a;
+    --success-foreground: #01ad40;
+
+    --accent: #38bdf8;
+    --accent-foreground: #020617;
+    --destructive: #ec0505;
+    --destructive-foreground: #fef2f2;
+    --warning: #f59e0b;
+    --warning-foreground: #0c49cc;
+    --card:transparent;
+    --card-foreground: #f9fafb;
+    --sidebar: #3a5ae9;
+    --sidebar-foreground: #e5e7eb;
+    --sidebar-primary: #111827;
+    --sidebar-primary-foreground: #e5e7eb;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-family-body: Inter,Arial;
+    --tag-background:rgb(9 31 96 / 22%); 
+    --text-black:black;
+    color:var(--foreground);
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color:var(--foreground);
+    }
+    .job-card.sponsored {
+        color:white;
+        .btn,
+        .btn-outline,
+         p,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color:white;
+        }
+    }
+    .logo-area{
+        color: var(--foreground);
+    }
+    .pagination a{
+        background:var(--accent-foreground);
+    }
+
+    .btn-secondary{
+
+        color:var(--foreground);
+    }
+    .badge{
+        background:var(--accent-foreground);
+        color: var(--success);
+    }
+    .btn{
+        color:var(--accent-foreground);
+    }
+    .profile-container {
+        a,
+        div,
+        span,
+        button,
+        p{
+         color:var(--destructive-foreground);
+        }
+        
+    }
+    .btn-secondary {
+        color:white;
+    }
+    .date-divider {
+        backdrop-filter:15px;
+        background-color:transparent;
+    }
+    .search-bar {
+        background-color:var(--muted-foreground);
+        color:white;
+    }
+    .conv-search{
+        color:white;
+    }
+    .glass-card{
+        background-color: var(--glass-bg);
+        backdrop-filter:blur(13px);
+        
+    }
+    .settings-item:hover {
+        background-color:#a39d9d11 ;
+    }
+    .content-container{
+        color:var(--foreground);
+        .div{
+            color:var(--foreground);
+        }
+    }
+}
+
 
 body {
     background-color: var(--background);
-    color: #fff;
+
     font-family: var(--font-family-body);
     margin: 0;
 }
@@ -50,7 +221,7 @@ body {
 .top-nav .nav-links a {
     margin: 0 12px;
     text-decoration: none;
-    color: #fff;
+    /* color: #fff; */
     font-weight: 500;
     transition: 0.2s;
 }

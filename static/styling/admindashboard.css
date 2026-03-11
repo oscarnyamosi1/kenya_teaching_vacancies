@@ -20,14 +20,17 @@
 }
 
 .content-container {
+    background:var(--glass-bg);
+    border-radius:var(--radius-lg);
     width: 100%;
     max-width: 1200px;
-    padding: 32px;
+    padding: 22px;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 12px;
     margin: 0 auto;
 }
+
 
 /* nav-styles */
 .nav-logo {

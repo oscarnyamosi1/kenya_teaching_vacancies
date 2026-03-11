@@ -1,0 +1,70 @@
+{% extends "../settings.html" %}
+{% load static %}
+
+
+
+{% block center_feed_content %}
+<div class="content-container">
+    <h2 class="page-title">Appearance</h2>
+
+    <div class="settings-group glass-card">
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=green' class="item-content">
+                <div class="themebtntext">Green Theme</div>
+            </a>
+        </button>
+
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=root' class="item-content">
+                <div class="themebtntext">Root</div>
+            </a>
+        </button>
+
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=root2' class="item-content">
+                <div class="themebtntext">Root 2</div>
+            </a>
+        </button>
+
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=root3' class="item-content">
+                <div class="themebtntext">Root3</div>
+            </a>
+        </button>
+
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=root4' class="item-content">
+                <div class="themebtntext">Root4</div>
+            </a>
+        </button>
+
+        <button class="btn btn-primary" data-theme="macglass">
+            <a href='/changetheme?q=macglass' class="item-content">
+                <div class="themebtntext">Mac Glass Theme</div>
+            </a>
+        </button>
+
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=macglass2' class="item-content">
+                <div class="themebtntext">Mac Glass 2 charcoal</div>
+            </a>
+        </button>
+        
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=macglasshybrid' class="item-content">
+                <div class="themebtntext">Mac Glass Hybrid</div>
+            </a>
+        </button>
+
+        <button id='greenTheme' class="btn btn-primary" data-theme="root">
+            <a href='/changetheme?q=glassmorphism' class="item-content">
+                <div class="themebtntext">Glassmorphism</div>
+            </a>
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/theme.js' %}"></script>
+{% endblock %}

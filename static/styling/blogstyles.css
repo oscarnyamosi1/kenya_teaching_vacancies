@@ -11,12 +11,6 @@ body {
     color: var(--foreground);
 }
 
-.glass {
-    background: var(--glass);
-    backdrop-filter: blur(18px);
-    border: 1px solid var(--border);
-}
-
 .navbar {
     position: sticky;
     top: 0;

@@ -1,6 +1,6 @@
 
 :root {
-    --background: #0b1220;
+    --background: #0b2010;
     --glass-bg:rgba(134, 153, 190, 0.623);
 
     --glass-sidebar:rgba(255, 255, 255, 0.06);
@@ -45,7 +45,7 @@
 }
 
 .lightmode{
-    --background: #5c91f180;
+    --background: #41a20a80;
 
     --glass-bg:rgba(74, 85, 107, 0.623);
     --glass-bg:rgba(139, 142, 235, 0.623);

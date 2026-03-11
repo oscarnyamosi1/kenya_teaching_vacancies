@@ -79,6 +79,7 @@ class Teacher(models.Model):
     teachers_followed = models.ManyToManyField('teachers.Teacher',blank=True)
 
     is_teacher = models.BooleanField(default=True)
+    theme = models.OneToOneField('main.Theme',on_delete=models.CASCADE,related_name='teacher_theme',null=True,blank=True)
     @property
     def teachersubjects(self):
         teachersubjectslist = self.teacher_subjects.all()

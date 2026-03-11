@@ -1,26 +1,30 @@
 let navbuttons = document.querySelectorAll('.menu-item')
 const themer = document.querySelector('.themer')
+const mobileThemer = document.querySelector('.mobilethemer')
+const themerIcon = document.querySelector('.themericon')
 const body = document.getElementById('body')
 let pageName = document.querySelector('.pagename').value.trim()
 let is_dark_mode = JSON.parse(localStorage.getItem("is_dark_mode")) || false
 
 
 
+
 function handleThemes(){
     if (is_dark_mode == true){  
-        themer.innerHTML = "<i class='fa fa-sun-o'></i>"
         body.classList.remove('lightmode')
+
+        themerIcon.classList.add('fa-sun-o')
+        themerIcon.classList.remove('fa-moon-o')
     } else {
-        themer.innerHTML = "<i class='fa fa-moon-o'></i>"
         body.classList.add('lightmode')
+
+        themerIcon.classList.add('fa-moon-o')
+        themerIcon.classList.remove('fa-sun-o')
     }    
-    
     themer.addEventListener('click',()=>{
         body.classList.toggle('lightmode')
         body.classList.contains('lightmode')?(localStorage.setItem('is_dark_mode',JSON.stringify(false))):(localStorage.setItem('is_dark_mode',JSON.stringify(true)))
-        
     })    
-
 }    
 
 function highlightNav(){
@@ -32,9 +36,24 @@ function highlightNav(){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
-
-    handleThemes()
     highlightNav()
+    handleThemes()
+    
+    themerIcon.addEventListener('click',function(){
+        if (is_dark_mode == true){  
+            themerIcon.classList.add('fa-sun-o')
+            themerIcon.classList.remove('fa-moon-o')
+        } else {
+            themerIcon.classList.add('fa-moon-o')
+            themerIcon.classList.remove('fa-sun-o')
+        }    
+    })
+
+    mobileThemer.addEventListener('click',()=>{
+        alert('mobile themer clicked')
+        handleThemes()
+        document.location.href=`${document.location}`        
+    })
 
 
     // view job details

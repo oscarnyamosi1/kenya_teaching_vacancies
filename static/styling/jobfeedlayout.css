@@ -104,8 +104,9 @@ border-radius: 999px;
 font-size: 12px;
 font-weight: 500;
 background-color: var(--secondary-foreground);
-color: var(--text);
+color: var(--text-light);
 }
+
 
 .verified-badge {
 color: var(--primary);
