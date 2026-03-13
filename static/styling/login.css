@@ -1,5 +1,6 @@
 /* login.css */
-@import url('root.css');
+@import url('themes/macglass.css');
+
 :root {
     --gap: 24px;
 }
@@ -10,10 +11,6 @@
     color: var(--foreground);
     height: 100vh;
     overflow: hidden;
-
-/* 
-    width: 1240px;
-    min-height: 612px; */
     position: relative;
     font-family: var(--font-family-body);
     background-color: var(--background);
@@ -68,8 +65,10 @@
     align-items: center;
     justify-content: center;
     padding: 40px;
+    padding-top:80px;
     background: var(--background);
-    overflow-y: auto;
+    color:black;
+    overflow-y: scroll;
 }
 .form-container {
     width: 100%;

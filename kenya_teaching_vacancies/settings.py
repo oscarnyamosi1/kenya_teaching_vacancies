@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-    'main',
+    'main.apps.MainConfig',
     'jobs',
     'teachers',
     'api',

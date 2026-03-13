@@ -4,7 +4,6 @@ from schools.models import School,SchoolBlog
 from django.contrib.auth.decorators import login_required
 from applications.models import Application
 from jobs.models import Job
-from main.models import Theme
 
 
 def maincontext(request):
@@ -83,14 +82,13 @@ def createContext(request):
     teachers_hired = countHires()
     trendingjobs = getTrendingJobs(request)
 
-    # theme = Theme.objects.filter(title='macglass').exists()
-    theme = getTeacherProfile(request).theme
-    if theme:
-        theme = getTeacherProfile(request).theme.title
-        string = f"styling/themes/{theme}.css"
-        theme=string
+    if request.user.is_authenticated:
+        teacher = getTeacherProfile(request)
+        theme = teacher.theme.title if teacher.theme else "macglass"
     else:
-        theme = "styling/themes/macglass.css"
+        theme = "macglass"
+
+    theme = f"styling/themes/{theme}.css"
 
     context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trendingjobs,'theme':theme}
     return context
@@ -213,3 +211,10 @@ def getTeacherFollowedSchools(request):
     teacher = getTeacherProfile(request)
     teacher_followed_schools = teacher.saved_jobs.all()
     return teacher_followed_schools
+
+# myutils.py
+
+def createThemes(themes_list):
+    from main.models import Theme  
+    for item in themes_list:
+        Theme.objects.get_or_create(title=str(item))

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded',()=>{
-
     const sidebarRight = document.querySelector('.sidebar-right')
     const sidebarLeft = document.querySelector('.sidebar-left')
     const appcontainer = document.querySelector('.app-container')
@@ -27,4 +26,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     }else{
         hambuger.style.display = 'none'
     }
+
+    mobileThemer.addEventListener('click',()=>{
+        alert('themed')
+    })
 })

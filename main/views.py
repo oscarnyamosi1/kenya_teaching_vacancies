@@ -11,7 +11,6 @@ from django.db.models import Q
 from django.db import IntegrityError
 from messagesapp.models import Profile,Inbox,Sentbox
 
-
 @login_required(login_url='login')
 def home(request):
     context = maincontext(request)
@@ -73,16 +72,80 @@ def logout(request):
     auth.logout(request)
     return redirect("login")
 
+
 def signup(request):
-    try:
-        step = request.GET.get('q')
-        if int(step )== 1:
-            pass
-    except:
-        pass
-    
-   
-    return render(request,'signupflow.html')
+
+    step = request.GET.get('q', '1')
+
+    # STEP 1: CREATE ACCOUNT
+    if step == '1':
+
+        if request.method == "POST":
+
+            fullname = request.POST.get('fullname')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            password = request.POST.get('password')
+            password2 = request.POST.get('password2')
+            bio = request.POST.get('bio')
+
+            # validate passwords
+            if password != password2:
+                messages.error(request, "Passwords do not match")
+                return redirect('/signup/?q=1')
+
+            # check existing email
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "Email already registered")
+                return redirect('/signup/?q=1')
+
+            # create username automatically
+            username = email.split("@")[0]
+            messages.info(request,'*Important* Your username is your email name before the @ sign !')
+
+            # create user
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=password
+            )
+
+            # store extra info in session for step 2
+            request.session['signup_data'] = {
+                "fullname": fullname,
+                "phone": phone,
+                "bio": bio
+            }
+
+            # move to next step
+            return redirect('/signup/?q=2')
+
+        return render(request, 'signupflow.html', {"step": 1})
+
+
+
+    # STEP 2: DOCUMENT VERIFICATION
+    elif step == '2':
+
+        if request.method == "POST":
+
+            id_number = request.POST.get("id_number")
+            tsc_number = request.POST.get("tsc_number")
+
+            data = request.session.get("signup_data")
+
+            # Here you would save to a profile model
+            # TeacherProfile.objects.create(...)
+
+            messages.success(request, "Account created successfully")
+
+            return redirect("/login/")
+
+        return render(request, 'signup_documents.html', {"step": 2})
+
+
+    return render(request, 'signupflow.html')
+
 
 def blog(request):
     return render(request,'->blog.html')
@@ -133,12 +196,18 @@ def contact_submit(request):
 def changeTheme(request):
     teacher = getTeacherProfile(request)
     requestedtheme = request.GET.get('q')
- 
-    newtheme_exists = Theme.objects.filter(title=requestedtheme).exists()
-    if newtheme_exists:
-        newtheme = Theme.objects.get(title=requestedtheme)
+    if Theme.objects.count() > 0:
+        newtheme_exists = Theme.objects.filter(title=requestedtheme).exists()
+        if newtheme_exists:
+            newtheme = Theme.objects.get(title=requestedtheme)
+        else:
+            createThemes([requestedtheme])
+            newtheme = Theme.objects.get(title=requestedtheme)
+            # newtheme = Theme.objects.get(title='macglass')
+
+        teacher.theme = newtheme
+        teacher.save()
+        return returnToPrevPage(request)
     else:
-        newtheme = Theme.objects.get(title='macglass')
-    teacher.theme = newtheme
-    teacher.save()
-    return returnToPrevPage(request)
+        createThemes(themeList)
+        return returnToPrevPage(request)

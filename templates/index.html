@@ -17,7 +17,14 @@
   
 
   <!-- for themes only -->
+      <link id="theme-style" rel="stylesheet" href={% static theme %}>
+
+  {% comment %} {% if user.is_authenticated %}
     <link id="theme-style" rel="stylesheet" href={% static theme %}>
+  {% else %}
+    <link id="theme-style" rel="stylesheet" href={% static 'styling/themes/macglass.css' %}>
+  {% endif %} {% endcomment %}
+    
     {% comment %} <link id="theme-style" rel="stylesheet" href={% static "styling/themes/macglasshybrid.css" %}> {% endcomment %}
   <!-- for themes only -->
   
@@ -57,13 +64,13 @@
       <a href='/jobs/premiumurgent'>Quick Jobs</a>
       <a href='/schools/schoolsfeed'>Schools</a>
       <a href='/schools/blog'>Blog</a>
-      {% comment %} <div class="auth-buttonss">
+      <div class="auth-buttons">
         {% if user.is_authenticated %}
-        <a href="/logout" class="btn btn-outline">Log Out <br>{{ user.username.capitalize }}</a>
+        <a href="/logout" class="btn auth btn-outline">Log Out {{ user.username.capitalize }}</a>
         {% else %}
-        <a href="/login" class="btn btn-outline">Log In</a>
+        <a href="/login" class="btn auth btn-outline">Log In</a>
         {% endif %}
-      </div> {% endcomment %}
+      </div> 
       <a class="fa menu-toggle fa-list-ul" ></a>
       
     </div>

@@ -12,7 +12,7 @@ from myutils import *
 import random
 from schools.models import School
 from main.models import County,Constituency
-
+# import ExpressionWrapper,IntegerField
 
 @login_required(login_url='login')
 def savedjobs(request):
@@ -203,3 +203,16 @@ def withdrawsave(request,jobid):
     return returnToPrevPage(request)
 def sharejob(request,jobid):
     return HttpResponse("Sharing job.")
+
+# trending_jobs = Job.objects.filter(
+#     is_active=True
+# ).annotate(
+#     trend_score=ExpressionWrapper(
+#         F('views')
+#         + F('saves') * 3
+#         + F('total_applications') * 5
+#         + F('is_urgent') * 10
+#         + F('is_promoted') * 15,
+#         output_field=IntegerField()
+#     )
+# ).order_by('-trend_score')

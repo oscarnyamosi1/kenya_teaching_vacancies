@@ -25,6 +25,10 @@ function handleThemes(){
         body.classList.toggle('lightmode')
         body.classList.contains('lightmode')?(localStorage.setItem('is_dark_mode',JSON.stringify(false))):(localStorage.setItem('is_dark_mode',JSON.stringify(true)))
     })    
+    mobileThemer.addEventListener('click',()=>{
+        body.classList.toggle('lightmode')
+        body.classList.contains('lightmode')?(localStorage.setItem('is_dark_mode',JSON.stringify(false))):(localStorage.setItem('is_dark_mode',JSON.stringify(true)))
+    }) 
 }    
 
 function highlightNav(){
@@ -38,24 +42,15 @@ function highlightNav(){
 document.addEventListener('DOMContentLoaded',()=>{
     highlightNav()
     handleThemes()
-    
-    themerIcon.addEventListener('click',function(){
-        if (is_dark_mode == true){  
-            themerIcon.classList.add('fa-sun-o')
-            themerIcon.classList.remove('fa-moon-o')
-        } else {
-            themerIcon.classList.add('fa-moon-o')
-            themerIcon.classList.remove('fa-sun-o')
-        }    
-    })
-
-    mobileThemer.addEventListener('click',()=>{
-        alert('mobile themer clicked')
-        handleThemes()
-        document.location.href=`${document.location}`        
-    })
+        
+    // if(window.innerWidth > 767){
+    //     alert('hiding')
+    //     // mobileThemer.classList.add = 'hidden'
+    //     mobileThemer.style.color = 'transparent'
+    // }
 
 
+  
     // view job details
 
     let viewjobdetailsButtons = document.querySelectorAll('.viewjobdetails')
@@ -98,3 +93,5 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     })
 })
+
+

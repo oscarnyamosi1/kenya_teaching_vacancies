@@ -1,0 +1,373 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kenya Teaching Vacancies Signup</title>
+
+<link rel="stylesheet" href="{% static 'styling/signupflow.css' %}">
+<link rel="stylesheet" href="{% static 'styling/glassmorphism.css' %}">
+<link rel="stylesheet" href="{% static 'styling/macglass.css' %}">
+
+<link rel="stylesheet" href="{% static 'styling/index.css' %}">
+
+</head>
+
+<body>
+
+<nav class="navbar glass-nav">
+
+<div class="navbar-left">
+<div class="logo-mark">
+<iconify-icon icon="lucide:graduation-cap"></iconify-icon>
+</div>
+<div class="logo-text">Kenya Teaching Vacancies</div>
+</div>
+
+<div class="navbar-right">
+
+<span>Already have an account?</span>
+
+<a href="/login/">
+<div class="btn btn-ghost">
+<span>Log in</span>
+</div>
+</a>
+
+</div>
+
+</nav>
+
+<main class="shell-main">
+
+<form method="POST" class="glass-card signup-shell">
+
+{% csrf_token %}
+
+<div class="signup-main">
+
+<div class="step-strip">
+<div class="step-dot step-dot--active"></div>
+<div class="step-dot"></div>
+<div class="step-dot"></div>
+<span class="step-text">Step 1 · Create account</span>
+</div>
+
+<h1 class="headline">Create your teaching profile</h1>
+
+<p class="headline-sub">
+Sign up to join Kenyan schools, tutors and academies hiring teachers.
+</p>
+
+<!-- FULL NAME -->
+
+<div class="field-group">
+
+<div class="field-label">Full name</div>
+
+<div class="field-shell">
+
+<div class="field-icon">
+<iconify-icon icon="lucide:user"></iconify-icon>
+</div>
+
+<input
+type="text"
+name="fullname"
+class="field-input"
+placeholder="Jane Wanjiku"
+required
+
+>
+
+</div>
+
+</div>
+
+<!-- EMAIL + PHONE -->
+
+<div class="inline-row">
+
+<div class="field-group">
+
+<div class="field-label">Email</div>
+
+<div class="field-shell">
+
+<div class="field-icon">
+<iconify-icon icon="lucide:mail"></iconify-icon>
+</div>
+
+<input
+type="email"
+name="email"
+class="field-input"
+placeholder="[mwalimu@example.com](mailto:mwalimu@example.com)"
+required
+
+>
+
+</div>
+
+</div>
+
+<div class="field-group">
+
+<div class="field-label">Phone</div>
+
+<div class="field-shell">
+
+<div class="field-icon">
+<span>+254</span>
+</div>
+
+<input
+type="text"
+name="phone"
+class="field-input"
+placeholder="7XX XXX XXX"
+
+>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PASSWORD -->
+
+<div class="field-group">
+
+<div class="field-label">Create password</div>
+
+<div class="field-shell">
+
+<div class="field-icon">
+<iconify-icon icon="lucide:lock"></iconify-icon>
+</div>
+
+<input
+type="password"
+name="password"
+class="field-input"
+placeholder="••••••••"
+required
+
+>
+
+</div>
+
+</div>
+
+<!-- REPEAT PASSWORD -->
+
+<div class="field-group">
+
+<div class="field-label">Repeat password</div>
+
+<div class="field-shell">
+
+<div class="field-icon">
+<iconify-icon icon="lucide:lock"></iconify-icon>
+</div>
+
+<input
+type="password"
+name="password2"
+class="field-input"
+placeholder="••••••••"
+required
+
+>
+
+</div>
+
+</div>
+
+<!-- TEACHING SPECIALIZATION -->
+
+<div class="field-group">
+
+<div class="field-label">Teaching focus</div>
+
+<div class="pill-input-row">
+
+<label class="pill-chip">
+<input type="checkbox" name="specialization" value="Primary" hidden>
+Primary
+</label>
+
+<label class="pill-chip">
+<input type="checkbox" name="specialization" value="High School" hidden>
+High school
+</label>
+
+<label class="pill-chip">
+<input type="checkbox" name="specialization" value="University" hidden>
+University
+</label>
+
+<label class="pill-chip">
+<input type="checkbox" name="specialization" value="Special Needs" hidden>
+Special needs
+</label>
+
+</div>
+
+</div>
+
+<!-- BIO -->
+
+<div class="field-group">
+
+<div class="field-label">Short bio</div>
+
+<div class="field-shell field-shell--multiline">
+
+<div class="field-icon">
+<iconify-icon icon="lucide:edit"></iconify-icon>
+</div>
+
+<textarea
+name="bio"
+class="field-input field-input--multiline"
+placeholder="Passionate teacher with experience in CBC and KCSE preparation..."
+></textarea>
+
+</div>
+
+</div>
+
+<!-- REMOTE OPTION -->
+
+<div class="toggle-row">
+
+<div class="toggle-copy">
+
+<div class="toggle-title">
+Open to remote or online classes
+</div>
+
+<div class="toggle-sub">
+Schools and parents will see this on your profile
+</div>
+
+</div>
+
+<input type="checkbox" name="remote" id="remote">
+
+</div>
+
+<!-- SUBMIT -->
+
+<div class="button-row">
+
+<button type="submit" class="btn btn-primary">
+
+<span>Continue to documents</span>
+
+<iconify-icon icon="lucide:arrow-right"></iconify-icon>
+
+</button>
+
+</div>
+
+</div>
+
+<!-- SIDE PREVIEW -->
+
+<aside class="signup-side">
+
+<div class="side-header">Live preview</div>
+
+<div class="side-card">
+
+<div style="width:40px;height:40px;border-radius:999px;overflow:hidden;">
+
+<img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F3">
+
+</div>
+
+<div class="side-card-main">
+
+<span id="previewName">Jane Wanjiku</span>
+
+<span>Teacher · Kenya</span>
+
+<div class="mini-meter">
+<div class="mini-meter-fill"></div>
+</div>
+
+<span style="font-size:0.75rem;">Profile strength</span>
+
+</div>
+
+</div>
+
+</aside>
+
+</form>
+
+</main>
+
+<script>
+
+/* specialization pill UI */
+
+let pills = document.querySelectorAll(".pill-chip")
+
+pills.forEach(pill => {
+
+pill.addEventListener("click", () => {
+
+pill.classList.toggle("pill-chip--active")
+
+})
+
+})
+
+
+/* live preview name */
+
+let nameInput = document.querySelector("input[name='fullname']")
+let preview = document.getElementById("previewName")
+
+nameInput.addEventListener("input", () => {
+
+preview.innerText = nameInput.value || "Jane Wanjiku"
+
+})
+
+
+/* profile strength */
+
+let meter = document.querySelector(".mini-meter-fill")
+
+function updateStrength(){
+
+let score = 20
+
+if(nameInput.value) score += 20
+
+if(document.querySelector("textarea[name='bio']").value) score += 20
+
+meter.style.width = score + "%"
+
+}
+
+document.querySelectorAll("input, textarea").forEach(el=>{
+
+el.addEventListener("input", updateStrength)
+
+})
+
+</script>
+
+</body>
+</html>

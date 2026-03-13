@@ -93,6 +93,7 @@ a {
     align-content:space-evenly;
     min-width:80%;
     font-size:small;
+
 }
 
 .nav-item {
@@ -119,6 +120,10 @@ a {
 .auth-buttons {
     display: flex;
     gap: 12px;
+}
+a.btn.auth.btn-outline{
+    font-size:10px;
+    padding:0px 10px 0px 10px;
 }
 
 .easyapply {
@@ -700,7 +705,10 @@ a {
   display: none; /* Hide by default on large screens */
 }
 .mobilethemer {
-    display:none;
+    display:inline-flex;
+    width:80%;
+    padding-left:50%;
+    padding-right:50%;
 }
 .logo-text{
     padding-top:5px;
@@ -766,13 +774,10 @@ a {
   opacity: 1;
   align-content:center;
 }
-
-/* Dark mode styles */
-body.dark-mode {
-  background: #333;
-  color: #eee;
+.auth{
+    padding-top:5px;
+    margin-bottom:15px;
 }
-
 /* footer css */
 
 /* Footer styling */
@@ -836,8 +841,15 @@ body.dark-mode {
 
 @media only screen and (max-width: 767px) {
     /* Layout Grid */
-    .body{
+      .body{
         font-size:8px;
+    }
+    .app-container,
+    .content-forwarder,
+    .content-container {
+        div{
+            font-size:12px;
+        }
     }
     .app-container {
         /* display: grid; */
@@ -909,5 +921,8 @@ body.dark-mode {
         z-index:10;
         display:none;
 
+    }
+    .menu-item {
+        margin-top:0px;
     }
 }

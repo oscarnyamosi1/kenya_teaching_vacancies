@@ -12,10 +12,10 @@
 
 .content-container {
     width: 100%;
-    padding: 32px 24px;
+    padding: 22px 24px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 10px;
 }
 
 
@@ -238,7 +238,7 @@ color:white;
 
 .profile-summary{display:flex;
                  align-items:center;
-                 width:95%;
+                 width:90%;
                  padding:16px;gap:16px;margin-bottom:20px;}
 
 .profile-avatar{
@@ -249,7 +249,7 @@ object-fit:cover;
 }
 
 .profile-name{
-font-weight:600;
+font-weight:500;
 }
 
 .section-header{

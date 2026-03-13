@@ -1,7 +1,7 @@
 
 @import url('jobfeed.css');
 :root {
-    --background: #0b1220;
+    --background: #180b20;
     --foreground: #f9fafb;
     --border: #1f2937;
     --input: #020617;
@@ -60,18 +60,19 @@
 
 
 .lightmode{
-    --background: #f6afc080;
+    --background: #c26dc880;
 
     --glass-bg:rgba(74, 85, 107, 0.623);
     --glass-bg:rgba(139, 142, 235, 0.623);
     --glass-bg:rgb(99 200 211 / 4%);
+    --glass-bg:rgba(255, 255, 255, 0.06);
 
 
     --foreground: #000000;
     --border: #678abb;
     --input: #020617;
-    --primary: #38bdf8;
-    --primary-foreground: #020617;
+    --primary: #721a7c;
+    --primary-foreground: #ffffff;
     --secondary: #4568b4;
     --secondary-foreground: #4f5665;
     --muted: #44485f;
@@ -123,6 +124,10 @@
         h6 {
             color:white;
         }
+    }
+    .btn-primary {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
     }
     .logo-area{
         color: var(--foreground);
