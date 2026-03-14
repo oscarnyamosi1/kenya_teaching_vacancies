@@ -1,10 +1,10 @@
 /* communications.css */
 body {
   font-family: Arial, sans-serif;
-  background: #f0f2f5; /* light background for contrast */
-  color: #fff;
+  background: var(--background); /* light background for contrast */
   margin: 0;
   padding: 0;
+  color:var(--foreground);
 }
 
 .glass-card {

@@ -67,7 +67,7 @@
     padding: 40px;
     padding-top:80px;
     background: var(--background);
-    color:black;
+    color:var(--accent);
     overflow-y: scroll;
 }
 .form-container {
