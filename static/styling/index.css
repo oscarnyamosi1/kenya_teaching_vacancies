@@ -703,11 +703,14 @@ a.btn.auth.btn-outline{
   display: none; /* Hide by default on large screens */
 }
 .mobilethemer {
-    display:inline-flex;
+    display:inline-block;
     width:80%;
     padding-left:50%;
     padding-right:50%;
 }
+
+
+
 .logo-text{
     padding-top:5px;
     padding-bottom:5px;
@@ -727,10 +730,6 @@ a.btn.auth.btn-outline{
   .themer{
       display:none;
   }
-    .mobilethemer{
-        display:inline-block;
-    }
-
     
 }
 #aside-panel {
@@ -922,5 +921,10 @@ a.btn.auth.btn-outline{
     }
     .menu-item {
         margin-top:0px;
+    }
+}
+@media (min-width: 768px) {
+    .mobilethemer {
+        display: none;
     }
 }
