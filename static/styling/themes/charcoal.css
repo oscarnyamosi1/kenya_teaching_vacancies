@@ -1,5 +1,5 @@
-@import url('glassmorphism.css');
-@import url('colorize.css');
+/* @import url('glassmorphism.css'); */
+/* @import url('colorize.css'); */
 /* Dark Theme Base */
 :root {
     --background: #0b1220;
@@ -184,6 +184,13 @@
             color:var(--foreground);
         }
     }
+    .post-icon,
+    .tag{
+        color:var(--input);
+    }
+    .post-title{
+        color:var(--sidebar)
+    }
 }
 
 
@@ -261,8 +268,8 @@ body {
     flex-direction: column;
     gap: 16px;
     backdrop-filter: blur(12px);
-    /* background: var(--glass-bg); */
-    padding: 16px;
+    background: var(--glass-bg);
+    /* padding: 16px; */
     border-radius: var(--radius-md);
     min-height: 80vh;
 }

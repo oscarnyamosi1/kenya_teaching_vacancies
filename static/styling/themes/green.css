@@ -154,6 +154,9 @@
         backdrop-filter:blur(13px);
         
     }
+    .tag{
+        color:var(--input);
+    }
     .settings-item:hover {
         background-color:#a39d9d11 ;
     }

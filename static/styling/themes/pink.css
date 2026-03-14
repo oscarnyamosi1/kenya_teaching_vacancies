@@ -94,6 +94,9 @@
     h6 {
         color:var(--foreground);
     }
+    .tag{
+        color:var(--input);
+    }
     .job-card.sponsored {
         color:white;
         .btn,

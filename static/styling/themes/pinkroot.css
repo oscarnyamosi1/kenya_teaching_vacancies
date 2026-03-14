@@ -29,3 +29,126 @@
     --radius-xl: 24px;
     --font-family-body: Inter;
 }
+
+.lightmode{
+    --background: #c26dc880;
+
+    --glass-bg:rgba(74, 85, 107, 0.623);
+    --glass-bg:rgba(139, 142, 235, 0.623);
+    --glass-bg:rgb(99 200 211 / 4%);
+    --glass-bg:rgba(255, 255, 255, 0.06);
+
+
+    --foreground: #000000;
+    --border: #678abb;
+    --input: #020617;
+    --primary: #721a7c;
+    --primary-foreground: #ffffff;
+    --secondary: #4568b4;
+    --secondary-foreground: #4f5665;
+    --muted: #44485f;
+    --muted-foreground: #332f5bdb;
+
+    --success: #22c55e;
+    --success-foreground: #0de667;
+
+    --success: #0b8a3a;
+    --success-foreground: #01ad40;
+
+    --accent: #38bdf8;
+    --accent-foreground: #020617;
+    --destructive: #ec0505;
+    --destructive-foreground: #fef2f2;
+    --warning: #f59e0b;
+    --warning-foreground: #0c49cc;
+    --card:transparent;
+    --card-foreground: #f9fafb;
+    --sidebar: #3a5ae9;
+    --sidebar-foreground: #e5e7eb;
+    --sidebar-primary: #111827;
+    --sidebar-primary-foreground: #e5e7eb;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-family-body: Inter,Arial;
+    --tag-background:rgb(9 31 96 / 22%); 
+    --text-black:black;
+    color:var(--foreground);
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color:var(--foreground);
+    }
+    .job-card.sponsored {
+        color:white;
+        .btn,
+        .btn-outline,
+         p,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color:white;
+        }
+    }
+    .btn-primary {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
+    .logo-area{
+        color: var(--foreground);
+    }
+    .pagination a{
+        background:var(--accent-foreground);
+    }
+    .btn-secondary{
+        color:var(--foreground);
+    }
+    .badge{
+        background:var(--accent-foreground);
+        color: var(--success);
+    }
+    .btn{
+        color:var(--accent-foreground);
+    }
+    .profile-container {
+        a,
+        div,
+        span,
+        button,
+        p{
+         color:var(--destructive-foreground);
+        }
+        
+    }
+    .btn-secondary {
+        color:white;
+    }
+    .date-divider {
+        backdrop-filter:15px;
+        background-color:transparent;
+    }
+    .search-bar {
+        background-color:var(--muted-foreground);
+        color:white;
+    }
+    .conv-search{
+        color:white;
+    }
+    .glass-card{
+        background-color: var(--glass-bg);
+        backdrop-filter:blur(13px);
+        
+    }
+    .tag{
+        color:var(--input);
+    }
+    .settings-item:hover {
+        background-color:#a39d9d11 ;
+    }
+}

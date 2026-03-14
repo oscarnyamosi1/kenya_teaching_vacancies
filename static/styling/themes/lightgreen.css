@@ -106,6 +106,9 @@
             color:white;
         }
     }
+    .tag{
+        color:var(--input);
+    }
     .content-container{
         .pricing-subtitle,
         .toggle-option,

@@ -12,24 +12,29 @@
         border-radius: var(--radius-md);
         padding: 0 16px;
         height: 48px;
-        width:80%;
+        width:50vw;
         color: var(--foreground);
         font-size:16px;
         font-weight: 800;
         border:none;
       ">
-        <iconify-icon icon="lucide:search" style="color: var(--foreground); margin-right: 12px;"></iconify-icon>
+   
       </input>
     
       <button type='submit' style="
+        display:flex;
+        flex-direction:row;
         background: var(--primary);
         color: var(--primary-foreground);
         border: none;
-        padding: 0 24px;
+        padding: 0 14px;
+        margin-right:6px;
         border-radius: var(--radius-md);
-        font-weight: 600;
+        font-weight: 400;
         font-size: 15px;
         cursor: pointer;
-      " data-media-type="kenya-teaching-vacancies-button">Search</button>
+        align-items: center;
+        justify-content: center;
+      " data-media-type="kenya-teaching-vacancies-button" class="fa fa-search"> Search</button>
     </div>
   </form>
