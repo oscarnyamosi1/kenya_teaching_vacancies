@@ -25,7 +25,7 @@ def savedjobs(request):
     return render(request, "savedjobs.html", context)
 
 
-
+@login_required(login_url='login')
 def jobfeed(request):
     context = createContext(request)
     alljobs = context.get('all_jobs',[])
