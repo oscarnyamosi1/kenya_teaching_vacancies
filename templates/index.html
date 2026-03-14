@@ -71,7 +71,11 @@
         <a href="/login" class="btn auth btn-outline">Log In</a>
         {% endif %}
       </div> 
-      <a class="fa menu-toggle fa-list-ul" ></a>
+      
+      {% if user.is_authenticated %}
+        <a class="fa menu-toggle fa-list-ul" ></a>
+      {% endif %}
+        
       
     </div>
 
