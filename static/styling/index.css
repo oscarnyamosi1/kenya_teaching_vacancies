@@ -662,7 +662,7 @@ a.btn.auth.btn-outline{
 }
 .glass-card:hover,
 .school-card:hover {
-    border-radius: var(--radius-lg);
+    /* border-radius: var(--radius-lg); */
     transform: translateY(-6px);
     box-shadow: 0 20px 60px rgba(2, 6, 23, 0.38);
 }
