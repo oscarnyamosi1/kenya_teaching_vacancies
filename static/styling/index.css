@@ -121,6 +121,10 @@ a {
     display: flex;
     gap: 12px;
 }
+.auth-buttons-mobile{
+      display: flex;
+    gap: 12px;  
+}
 a.btn.auth.btn-outline{
     font-size:10px;
     padding:0px 10px 0px 10px;
@@ -530,6 +534,7 @@ a.btn.auth.btn-outline{
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    margin-top:10px;
     /* background:transparent;
     background:var(--background); */
     border-radius:var(--radius-lg);
@@ -705,9 +710,10 @@ a.btn.auth.btn-outline{
 .mobilethemer {
     display:inline-block;
     width:80%;
-    padding-left:50%;
+    padding-left:45%;
     padding-right:50%;
     margin-bottom:12px;
+    font-size:18px;
 }
 
 
@@ -718,15 +724,13 @@ a.btn.auth.btn-outline{
     font-size:80%;
 }
 @media (max-width: 768px) { /* Adjust breakpoint as needed */
-  .top-nav {
-    /* Styles for mobile navigation when hidden */
-  }
-  .menu-card{
+   .menu-card{
       backdrop-filter:blur(400px) saturate(200%);
   }
   .menu-toggle {
-    display: block; /* Show hamburger on small screens */
-      /* margin-left:-10px; */
+    display: inline-block; 
+      margin-left:-10px;
+      font-size:20px;
   }
   .themer{
       display:none;
@@ -760,9 +764,9 @@ a.btn.auth.btn-outline{
   background: var(--overlay);
   backdrop-filter: blur(14px) saturate(100%);
   border-radius:8px;
-
   transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
   z-index: 999;
+    /* color:black; */
 }
 
 #overlay.active {
@@ -775,6 +779,12 @@ a.btn.auth.btn-outline{
 .auth{
     padding-top:5px;
     margin-bottom:15px;
+}
+.auth-button-mobile{
+    display:flex;
+    padding-top:0px;
+    padding-bottom:0px;
+    align-content:center;
 }
 /* footer css */
 
@@ -891,10 +901,6 @@ a.btn.auth.btn-outline{
     .logo-text{
         font-size:10px;
     }
-    .nav-links{
-        font-size:10px;
-        margin-left:-10px;
-    }
     .themer {
         padding-left:20px;
         padding-right:20px;
@@ -923,9 +929,28 @@ a.btn.auth.btn-outline{
     .menu-item {
         margin-top:0px;
     }
+    a.btn.auth {
+        display:none;
+    }
+    a.btn.auth-button-mobile{
+       display:block; 
+    }
+    span.logo-text{
+        display:none;
+    }
+    .nav-links{
+        margin-left:-200px;
+    }
 }
 @media (min-width: 768px) {
     .mobilethemer {
         display: none;
     }
+    .menu-toggle{
+        display:none;
+    }
+    .auth-button-mobile{
+        display:none;
+    }
+
 }

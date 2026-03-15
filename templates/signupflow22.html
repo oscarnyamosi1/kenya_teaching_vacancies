@@ -1,20 +1,71 @@
 {% load static %}
-
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kenya Teaching Vacancies Signup</title>
+<title>K.T.V Signup Flow</title>
 
 <link rel="stylesheet" href="{% static 'styling/signupflow.css' %}">
-<link rel="stylesheet" href="{% static 'styling/glassmorphism.css' %}">
-<link rel="stylesheet" href="{% static 'styling/macglass.css' %}">
-
 <link rel="stylesheet" href="{% static 'styling/index.css' %}">
+
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+<style>
+
+/* PASSWORD STRENGTH BAR */
+
+.password-meter{
+height:6px;
+background:rgba(255,255,255,.08);
+border-radius:6px;
+margin-top:6px;
+overflow:hidden;
+}
+
+.password-meter-bar{
+height:100%;
+width:0%;
+border-radius:6px;
+transition:.3s;
+}
+
+/* CV DROPZONE */
+
+.cv-dropzone{
+border:2px dashed rgba(255,255,255,.2);
+border-radius:14px;
+padding:18px;
+text-align:center;
+cursor:pointer;
+transition:.3s;
+}
+
+.cv-dropzone:hover{
+background:rgba(255,255,255,.05);
+}
+
+.cv-preview{
+margin-top:10px;
+font-size:.85rem;
+color:var(--muted-foreground);
+}
+
+/* SCHOOL MATCH */
+
+.school-rec{
+padding:6px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.school-rec span{
+font-size:.75rem;
+display:block;
+color:var(--muted-foreground);
+}
+
+</style>
 
 </head>
 
@@ -23,10 +74,15 @@
 <nav class="navbar glass-nav">
 
 <div class="navbar-left">
+
 <div class="logo-mark">
+<div style="width:20px;height:20px;display:flex;align-items:center;justify-content:center;">
 <iconify-icon icon="lucide:graduation-cap"></iconify-icon>
 </div>
+</div>
+
 <div class="logo-text">Kenya Teaching Vacancies</div>
+
 </div>
 
 <div class="navbar-right">
@@ -43,102 +99,36 @@
 
 </nav>
 
+
 <main class="shell-main">
 
-<form method="POST" class="glass-card signup-shell">
-
-{% csrf_token %}
+<form class="glass-card signup-shell">
 
 <div class="signup-main">
 
-<div class="step-strip">
-<div class="step-dot step-dot--active"></div>
-<div class="step-dot"></div>
-<div class="step-dot"></div>
-<span class="step-text">Step 1 · Create account</span>
-</div>
+<h1>Create your teaching profile</h1>
 
-<h1 class="headline">Create your teaching profile</h1>
-
-<p class="headline-sub">
-Sign up to join Kenyan schools, tutors and academies hiring teachers.
-</p>
-
-<!-- FULL NAME -->
+<!-- NAME -->
 
 <div class="field-group">
 
 <div class="field-label">Full name</div>
 
-<div class="field-shell">
-
-<div class="field-icon">
-<iconify-icon icon="lucide:user"></iconify-icon>
-</div>
-
-<input
-type="text"
-name="fullname"
-class="field-input"
-placeholder="Jane Wanjiku"
-required
-
->
+<input id="fullname" class="field-input" placeholder="Jane Wanjiku">
 
 </div>
 
-</div>
 
-<!-- EMAIL + PHONE -->
-
-<div class="inline-row">
+<!-- EMAIL -->
 
 <div class="field-group">
 
 <div class="field-label">Email</div>
 
-<div class="field-shell">
-
-<div class="field-icon">
-<iconify-icon icon="lucide:mail"></iconify-icon>
-</div>
-
-<input
-type="email"
-name="email"
-class="field-input"
-placeholder="[mwalimu@example.com](mailto:mwalimu@example.com)"
-required
-
->
+<input id="email" class="field-input" placeholder="teacher@email.com">
 
 </div>
 
-</div>
-
-<div class="field-group">
-
-<div class="field-label">Phone</div>
-
-<div class="field-shell">
-
-<div class="field-icon">
-<span>+254</span>
-</div>
-
-<input
-type="text"
-name="phone"
-class="field-input"
-placeholder="7XX XXX XXX"
-
->
-
-</div>
-
-</div>
-
-</div>
 
 <!-- PASSWORD -->
 
@@ -146,51 +136,18 @@ placeholder="7XX XXX XXX"
 
 <div class="field-label">Create password</div>
 
-<div class="field-shell">
+<input id="password1" type="password" class="field-input">
 
-<div class="field-icon">
-<iconify-icon icon="lucide:lock"></iconify-icon>
+<div class="password-meter">
+<div class="password-meter-bar"></div>
 </div>
 
-<input
-type="password"
-name="password"
-class="field-input"
-placeholder="••••••••"
-required
-
->
+<div class="hint password-hint">Use at least 8 characters</div>
 
 </div>
 
-</div>
 
-<!-- REPEAT PASSWORD -->
-
-<div class="field-group">
-
-<div class="field-label">Repeat password</div>
-
-<div class="field-shell">
-
-<div class="field-icon">
-<iconify-icon icon="lucide:lock"></iconify-icon>
-</div>
-
-<input
-type="password"
-name="password2"
-class="field-input"
-placeholder="••••••••"
-required
-
->
-
-</div>
-
-</div>
-
-<!-- TEACHING SPECIALIZATION -->
+<!-- TEACHING FOCUS -->
 
 <div class="field-group">
 
@@ -198,29 +155,15 @@ required
 
 <div class="pill-input-row">
 
-<label class="pill-chip">
-<input type="checkbox" name="specialization" value="Primary" hidden>
-Primary
-</label>
-
-<label class="pill-chip">
-<input type="checkbox" name="specialization" value="High School" hidden>
-High school
-</label>
-
-<label class="pill-chip">
-<input type="checkbox" name="specialization" value="University" hidden>
-University
-</label>
-
-<label class="pill-chip">
-<input type="checkbox" name="specialization" value="Special Needs" hidden>
-Special needs
-</label>
+<div class="pill-chip" data-value="Primary">Primary</div>
+<div class="pill-chip" data-value="High school">High school</div>
+<div class="pill-chip" data-value="University">University</div>
+<div class="pill-chip" data-value="Special needs">Special needs</div>
 
 </div>
 
 </div>
+
 
 <!-- BIO -->
 
@@ -228,144 +171,240 @@ Special needs
 
 <div class="field-label">Short bio</div>
 
-<div class="field-shell field-shell--multiline">
-
-<div class="field-icon">
-<iconify-icon icon="lucide:edit"></iconify-icon>
-</div>
-
-<textarea
-name="bio"
-class="field-input field-input--multiline"
-placeholder="Passionate teacher with experience in CBC and KCSE preparation..."
-></textarea>
+<input id="bio" class="field-input" placeholder="Your experience...">
 
 </div>
 
-</div>
 
-<!-- REMOTE OPTION -->
+<!-- CV UPLOAD -->
 
-<div class="toggle-row">
+<div class="field-group">
 
-<div class="toggle-copy">
+<div class="field-label">Upload CV</div>
 
-<div class="toggle-title">
-Open to remote or online classes
-</div>
+<div id="cv-dropzone" class="cv-dropzone">
 
-<div class="toggle-sub">
-Schools and parents will see this on your profile
-</div>
+<iconify-icon icon="lucide:upload-cloud" style="font-size:30px;"></iconify-icon>
 
-</div>
+<p>Drag & drop CV</p>
+<span>or click to upload</span>
 
-<input type="checkbox" name="remote" id="remote">
+<input type="file" id="cv-upload" hidden>
 
 </div>
 
-<!-- SUBMIT -->
-
-<div class="button-row">
-
-<button type="submit" class="btn btn-primary">
-
-<span>Continue to documents</span>
-
-<iconify-icon icon="lucide:arrow-right"></iconify-icon>
-
-</button>
+<div id="cv-preview" class="cv-preview"></div>
 
 </div>
 
+
+<button class="btn btn-primary">Continue</button>
+
 </div>
+
+
 
 <!-- SIDE PREVIEW -->
 
 <aside class="signup-side">
 
-<div class="side-header">Live preview</div>
+<div class="side-card">
+
+<span id="preview-name">Jane Wanjiku</span>
+
+<span id="preview-focus">Teacher · Nairobi</span>
+
+<div class="mini-meter">
+<div id="profile-strength-bar"></div>
+</div>
+
+<span id="profile-strength-text">0% complete</span>
+
+</div>
+
 
 <div class="side-card">
 
-<div style="width:40px;height:40px;border-radius:999px;overflow:hidden;">
+<strong>Recommended Schools</strong>
 
-<img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F3">
-
-</div>
-
-<div class="side-card-main">
-
-<span id="previewName">Jane Wanjiku</span>
-
-<span>Teacher · Kenya</span>
-
-<div class="mini-meter">
-<div class="mini-meter-fill"></div>
-</div>
-
-<span style="font-size:0.75rem;">Profile strength</span>
-
-</div>
+<div id="school-recommendations"></div>
 
 </div>
 
 </aside>
 
+
 </form>
 
 </main>
 
+
 <script>
 
-/* specialization pill UI */
+/* AUTOSAVE */
 
-let pills = document.querySelectorAll(".pill-chip")
+const inputs=document.querySelectorAll("input")
 
-pills.forEach(pill => {
+function saveForm(){
+let data={}
+inputs.forEach(i=>data[i.id]=i.value)
+localStorage.setItem("signupDraft",JSON.stringify(data))
+}
 
-pill.addEventListener("click", () => {
-
-pill.classList.toggle("pill-chip--active")
-
+function loadForm(){
+let saved=localStorage.getItem("signupDraft")
+if(!saved)return
+let data=JSON.parse(saved)
+inputs.forEach(i=>{
+if(data[i.id])i.value=data[i.id]
 })
+}
 
-})
-
-
-/* live preview name */
-
-let nameInput = document.querySelector("input[name='fullname']")
-let preview = document.getElementById("previewName")
-
-nameInput.addEventListener("input", () => {
-
-preview.innerText = nameInput.value || "Jane Wanjiku"
-
-})
+inputs.forEach(i=>i.addEventListener("input",saveForm))
+loadForm()
 
 
-/* profile strength */
+/* PASSWORD STRENGTH */
 
-let meter = document.querySelector(".mini-meter-fill")
+const pass=document.getElementById("password1")
+const meter=document.querySelector(".password-meter-bar")
+const hint=document.querySelector(".password-hint")
 
-function updateStrength(){
+pass.oninput=()=>{
 
-let score = 20
+let val=pass.value
+let score=0
 
-if(nameInput.value) score += 20
+if(val.length>=8)score++
+if(/[a-z]/.test(val))score++
+if(/[A-Z]/.test(val))score++
+if(/[0-9]/.test(val))score++
 
-if(document.querySelector("textarea[name='bio']").value) score += 20
+if(score<=2){
+meter.style.width="33%"
+meter.style.background="red"
+hint.innerText="Weak password"
+}
 
-meter.style.width = score + "%"
+else if(score==3){
+meter.style.width="66%"
+meter.style.background="orange"
+hint.innerText="Medium password"
+}
+
+else{
+meter.style.width="100%"
+meter.style.background="limegreen"
+hint.innerText="Strong password"
+}
+
+updateStrength()
 
 }
 
-document.querySelectorAll("input, textarea").forEach(el=>{
 
-el.addEventListener("input", updateStrength)
+/* CV UPLOAD */
+
+const dropzone=document.getElementById("cv-dropzone")
+const fileInput=document.getElementById("cv-upload")
+const preview=document.getElementById("cv-preview")
+
+let cvUploaded=false
+
+dropzone.onclick=()=>fileInput.click()
+
+fileInput.onchange=e=>{
+let file=e.target.files[0]
+if(!file)return
+
+preview.innerHTML=file.name
+cvUploaded=true
+
+updateStrength()
+
+}
+
+
+/* TEACHING FOCUS */
+
+let selectedFocus=null
+const chips=document.querySelectorAll(".pill-chip")
+
+chips.forEach(chip=>{
+chip.onclick=()=>{
+chips.forEach(c=>c.classList.remove("pill-chip--active"))
+chip.classList.add("pill-chip--active")
+selectedFocus=chip.dataset.value
+updatePreview()
+}
+})
+
+
+/* LIVE PREVIEW */
+
+const nameInput=document.getElementById("fullname")
+const previewName=document.getElementById("preview-name")
+const previewFocus=document.getElementById("preview-focus")
+
+function updatePreview(){
+
+previewName.textContent=nameInput.value||"Jane Wanjiku"
+previewFocus.textContent=(selectedFocus||"Teacher")+" · Nairobi"
+
+updateStrength()
+
+}
+
+nameInput.oninput=updatePreview
+
+
+/* PROFILE STRENGTH */
+
+const bar=document.getElementById("profile-strength-bar")
+const text=document.getElementById("profile-strength-text")
+
+function updateStrength(){
+
+let score=0
+
+if(nameInput.value)score+=25
+if(selectedFocus)score+=25
+if(pass.value.length>=8)score+=25
+if(cvUploaded)score+=25
+
+bar.style.width=score+"%"
+text.innerText=score+"% complete"
+
+if(score==100)showSchools()
+
+}
+
+
+/* DEMO SCHOOL MATCH */
+
+const demoSchools=[
+{name:"Nairobi Elite Academy",role:"Primary Teacher"},
+{name:"Greenwood School",role:"Math Teacher"},
+{name:"Sunrise CBC School",role:"English Teacher"}
+]
+
+function showSchools(){
+
+let container=document.getElementById("school-recommendations")
+container.innerHTML=""
+
+demoSchools.forEach(s=>{
+
+let div=document.createElement("div")
+div.className="school-rec"
+
+div.innerHTML="<strong>"+s.name+"</strong><span>"+s.role+"</span>"
+
+container.appendChild(div)
 
 })
+
+}
 
 </script>
 

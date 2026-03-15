@@ -39,21 +39,10 @@ function highlightNav(){
     })
 }
 
-function handleMobileThemer(){
-    if (window.innerWidth > 767){
-        mobileThemer.style.display = "none"
-    } else {
-        mobileThemer.style.display = "inline-block"
-    }
-}
-
-
 
 document.addEventListener('DOMContentLoaded',()=>{
     highlightNav()
     handleThemes()
-    handleMobileThemer()
- 
 
   
     // view job details
@@ -98,6 +87,3 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     })
 })
-
-
-window.addEventListener("resize", handleMobileThemer)

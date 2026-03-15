@@ -80,7 +80,8 @@ def getTrendingJobs(request):
 def createContext(request):
     all_jobs = Job.objects.all().order_by('-is_featured', '-date_posted','-is_promoted')
     teachers_hired = countHires()
-    trendingjobs = getTrendingJobs(request)
+    # trendingjobs = getTrendingJobs(request)
+    trending_jobs = Job.objects.trending() 
 
     if request.user.is_authenticated:
         teacher = getTeacherProfile(request)
@@ -90,7 +91,7 @@ def createContext(request):
 
     theme = f"styling/themes/{theme}.css"
 
-    context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trendingjobs,'theme':theme}
+    context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trending_jobs,'theme':theme}
     return context
 
 

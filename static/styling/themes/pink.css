@@ -158,4 +158,7 @@
     .settings-item:hover {
         background-color:#a39d9d11 ;
     }
+    .menu-card{
+        color:var(--accent-foreground);
+    }
 }

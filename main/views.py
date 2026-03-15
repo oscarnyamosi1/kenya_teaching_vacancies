@@ -84,10 +84,12 @@ def signup(request):
 
             fullname = request.POST.get('fullname')
             email = request.POST.get('email')
-            phone = request.POST.get('phone')
-            password = request.POST.get('password')
+            phone = request.POST.get('phone-number')
+            teachingFocus = request.POST.get('teaching-focus')
+            password = request.POST.get('password1')
             password2 = request.POST.get('password2')
             bio = request.POST.get('bio')
+            openToRemoteWork = request.POST.get('open2remote')
 
             # validate passwords
             if password != password2:

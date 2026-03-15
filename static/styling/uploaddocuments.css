@@ -1,11 +1,4 @@
 /* uploaddocuments.css */
-:root {
-  --glass: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.15);
-  --text: #f5f5f5;
-  --muted: #a1a1aa;
-  --primary: #4ade80;
-}
 
 * {
   box-sizing: border-box;
@@ -26,12 +19,12 @@
   z-index: 10;
 }
 
-.glass {
+/* .glass {
   background: var(--glass);
   backdrop-filter: blur(18px) saturate(140%);
   border-bottom: 1px solid var(--border);
 }
-
+ */
 .nav-left {
   display: flex;
   align-items: center;

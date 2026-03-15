@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded',()=>{
         sidebarLeft.classList.add = 'hidden'
         logoText.classList.add = 'hidden'
         appcontainer.style.display = 'flex'
-        hambuger.classList.remove = 'hidden'
 
         hambuger.addEventListener('click',()=>{
             overlay.classList.toggle('active')
@@ -27,7 +26,4 @@ document.addEventListener('DOMContentLoaded',()=>{
         hambuger.style.display = 'none'
     }
 
-    mobileThemer.addEventListener('click',()=>{
-        alert('themed')
-    })
-})
+   })

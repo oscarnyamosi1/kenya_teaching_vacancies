@@ -1,0 +1,200 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href="{% static 'styling/teacherprofile.css' %}">
+{% endblock %}
+
+{% block title %}
+Teacher Profile Preview
+{% endblock %}
+
+{% block pagename %}
+teacherprofilepreview
+{% endblock %}
+
+{% block center_feed_content %}
+
+<div class="profile-container colorize">
+
+<!-- HEADER -->
+
+<div class="profile-header">
+
+<div class="profile-image-container">
+
+<img
+src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FAfrican%2F4"
+class="profile-avatar"
+/>
+
+<div class="verified-badge">
+<iconify-icon icon="lucide:check"></iconify-icon>
+</div>
+
+</div>
+
+
+<h1 class="profile-name" id="preview_name">
+Teacher Name
+</h1>
+
+<p class="profile-title" id="preview_focus">
+Teacher • Kenya
+</p>
+
+
+<div class="profile-stats-row">
+
+<div class="stat-item">
+<span class="stat-value">0</span>
+<span class="stat-label">Years Exp</span>
+</div>
+
+<div class="stat-item">
+<span class="stat-value">New</span>
+<span class="stat-label">Rating</span>
+</div>
+
+<div class="stat-item">
+<span class="stat-value">0</span>
+<span class="stat-label">Interviews</span>
+</div>
+
+</div>
+
+
+<p class="profile-bio" id="preview_bio">
+Your bio will appear here.
+</p>
+
+
+<div class="action-buttons">
+
+<button class="btn-action btn-edit">
+Edit Profile
+</button>
+
+<button class="btn-action btn-edit">
+Share
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- DETAILS -->
+
+<div class="section-container">
+
+<div class="section-title">
+<iconify-icon icon="lucide:briefcase"></iconify-icon>
+Professional Details
+</div>
+
+<div class="info-grid">
+
+<div class="info-box">
+<span class="info-label">Teaching Focus</span>
+<span class="info-content" id="preview_focus_detail">
+Primary
+</span>
+</div>
+
+<div class="info-box">
+<span class="info-label">Remote Classes</span>
+<span class="info-content" id="preview_remote">
+Not specified
+</span>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- SUBJECTS -->
+
+<div class="section-container">
+
+<div class="section-title">
+<iconify-icon icon="lucide:book-open"></iconify-icon>
+Subjects & Skills
+</div>
+
+<div class="tags-container">
+
+<span class="profile-tag" id="preview_subject">
+Teaching subject
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* ------------------------------------
+LIVE PREVIEW RECEIVER
+------------------------------------ */
+
+const previewChannel = new BroadcastChannel("ktv_profile_preview")
+
+previewChannel.onmessage = (event)=>{
+
+updateProfilePreview(event.data)
+
+}
+
+
+/* ------------------------------------
+UPDATE PROFILE UI
+------------------------------------ */
+
+function updateProfilePreview(data){
+
+if(!data) return
+
+
+const name = data.name || "Teacher Name"
+const focus = data.focus || "Teacher"
+const bio = data.bio || "No bio written yet."
+
+
+document.getElementById("preview_name").textContent =
+name
+
+
+document.getElementById("preview_focus").textContent =
+focus + " • Kenya"
+
+
+document.getElementById("preview_focus_detail").textContent =
+focus
+
+
+document.getElementById("preview_subject").textContent =
+focus
+
+
+document.getElementById("preview_bio").textContent =
+bio
+
+
+document.getElementById("preview_remote").textContent =
+data.remote
+? "Available for Online Classes"
+: "In-person only"
+
+}
+
+</script>
+
+{% endblock %}

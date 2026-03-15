@@ -1,7 +1,17 @@
-<div class="glass menu-card">
+<div class="glass card menu-card">
 
-    <i class="mobilethemer fa fa-moon-o"></i>
+    <div class='mobile-options'>
 
+        <i class="mobilethemer fa fa-moon-o"></i>
+        <div class="auth-buttons-mobile">
+            {% if user.is_authenticated %}
+            <a href="/logout" class="btn auth-button-mobile btn-outline fa fa-arrow-right"> {{ user.username.capitalize }}</a>
+            {% else %}
+            <a href="/login" class="btn auth-button-mobile btn-outline">Log In</a>
+            {% endif %}
+        </div>
+
+    </div>
     <a href="/">
         <div class="menu-item home" data-media-type="kenya-teaching-vacancies-button">
             <div class="navtext">

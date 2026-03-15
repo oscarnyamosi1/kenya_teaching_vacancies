@@ -20,6 +20,25 @@
 
     <div class="trending-list">
 
+      
+      {% for job in trending_jobs  %}
+        <div class="trending-item" data-media-type="kenya-teaching-vacancies-button">
+          <div
+            style="
+              width: 32px;
+              height: 32px;
+              background: #eee;
+              border-radius: 6px;
+              flex-shrink: 0;
+            "
+          ></div>
+          <div class="trending-info">
+            <h4>Biology Teacher {{job.job_title}}</h4>
+            <p>Peponi School • 12 applicants</p>
+          </div>
+        </div>
+      {% endfor %}
+        
 
       <div class="trending-item" data-media-type="kenya-teaching-vacancies-button">
         <div

@@ -211,4 +211,7 @@
     .btn-ghost{
         color:var(--primary-foreground);
     }
+    .menu-card{
+        color:var(--accent-foreground);
+    }
 }

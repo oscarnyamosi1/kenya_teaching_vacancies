@@ -319,8 +319,8 @@
     }
 
     .toggle-knob {
-      width: 16px;
-      height: 16px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
       background: var(--primary);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -493,3 +493,12 @@
       }
     }
   
+@media (max-width: 767px){
+  .field-input {
+    height:10px;
+    font-size:14px;
+    padding:0px;
+    align-content:center;
+    align-items:center;
+  }
+}
