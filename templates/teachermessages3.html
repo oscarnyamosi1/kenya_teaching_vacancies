@@ -1,0 +1,310 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}K.T.V Teacher Messages{% endblock title %}
+{% block pagename %}messages{% endblock pagename %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href="{% static 'styling/teachermessages.css' %}">
+
+{% endblock headeradditionalcss %}
+
+
+{% block center_feed_content %}
+<!-- Main Area -->
+ <div class="main-area card glass scrollview colorize">
+
+      <!-- Right: Chat Window -->
+      <div class="chat-header">
+        {% if conversation %}
+          <div class="chat-user-info">
+            {% if conversation.school and conversation.school.logo %}
+              <img src="{{ conversation.school.logo.url }}" class="chat-avatar" alt="{{ conversation.school.name }}">
+            {% elif conversation.other_user and conversation.other_user.avatar %}
+              <img src="{{ conversation.other_user.avatar.url }}" class="chat-avatar" alt="{{ conversation.other_user.get_full_name }}">
+            {% else %}
+              <img src="{% static 'images/logo/ktvlogo.png' %}" class="chat-avatar" alt="KTV">
+            {% endif %}
+            <div class="chat-user-details">
+              <div class="chat-user-name">{% if conversation.title %}{{ conversation.title }}{% elif conversation.school %}{{ conversation.school.name }}{% elif conversation.other_user %}{{ conversation.other_user.get_full_name }}{% else %}Conversation{% endif %}</div>
+              <div class="chat-user-status">{% if conversation.is_active %}Active now{% else %}Last seen {{ conversation.updated_at|date:'M j, g:ia' }}{% endif %}</div>
+            </div>
+          </div>
+        {% else %}
+          <div class="chat-user-info">
+            <img src="{% static 'images/logo/ktvlogo.png' %}" class="chat-avatar" alt="KTV">
+            <div class="chat-user-details">
+              
+              {% if open_chat %}
+                <div class="chat-user-name">{{open_chat.name}}</div>
+                <div class="chat-user-status">*current chat*</div>
+                {% else %}
+                <div class="chat-user-name">No conversation selected</div>
+                <div class="chat-user-status">Select a conversation on the left</div>
+              {% endif %}
+                
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="chat-actions">
+          <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
+            <iconify-icon icon="lucide:phone" style="font-size: 20px"></iconify-icon>
+          </div>
+          <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
+            <iconify-icon icon="lucide:video" style="font-size: 20px"></iconify-icon>
+          </div>
+          <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
+            <iconify-icon icon="lucide:more-vertical" style="font-size: 20px"></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="messages-area">
+        {% if conversation and conversation.messages.all %}
+          <div class="date-divider">{{ conversation.updated_at|date:"F j, Y" }}</div>
+          {% for message in conversation.messages.all %}
+            <div class="message-row {% if message.sender == user %}sent{% else %}received{% endif %}">
+              {% if message.sender != user %}
+                {% if message.sender.avatar %}
+                  <img src="{{ message.sender.avatar.url }}" alt="{{ message.sender.get_full_name }}" style="width:32px;height:32px;border-radius:50%;align-self:flex-end;margin-bottom:4px;">
+                {% else %}
+                  <img src="{% static 'images/logo/ktvlogo.png' %}" alt="avatar" style="width:32px;height:32px;border-radius:50%;align-self:flex-end;margin-bottom:4px;">
+                {% endif %}
+              {% endif %}
+              <div class="message-bubble">
+                {{ message.content|linebreaksbr }}
+                <div class="message-meta">{{ message.created_at|date:"g:i A" }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        {% elif messages %}
+          <div class="date-divider">Today</div>
+          {% for message in messages %}
+            <div class="message-row {% if message.sender == user %}sent{% else %}received{% endif %}">
+              {% if message.sender != user %}
+                <img src="{% if message.sender.avatar %}{{ message.sender.avatar.url }}{% else %}{% static 'images/logo/ktvlogo.png' %}{% endif %}"
+                  style="width:32px;height:32px;border-radius:50%;align-self:flex-end;margin-bottom:4px;" alt="sender" />
+              {% endif %}
+              <div class="message-bubble">
+                {{ message.content|linebreaksbr }}
+                <div class="message-meta">{{ message.created_at|date:"g:i A" }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+        
+      
+          
+          <div class="date-divider">Today</div>
+        {% for response  in responses  %}  
+          
+          {% if response.sent_by_applicant is False  %}
+              <div class="message-row received">
+          {% else %}
+              <div class="message-row sent">
+          {% endif %}
+            
+              
+              {% if response.sent_by_applicant is False %}
+                <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4" style="width: 32px; height: 32px; border-radius: 50%; align-self: flex-end; margin-bottom: 4px;" alt="Sarah" />
+              {% endif %}
+                
+              <div class="message-bubble">{{response.message}}<div class="message-meta">10:30 AM</div></div>
+            </div>
+        {% endfor %}
+          <!-- Received Message -->
+
+          {% comment %} <!-- Sent Message -->
+          <div class="message-row sent">
+            <div class="message-bubble">Thanks Sarah! I really admire Greenwood's focus on STEM. I'd love to discuss how I can contribute.<div class="message-meta">10:32 AM <span class="read-receipt"><iconify-icon icon="lucide:check-check" style="font-size: 14px"></iconify-icon></span></div></div>
+          </div> {% endcomment %}
+
+         
+       
+        {% endif %}
+      </div>
+
+      <div class="chat-input-container">
+        {% if responses %}
+          <form action="/applications/messageschool/" method="post">
+            {% csrf_token %}
+            <div class="chat-input-wrapper">
+              <div class="action-icon" title="Attach CV/File" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:paperclip" style="font-size: 20px"></iconify-icon></div>
+              <div class="action-icon" title="Emoji" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:smile" style="font-size: 20px"></iconify-icon></div>
+              <textarea name="content" class="chat-textarea" placeholder="Reply ..." rows="1"></textarea>
+              <button type="submit" class="send-btn" data-media-type="kenya-teaching-vacancies-button"><iconify-icon icon="lucide:send-horizontal" style="font-size: 18px"></iconify-icon></button>
+            </div>
+          </form>
+        {% else %}
+          <form class="chat-input-wrapper" action="/applications/messageschool/{{application_id}}" method="post">
+            {% csrf_token %}
+            <div class="action-icon" title="Attach CV/File" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:paperclip" style="font-size: 20px"></iconify-icon></div>
+            <div class="action-icon" title="Emoji" data-media-type="kenya-teaching-vacancies-button" style="padding-bottom: 4px"><iconify-icon icon="lucide:smile" style="font-size: 20px"></iconify-icon></div>
+            <textarea name='content' class="chat-textarea" placeholder="New message" rows="1"></textarea>
+            <button type='submit' class="send-btn" data-media-type="kenya-teaching-vacancies-button"><iconify-icon icon="lucide:send-horizontal" style="font-size: 18px"></iconify-icon></bu>
+          </div>
+        {% endif %}
+      </div>
+
+{% endblock center_feed_content %}
+
+
+
+
+{% block rightsidebar %}
+<div>
+  <div class="conversations-panel menu-card glass-card">
+    <div class="conversations-header" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="{% static 'images/logo/ktvlogo.png' %}" alt="KTV" style="width:28px;height:28px;object-fit:contain;filter:grayscale(100%) brightness(120%);opacity:0.95">
+        <div style="font-weight:700">Messages</div>
+      </div>
+      <div class="action-icon" data-media-type="kenya-teaching-vacancies-button">
+        <iconify-icon icon="lucide:edit" style="font-size: 18px"></iconify-icon>
+      </div>
+    </div>
+
+    <div class="search-bar" style="margin:12px;">
+      <iconify-icon icon="lucide:search" style="font-size: 14px"></iconify-icon>
+      <input class="conv-search" placeholder="Search messages..."/>
+    </div>
+
+    <div class="conversation-list scrollview" style="padding:8px;">
+      {% comment %} Example conversation items - replace with loop where needed {% endcomment %}
+      <div class="conversation-item active" data-media-type="kenya-teaching-vacancies-button">
+        <div class="conv-avatar-container">
+          <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F35-50%2FEuropean%2F4" class="conv-avatar" alt="Principal Sarah" />
+          <div class="online-indicator"></div>
+        </div>
+        <div class="conv-content">
+          <div class="conv-top-row">
+            <span class="conv-name">Principal Sarah</span>
+            <span class="conv-time">10:42 AM</span>
+          </div>
+          <div class="conv-snippet unread">Is this salary range okay?</div>
+        </div>
+        <div class="conv-meta">
+          <div class="badge">2</div>
+        </div>
+      </div>
+
+      
+      {% for item in inboxitems  %}
+        
+        <a href='/messages/person1' >
+          <div class="conversation-item" data-media-type="kenya-teaching-vacancies-button">
+            <div class="conv-avatar-container">
+              <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F3" class="conv-avatar" alt="Maria Garcia" />
+            </div>
+            <div class="conv-content">
+              <div class="conv-top-row">
+                <span class="conv-name">Maria Garcia</span>
+                <span class="conv-time">Tue</span>
+              </div>
+              <div class="conv-snippet">Thanks for the interview opportunity!</div>
+            </div>
+          </div>
+        </a>
+
+      {% endfor %}
+        
+
+
+      <div class="conversation-item" data-media-type="kenya-teaching-vacancies-button">
+        <div class="conv-avatar-container">
+          <img src="https://storage.googleapis.com/banani-avatars/avatar%2Fmale%2F50-65%2FAfrican%2F2" class="conv-avatar" alt="Westside Academy" />
+        </div>
+        <div class="conv-content">
+          <div class="conv-top-row">
+            <span class="conv-name">Westside Academy</span>
+            <span class="conv-time">Mon</span>
+          </div>
+          <div class="conv-snippet">Let's schedule a call for next week.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const conversations = document.querySelectorAll('.conversation-item');
+  const chatUserName = document.querySelector('.chat-user-name');
+  const chatUserStatus = document.querySelector('.chat-user-status');
+  const messagesArea = document.querySelector('.messages-area');
+  const chatForm = document.querySelector('.chat-input-wrapper');
+  const chatTextarea = document.querySelector('.chat-textarea');
+
+  // Sample conversation data (for demo)
+  const chatData = {
+    "Principal Sarah": [
+      { type: 'received', content: 'Hello! Is this salary range okay?', time: '10:40 AM' },
+      { type: 'sent', content: 'Yes, that works.', time: '10:42 AM' },
+    ],
+    "Westside Academy": [
+      { type: 'received', content: "Let's schedule a call for next week.", time: 'Mon 09:00 AM' }
+    ]
+  };
+
+  // Helper: render messages
+  function renderMessages(name) {
+    messagesArea.innerHTML = '';
+    if (!chatData[name]) {
+      chatUserName.textContent = name;
+      chatUserStatus.textContent = 'No messages yet';
+      return;
+    }
+
+    chatUserName.textContent = name;
+    chatUserStatus.textContent = 'Online';
+
+    chatData[name].forEach(msg => {
+      const msgDiv = document.createElement('div');
+      msgDiv.classList.add('chat-message', msg.type);
+      msgDiv.innerHTML = `
+        <div class="message-content">${msg.content}</div>
+        <div class="message-time">${msg.time}</div>
+      `;
+      messagesArea.appendChild(msgDiv);
+    });
+
+    // Scroll to bottom
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+  }
+
+  // Conversation click
+  conversations.forEach(conv => {
+    conv.addEventListener('click', () => {
+      conversations.forEach(c => c.classList.remove('active'));
+      conv.classList.add('active');
+      const name = conv.querySelector('.conv-name').textContent;
+      renderMessages(name);
+    });
+  });
+
+  // Handle sending new message (frontend simulation)
+  chatForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const content = chatTextarea.value.trim();
+    if (!content) return;
+
+    const activeConv = document.querySelector('.conversation-item.active .conv-name').textContent;
+
+    // Add to chatData (simulated)
+    if (!chatData[activeConv]) chatData[activeConv] = [];
+    const now = new Date();
+    const hours = now.getHours() > 12 ? now.getHours() - 12 : now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+    const time = `${hours}:${minutes} ${ampm}`;
+
+    chatData[activeConv].push({ type: 'sent', content, time });
+    renderMessages(activeConv);
+    chatTextarea.value = '';
+  });
+});
+</script>
+
+{% endblock rightsidebar %}
+

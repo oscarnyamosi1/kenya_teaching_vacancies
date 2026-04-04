@@ -52,15 +52,20 @@ def login(request):
             if password == "" or (password.__len__() < 8):
                 print("------------------------> Password too short")
                 messages.info(request,"message too schort")
-                context = {'email':email}
+                # context = {'email':email}
                 return redirect('login')
             else:
                 if email_exists: 
                     username = User.objects.get(email = email).username
                     user = auth.authenticate(request,username = username,password=password)
+                    
+                    if user is not None:
+                        auth.login(request,user)
+                        return redirect("home")
+                    else:
+                        # alert in javascript wrong password or email
+                        return redirect('login')
 
-                    auth.login(request,user)
-                    return redirect("home")
                 else:
                     messages.info(request,'Wrong credentials')
                     print("Email doesn't exist")
@@ -75,75 +80,88 @@ def logout(request):
 
 def signup(request):
 
-    step = request.GET.get('q', '1')
+    # step = request.GET.get('q', '1')
 
-    # STEP 1: CREATE ACCOUNT
-    if step == '1':
+    if request.method == "POST":
 
-        if request.method == "POST":
+        fullname = request.POST.get('fullname')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone-number')
+        teachingFocus = request.POST.get('teaching-focus')
+        password = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        bio = request.POST.get('bio')
+        openToRemoteWork = request.POST.get('open2remote')
 
-            fullname = request.POST.get('fullname')
-            email = request.POST.get('email')
-            phone = request.POST.get('phone-number')
-            teachingFocus = request.POST.get('teaching-focus')
-            password = request.POST.get('password1')
-            password2 = request.POST.get('password2')
-            bio = request.POST.get('bio')
-            openToRemoteWork = request.POST.get('open2remote')
+        print(f'''
+        
+        fullname:{fullname}
+        email:{email}
+        phone:{phone}
+        teachingFocus:"{teachingFocus}"
+                opentoremote:"{openToRemoteWork}"
+                password:"{password}"
+                bio "{bio}"
+        
+        ''')
 
-            # validate passwords
-            if password != password2:
-                messages.error(request, "Passwords do not match")
-                return redirect('/signup/?q=1')
+        # validate passwords
+        if password != password2:
+            messages.error(request, "Passwords do not match")
+            return redirect('/signup/?q=1')
 
-            # check existing email
-            if User.objects.filter(email=email).exists():
-                messages.error(request, "Email already registered")
-                return redirect('/signup/?q=1')
+        # check existing email
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already registered")
+            return redirect('/signup/?q=1')
 
-            # create username automatically
-            username = email.split("@")[0]
-            messages.info(request,'*Important* Your username is your email name before the @ sign !')
+        # create username automatically
+        username = email.split("@")[0]
+        messages.info(request,'*Important* Your username is your email name before the @ sign !')
 
-            # create user
-            user = User.objects.create_user(
-                username=username,
-                email=email,
-                password=password
-            )
+        # create user
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
 
-            # store extra info in session for step 2
-            request.session['signup_data'] = {
-                "fullname": fullname,
-                "phone": phone,
-                "bio": bio
-            }
+        # store extra info in session for step 2
+            # request.session['signup_data'] = {
+            #     "fullname": fullname,
+            #     "phone": phone,
+            #     "bio": bio
+            # }
 
-            # move to next step
-            return redirect('/signup/?q=2')
+            # # move to next step
+        auth.login(request,user)
+        return redirect('/teachers/uploaddocuments/')
 
-        return render(request, 'signupflow.html', {"step": 1})
+    # # STEP 1: CREATE ACCOUNT
+    # if step == '1':
+
+    return render(request, 'signupflow.html')
 
 
 
-    # STEP 2: DOCUMENT VERIFICATION
-    elif step == '2':
+    # # STEP 2: DOCUMENT VERIFICATION
+    # elif step == '2':
 
-        if request.method == "POST":
+    #     if request.method == "POST":
 
-            id_number = request.POST.get("id_number")
-            tsc_number = request.POST.get("tsc_number")
+    #         id_number = request.POST.get("id_number")
+    #         tsc_number = request.POST.get("tsc_number")
 
-            data = request.session.get("signup_data")
+    #         data = request.session.get("signup_data")
 
-            # Here you would save to a profile model
-            # TeacherProfile.objects.create(...)
+    #         # Here you would save to a profile model
+    #         # TeacherProfile.objects.create(...)
 
-            messages.success(request, "Account created successfully")
+    #         messages.success(request, "Account created successfully")
 
-            return redirect("/login/")
+    #         return redirect("/login/")
 
-        return render(request, 'signup_documents.html', {"step": 2})
+    #     return render(request, 'signup_documents.html', {"step": 2})
 
 
     return render(request, 'signupflow.html')

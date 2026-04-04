@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     const body = document.querySelector('body')
     const overlay = document.getElementById('overlay')
 
+    const navlogout = document.getElementById('navlogout')
+    const navlogin = document.getElementById('navlogin')
+
+    navlogout.addEventListener('click',()=>{
+        window.location = '/logout/'
+    })
+
 
     if(window.innerWidth < 767){
         sidebarRight.classList.add = 'hidden'

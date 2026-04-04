@@ -59,6 +59,7 @@
     color: white;
     max-width: 500px;
 }
+
 .form-side {
     display: flex;
     flex-direction: column;
@@ -73,7 +74,12 @@
 .form-container {
     width: 100%;
     max-width: 360px;
+    padding-top:0px;
 }
+.login-form-container{
+    
+}
+
 .input-group {
     display: flex;
     flex-direction: column;
@@ -173,5 +179,10 @@
     }
     .brand-side {
     display: none;
+    }
+}
+@media (max-width: 425px){
+    .form-side {
+        display:none;
     }
 }

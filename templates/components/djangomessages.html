@@ -1,0 +1,9 @@
+
+ <div id="djangoMessages" class="django-messages">
+  {% for message in messages %}
+    <div class="message {{ message.tags }}">
+      <span class="msg-text">{{ message }}</span>
+      <button class="close-btn">&times;</button>
+    </div>
+  {% endfor %}
+</div>

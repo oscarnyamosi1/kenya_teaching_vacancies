@@ -6,6 +6,16 @@ const body = document.getElementById('body')
 let pageName = document.querySelector('.pagename').value.trim()
 let is_dark_mode = JSON.parse(localStorage.getItem("is_dark_mode")) || false
 
+// for message alerts
+function showAlert(message, type) {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 3000);
+}
 
 
 
@@ -44,7 +54,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     highlightNav()
     handleThemes()
 
-  
+    
+    
+    const djangoMessages = document.getElementById("djangoMessages")
+    setTimeout(() => {
+        djangoMessages.style.display = 'none';
+    }, 6000); 
     // view job details
 
     let viewjobdetailsButtons = document.querySelectorAll('.viewjobdetails')
@@ -56,8 +71,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             viewjobdetails()
         })
     })
-
-    // create glasssmmorphism effects
 
     // Glassy hover glow
     document.querySelectorAll('.card').forEach(card => {
@@ -86,4 +99,29 @@ document.addEventListener('DOMContentLoaded',()=>{
         viewtrending.style.display = 'inline-block'
 
     })
+
+
+// add dynamic blur on scroll
+    const glassElements = document.querySelectorAll('.glass');
+
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+
+        glassElements.forEach(el => {
+            const blur = Math.min(24, 12 + scrollY * 0.05);
+            const opacity = Math.min(0.6, 0.2 + scrollY * 0.001);
+
+            el.style.backdropFilter = `blur(${blur}px) saturate(160%)`;
+            el.style.webkitBackdropFilter = `blur(${blur}px) saturate(160%)`;
+            el.style.background = `rgba(255,255,255,${opacity})`;
+        });
+    });
+
+    // makes this smarter per theme
+    const isDark = document.body.classList.contains('dark');
+
+    const baseColor = isDark ? '20,20,20' : '255,255,255';
+
+    el.style.background = `rgba(${baseColor}, ${opacity})`;
+
 })

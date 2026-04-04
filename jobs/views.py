@@ -182,6 +182,7 @@ def search(request,filter='',page_no=None):
 
 @login_required(login_url='login')
 def applyjob(request,jobid):
+    # check if the user has uploaded official documents
     job_to_apply = Job.objects.get(id=jobid)
     teacher = getTeacherProfile(request)
 

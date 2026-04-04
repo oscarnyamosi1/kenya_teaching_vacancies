@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.apps import apps
 
 # Create your models here.
-User = User
 
 class Subject(models.Model):
     title = models.CharField(max_length=20)

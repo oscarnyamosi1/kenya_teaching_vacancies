@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from myutils import *
 from django.contrib import messages 
+
 # Create your views here.
 
 @login_required(login_url='login')
@@ -205,3 +206,76 @@ def language_settings(request):
 def help_settings(request):
     context = createContext(request)
     return render(request,"settings/help.html",context)
+
+@login_required
+def changeNumber(request):
+    context = createContext(request)
+    if request.method == 'POST':
+        new_number = request.POST.get('newnumber')
+        teacher = getTeacherProfile(request)
+        teacher.phone = new_number
+        teacher.save()
+        return redirect('/teachers/account/')
+
+
+    return render(request,'settings/changenumber.html',context)
+
+@login_required
+def changePassword(request):
+    context = createContext(request)
+    if request.method == 'POST':
+        newpassword1 = request.POST.get('newpassword1')
+        newpassword2 = request.POST.get('newpassword2')
+
+        if newpassword1 != '':
+            pass
+        else:
+            messages.error(request,"These fields can't be blank ! ")
+
+        if newpassword1 == newpassword2:
+            # change password here
+            auth.logout(request)
+        else:
+            messages.error(request,"Passwords don't match !")
+
+    return render(request,'settings/changepassword.html',context)
+
+
+@login_required
+def changeEmail(request):
+    context = createContext(request)
+    teacher = getTeacherProfile(request)
+
+    if request.method == 'POST':
+        new_email = request.POST.get('newemail')
+        confirm_email = request.POST.get('confirmemail')
+
+        # Check for blank fields
+        if not new_email or not confirm_email:
+            messages.error(request, "Email fields can't be blank!")
+            return render(request, 'settings/changeemail.html', context)
+
+        # Check if emails match
+        if new_email != confirm_email:
+            messages.error(request, "Emails do not match!")
+            return render(request, 'settings/changeemail.html', context)
+
+        # Optional: check if email is different from current
+        if new_email == teacher.email:
+            messages.info(request, "This is already your current email!")
+            return render(request, 'settings/changeemail.html', context)
+
+        # Update email and logout user
+        teacher.email = new_email
+        teacher.save()
+        messages.success(request, "Email updated successfully! Please log in with your new email.")
+        auth.logout(request)
+        return redirect('/login/')  # redirect to login page
+
+    return render(request, 'settings/changeemail.html', context)
+
+
+@login_required
+def viewDocuments(request):
+    context = createContext(request)
+    return render(request,"settings/viewdocuments.html",context)

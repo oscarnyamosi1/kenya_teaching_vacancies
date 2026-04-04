@@ -1,4 +1,6 @@
 from django.shortcuts import redirect,render
+from django.contrib import messages
+
 from teachers.models import Teacher
 from schools.models import School,SchoolBlog
 from django.contrib.auth.decorators import login_required
@@ -82,16 +84,16 @@ def createContext(request):
     teachers_hired = countHires()
     # trendingjobs = getTrendingJobs(request)
     trending_jobs = Job.objects.trending() 
-
+    context = {}
     if request.user.is_authenticated:
         teacher = getTeacherProfile(request)
         theme = teacher.theme.title if teacher.theme else "macglass"
+        context = context | {'teacher':teacher}
     else:
         theme = "macglass"
 
-    theme = f"styling/themes/{theme}.css"
-
-    context = {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trending_jobs,'theme':theme}
+    theme = f"styling/themes/{theme}.css" 
+    context = context | {"all_jobs":all_jobs,"teachers_hired":teachers_hired,'trending_jobs':trending_jobs,'theme':theme}
     return context
 
 

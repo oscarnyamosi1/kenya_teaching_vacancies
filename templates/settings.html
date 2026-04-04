@@ -1,236 +1,194 @@
 {% extends 'index.html' %}
 {% load static %}
-
 {% block headeradditionalcss %}
-<link rel="stylesheet" href="{% static 'styling/profilesettings.css' %}">
+<link rel="stylesheet" href="{% static 'styling/profilesettings.css' %}" />
 {% endblock headeradditionalcss %}
+{% block title %} KTV Profile Settings {%endblock title %}
 
-{% block title %}
-KTV Profile Settings
-{% endblock title %}
-
-{% block pagename %}
-settings
-{% endblock pagename %}
+{% block pagename %} settings {% endblock pagename %}
 
 {% block center_feed_content %}
 
 <div class="main-area">
-<div class="content-container">
-
-<div class="page-header">
-<h1 class="page-title">Settings</h1>
-</div>
-
-<!-- Profile summary -->
-<a href="/teachers/profile/" class="profile-summary glass-card" data-media-type="kenya-teaching-vacancies-button">
-
-<img
-src="{{user.profile.avatar.url|default:'https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F2'}}"
-class="profile-avatar"
-alt="Your Profile"
-/>
-
-<div class="profile-info">
-
-<div class="profile-name">{{ user.username|title }}</div>
-
-<div class="profile-status">
-Math Teacher • Open to work
-</div>
-
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:user" style="font-size:24px"></iconify-icon>
-</div>
-
-</a>
-
-<!-- ACCOUNT GROUP -->
-
-<div class="settings-group glass-card">
-
-<a href="/teachers/account/" class="settings-item" data-media-type="kenya-teaching-vacancies-button">
-
-<div class="item-icon-wrapper">
-<iconify-icon icon="lucide:key-round"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title">Account</div>
-<div class="item-subtitle">Security, email, phone number</div>
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:chevron-right"></iconify-icon>
-</div>
-
-</a>
-
-
-<a href="/teachers/privacy/" class="settings-item">
-
-<div class="item-icon-wrapper">
-<iconify-icon icon="lucide:lock"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title">Privacy</div>
-<div class="item-subtitle">
-Profile visibility, blocked users
-</div>
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:chevron-right"></iconify-icon>
-</div>
-
-</a>
-
-
-<a href="/teachers/uploaddocuments/" class="settings-item">
-
-<div class="item-icon-wrapper">
-<iconify-icon icon="lucide:file-text"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title">CV & Documents</div>
-<div class="item-subtitle">
-Manage your resume and certificates
-</div>
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:chevron-right"></iconify-icon>
-</div>
-
-</a>
-
-</div>
-
-<!-- PREFERENCES -->
-
-<div class="section-header">Preferences</div>
-
-<div class="settings-group glass-card">
-
-<a href="/teachers/notifications/" class="settings-item">
-
-<div class="item-icon-wrapper">
-<iconify-icon icon="lucide:bell"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title">Notifications</div>
-<div class="item-subtitle">
-Messages, job alerts, application updates
-</div>
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:chevron-right"></iconify-icon>
-</div>
-
-</a>
-
-
-<a href="/teachers/appearance/" class="settings-item">
-
-<div class="item-icon-wrapper">
-<iconify-icon icon="lucide:moon"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title">Appearance</div>
-<div class="item-subtitle">Theme, font size</div>
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:chevron-right"></iconify-icon>
-</div>
-
-</a>
-
-
-<a href="/teachers/language/" class="settings-item">
-
-<div class="item-icon-wrapper">
-<iconify-icon icon="lucide:globe"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title">Language</div>
-<div class="item-subtitle">English</div>
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:chevron-right"></iconify-icon>
-</div>
-
-</a>
-
-</div>
-
-<!-- SUPPORT -->
-
-<div class="section-header">Support</div>
-
-<div class="settings-group glass-card">
-
-<a href="/teachers/help/" class="settings-item">
-
-<div class="item-icon-wrapper">
-<iconify-icon icon="lucide:help-circle"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title">Help Center</div>
-<div class="item-subtitle">
-Contact support, privacy policy
-</div>
-</div>
-
-<div class="chevron-icon">
-<iconify-icon icon="lucide:chevron-right"></iconify-icon>
-</div>
-
-</a>
-
-
-<a href="/logout/" class="settings-item">
-
-<div class="item-icon-wrapper destructive">
-<iconify-icon icon="lucide:log-out"></iconify-icon>
-</div>
-
-<div class="item-content">
-<div class="item-title destructive">Log out</div>
-</div>
-
-</a>
-
-</div>
-
-<div class="settings-footer">
-
-Kenya Teaching Vacancies v1.0.0
-
-<br>
-
-<a href="/privacy/">Privacy</a> •
-<a href="/terms/">Terms</a> •
-<a href="/pricing/">Pricing</a> •
-<a href="/contact/">Contact</a>
-
-<br><br>
-
-© 2026 Kenya Teaching Vacancies
-
-</div>
-
-</div>
+  <div class="content-container">
+    <div class="page-header">
+      <h1 class="page-title">Settings</h1>
+    </div>
+
+    <!-- Profile summary -->
+    <a
+      href="/teachers/profile/"
+      class="profile-summary glass-card"
+      data-media-type="kenya-teaching-vacancies-button"
+    >
+      <img
+        src="{{user.profile.avatar.url|default:'https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FHispanic%2F2'}}"
+        class="profile-avatar"
+        alt="Your Profile"
+      />
+
+      <div class="profile-info">
+        <div class="profile-name">{{ user.username|title }}</div>
+
+        <div class="profile-status">Math Teacher • Open to work</div>
+      </div>
+
+      <div class="chevron-icon">
+        <iconify-icon icon="lucide:user" style="font-size: 24px"></iconify-icon>
+      </div>
+    </a>
+
+    <!-- ACCOUNT GROUP -->
+
+    <div class="settings-group glass-card">
+      <a
+        href="/teachers/account/"
+        class="settings-item"
+        data-media-type="kenya-teaching-vacancies-button"
+      >
+        <div class="item-icon-wrapper">
+          <iconify-icon icon="lucide:key-round"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title">Account</div>
+          <div class="item-subtitle">Security, email, phone number</div>
+        </div>
+
+        <div class="chevron-icon">
+          <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="/teachers/privacy/" class="settings-item">
+        <div class="item-icon-wrapper">
+          <iconify-icon icon="lucide:lock"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title">Privacy</div>
+          <div class="item-subtitle">Profile visibility, blocked users</div>
+        </div>
+
+        <div class="chevron-icon">
+          <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="/teachers/view-documents/" class="settings-item">
+        <div class="item-icon-wrapper">
+          <iconify-icon icon="lucide:file-text"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title">CV & Documents</div>
+          <div class="item-subtitle">Manage your resume and certificates</div>
+        </div>
+
+        <div class="chevron-icon">
+          <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+        </div>
+      </a>
+    </div>
+
+    <!-- PREFERENCES -->
+
+    <div class="section-header">Preferences</div>
+
+    <div class="settings-group glass-card">
+      <a href="/teachers/notifications/" class="settings-item">
+        <div class="item-icon-wrapper">
+          <iconify-icon icon="lucide:bell"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title">Notifications</div>
+          <div class="item-subtitle">
+            Messages, job alerts, application updates
+          </div>
+        </div>
+
+        <div class="chevron-icon">
+          <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="/teachers/appearance/" class="settings-item">
+        <div class="item-icon-wrapper">
+          <iconify-icon icon="lucide:moon"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title">Appearance</div>
+          <div class="item-subtitle">Theme, font size</div>
+        </div>
+
+        <div class="chevron-icon">
+          <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="/teachers/language/" class="settings-item">
+        <div class="item-icon-wrapper">
+          <iconify-icon icon="lucide:globe"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title">Language</div>
+          <div class="item-subtitle">English</div>
+        </div>
+
+        <div class="chevron-icon">
+          <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+        </div>
+      </a>
+    </div>
+
+    <!-- SUPPORT -->
+
+    <div class="section-header">Support</div>
+
+    <div class="settings-group glass-card">
+      <a href="/teachers/help/" class="settings-item">
+        <div class="item-icon-wrapper">
+          <iconify-icon icon="lucide:help-circle"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title">Help Center</div>
+          <div class="item-subtitle">Contact support, privacy policy</div>
+        </div>
+
+        <div class="chevron-icon">
+          <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="/logout/" class="settings-item">
+        <div class="item-icon-wrapper destructive">
+          <iconify-icon icon="lucide:log-out"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-title destructive">Log out</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="settings-footer">
+      Kenya Teaching Vacancies v1.0.0
+
+      <br />
+
+      <a href="/privacy/">Privacy</a> • <a href="/terms/">Terms</a> •
+      <a href="/pricing/">Pricing</a> •
+      <a href="/contact/">Contact</a>
+
+      <br /><br />
+
+      © 2026 Kenya Teaching Vacancies
+    </div>
+  </div>
 </div>
 
 {% endblock center_feed_content %}

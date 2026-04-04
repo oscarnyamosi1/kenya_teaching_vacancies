@@ -1,0 +1,185 @@
+{% extends '../index.html' %}
+{% load static %}
+
+{% block pagename %} settings {% endblock pagename %}
+
+{% block center_feed_content %}
+<style>
+/* PANEL */
+.settings-panel {
+    padding: 6px 0;
+    border-radius: 16px;
+}
+
+/* ROW */
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+
+    transition: background 0.2s ease;
+}
+
+.settings-row:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+/* TEXT */
+.settings-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.settings-value {
+    font-size: 13px;
+    color: var(--muted-foreground);
+    margin-top: 2px;
+}
+
+/* RIGHT BUTTON */
+.settings-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+}
+
+/* EXPANDABLE */
+.settings-expand {
+    display: none;
+    padding: 16px 18px;
+    border-top: 1px solid var(--border);
+    animation: slideDown 0.25s ease;
+}
+
+/* INPUT */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-wrapper {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--foreground);
+}
+
+/* ACTIONS */
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* ANIMATION */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<div class="content-container">
+
+  <!-- Page Title -->
+  <h2 class="page-title">
+    <i class="fa fa-user-circle"></i> Account Settings
+  </h2>
+
+  <!-- SETTINGS GROUP -->
+  <div class="glass card settings-panel">
+
+    <!-- PHONE ITEM -->
+    <div class="settings-row" id="phoneRow">
+
+      <!-- LEFT -->
+      <div class="settings-info">
+        <div class="settings-label">
+          <i class="fa fa-phone"></i> Phone Number
+        </div>
+        <div class="settings-value">0795404843</div>
+      </div>
+
+      <!-- RIGHT ACTION -->
+      <button id="changephoneno" class="btn btn-ghost settings-action">
+        <i class="fa fa-pencil"></i>
+      </button>
+
+    </div>
+
+    <!-- EXPANDABLE INLINE FORM -->
+    <div id="phoneForm" class="settings-expand glass">
+
+      <form action="/teachers/change-number/" method="post">
+        {% csrf_token %}
+
+        <!-- INPUT -->
+        <div class="input-group">
+          <label>
+            <i class="fa fa-mobile"></i> New Phone Number
+          </label>
+
+          <div class="input-wrapper">
+            <input 
+              name="newnumber" 
+              type="text"
+              placeholder="07XX XXX XXX"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="settings-actions">
+          <button type="button" id="cancelPhone" class="btn btn-ghost">
+            Cancel
+          </button>
+
+          <button type="submit" class="btn btn-primary">
+            <i class="fa fa-check"></i> Save
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>
+<script>
+    const changeBtn = document.getElementById('changephoneno');
+    const form = document.getElementById('phoneForm');
+    const cancelBtn = document.getElementById('cancelPhone');
+
+    changeBtn.addEventListener('click', () => {
+        form.style.display = 'block';
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        form.style.display = 'none';
+    });
+</script>
+
+{% endblock %}

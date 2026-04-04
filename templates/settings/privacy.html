@@ -1,33 +1,221 @@
 {% extends "../settings.html" %}
 
+{% block pagename %} settings {% endblock pagename %}
+
 {% block center_feed_content %}
+<style>
+/* PANEL */
+.settings-group {
+    padding: 6px 0;
+    border-radius: 16px;
+}
+
+/* ITEM ROW */
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.settings-item:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+/* ITEM TEXT */
+.item-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--foreground);
+}
+
+.item-subtitle {
+    font-size: 13px;
+    color: var(--muted-foreground);
+    margin-top: 2px;
+}
+
+/* RIGHT ACTION */
+.item-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+}
+
+/* EXPANDABLE */
+.settings-expand {
+    display: none;
+    padding: 16px 18px;
+    border-top: 1px solid var(--border);
+    animation: slideDown 0.25s ease;
+}
+
+/* INPUT */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-wrapper {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.input-wrapper input, 
+.input-wrapper select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--foreground);
+}
+
+/* ACTIONS */
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* BLOCKED USERS LIST */
+.blocked-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.blocked-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+}
+
+/* ANIMATION */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
 
 <div class="content-container">
 
-<h2 class="page-title">Privacy</h2>
+<h2 class="page-title"><i class="fa fa-user-secret"></i> Privacy</h2>
 
 <div class="settings-group glass-card">
 
-<div class="settings-item">
+  <!-- PROFILE VISIBILITY -->
+  <div class="settings-item" id="visibilityRow">
+    <div class="item-content">
+      <div class="item-title"><i class="fa fa-eye"></i> Profile Visibility</div>
+      <div class="item-subtitle" id="visibilityStatus">{{ user.profile_visibility|default:"Public" }}</div>
+    </div>
+    <button class="btn btn-ghost item-action" id="changeVisibilityBtn">
+      <i class="fa fa-pencil"></i>
+    </button>
+  </div>
 
-<div class="item-content">
-<div class="item-title">Profile Visibility</div>
-<div class="item-subtitle">Public</div>
+  <!-- EXPANDABLE FORM FOR VISIBILITY -->
+  <div id="visibilityForm" class="settings-expand glass">
+    <form action="/teachers/change-visibility/" method="post">
+      {% csrf_token %}
+        <div class="input-group">
+            <label for="visibility"><i class="fa fa-eye"></i> Visibility</label>
+            <div class="input-wrapper">
+                <select name="visibility" id="visibility">
+                <option value="Public" {% if user.profile_visibility|default:"Public" == "Public" %}selected{% endif %}>Public</option>
+                <option value="Private" {% if user.profile_visibility == "Private" %}selected{% endif %}>Private</option>
+                </select>
+            </div>
+        </div>
+      <div class="settings-actions">
+        <button type="button" id="cancelVisibility" class="btn btn-ghost">Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- BLOCKED USERS -->
+  <div class="settings-item" id="blockedRow">
+    <div class="item-content">
+      <div class="item-title"><i class="fa fa-ban"></i> Blocked Users</div>
+      <div class="item-subtitle">Manage blocked accounts</div>
+    </div>
+    <button class="btn btn-ghost item-action" id="blockedToggleBtn">
+      <i class="fa fa-chevron-down"></i>
+    </button>
+  </div>
+
+  <!-- EXPANDABLE BLOCKED USERS LIST -->
+  <div id="blockedListForm" class="settings-expand glass">
+    <ul class="blocked-list">
+      {% for blocked_user in blocked_users %}
+      <li>
+        <span>{{ blocked_user.username }}</span>
+        <form action="/teachers/unblock-user/{{ blocked_user.id }}/" method="post" style="margin:0;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-ghost btn-sm"><i class="fa fa-unlock"></i> Unblock</button>
+        </form>
+      </li>
+      {% empty %}
+      <li>No blocked users</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
 </div>
 
-</div>
+<script>
+  // PROFILE VISIBILITY TOGGLE
+  const changeVisibilityBtn = document.getElementById('changeVisibilityBtn');
+  const visibilityForm = document.getElementById('visibilityForm');
+  const cancelVisibility = document.getElementById('cancelVisibility');
 
-<div class="settings-item">
+  changeVisibilityBtn.addEventListener('click', () => {
+      visibilityForm.style.display = 'block';
+  });
 
-<div class="item-content">
-<div class="item-title">Blocked Users</div>
-<div class="item-subtitle">Manage blocked accounts</div>
-</div>
+  cancelVisibility.addEventListener('click', () => {
+      visibilityForm.style.display = 'none';
+  });
 
-</div>
+  // BLOCKED USERS TOGGLE
+  const blockedToggleBtn = document.getElementById('blockedToggleBtn');
+  const blockedListForm = document.getElementById('blockedListForm');
 
-</div>
-
-</div>
+  blockedToggleBtn.addEventListener('click', () => {
+      if (blockedListForm.style.display === 'block') {
+          blockedListForm.style.display = 'none';
+          blockedToggleBtn.innerHTML = '<i class="fa fa-chevron-down"></i>';
+      } else {
+          blockedListForm.style.display = 'block';
+          blockedToggleBtn.innerHTML = '<i class="fa fa-chevron-up"></i>';
+      }
+  });
+</script>
 
 {% endblock %}

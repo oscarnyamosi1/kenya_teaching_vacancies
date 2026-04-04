@@ -19,6 +19,7 @@ def createChatParties(request):
 def teachermessages(request):
     context = createContext(request)
     chatparties = createChatParties(request)
+
     context = context|{'inboxitems':chatparties}
     return render(request,'teachermessages.html',context)
 

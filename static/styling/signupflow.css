@@ -316,11 +316,13 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      
     }
 
     .toggle-knob {
-      width: 8px;
-      height: 8px;
+      
+      width: 15px;
+      height: 15px;
       border-radius: 999px;
       background: var(--primary);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -497,7 +499,8 @@
   .field-input {
     height:10px;
     font-size:14px;
-    padding:0px;
+    padding-top:10px;
+    margin-bottom:-3px;
     align-content:center;
     align-items:center;
   }

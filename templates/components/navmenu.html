@@ -5,9 +5,9 @@
         <i class="mobilethemer fa fa-moon-o"></i>
         <div class="auth-buttons-mobile">
             {% if user.is_authenticated %}
-            <a href="/logout" class="btn auth-button-mobile btn-outline fa fa-arrow-right"> {{ user.username.capitalize }}</a>
+                <div id="navlogout" class="btn auth-button-mobile btn-outline fa fa-arrow-right"> {{ user.username.capitalize }}</div>
             {% else %}
-            <a href="/login" class="btn auth-button-mobile btn-outline">Log In</a>
+                <div id="navlogin" class="btn auth-button-mobile btn-outline">Log In</div>
             {% endif %}
         </div>
 

@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block headeradditionalcss %}
+<link rel="stylesheet" href="{% static 'styling/uploaddocuments.css' %}">
+{% endblock headeradditionalcss %}
+
+{% block pagename %} settings {% endblock pagename %}
+
+{% block center_feed_content %}
+
+<main class="page">
+  <section class="glass-card upload-card">
+
+    <header class="card-header">
+      <h1>Teaching Documents</h1>
+      <p>
+        View or download your uploaded documents. You can still upload missing documents here.
+      </p>
+    </header>
+
+    <div class="upload-list">
+
+      {% comment %} Loop through document types {% endcomment %}
+      {% for doc_type, doc_info in documents.items %}
+      <div class="upload-item {% if doc_info.exists %}completed{% endif %}">
+        
+        <div class="icon-box {% if doc_info.exists %}success{% else %}muted{% endif %}">
+          <iconify-icon icon="{{ doc_info.icon }}"></iconify-icon>
+        </div>
+
+        <div class="item-content">
+          <div class="item-label">{{ doc_info.label }} {% if doc_info.optional %}<span class="badge">Optional</span>{% endif %}</div>
+          {% if doc_info.exists %}
+          <div class="file-preview">
+            <iconify-icon icon="lucide:file-check"></iconify-icon>
+            <span>{{ doc_info.filename }}</span>
+          </div>
+          <div class="item-meta">Uploaded on {{ doc_info.uploaded_at|date:"M d, Y" }}</div>
+          {% else %}
+          <div class="item-meta">{{ doc_info.hint }}</div>
+          {% endif %}
+        </div>
+
+        {% if doc_info.exists %}
+        <div class="status">
+          <a href="{{ doc_info.file.url }}" target="_blank" class="btn btn-ghost btn-sm">
+            <iconify-icon icon="lucide:download"></iconify-icon> Download
+          </a>
+        </div>
+        {% else %}
+        <label class="upload-btn {% if doc_info.optional %}outline{% endif %}" for="{{ doc_info.input_id }}">Upload</label>
+        <input type="file" style="display:none;" id="{{ doc_info.input_id }}" name="{{ doc_info.name }}" onchange="updateFileName(this,'file-chosen-{{ forloop.counter }}')" accept="{{ doc_info.accept }}">
+        <div class="file-preview">
+          <iconify-icon icon="lucide:file-check"></iconify-icon>
+          <span id="file-chosen-{{ forloop.counter }}">No file selected</span>
+        </div>
+        {% endif %}
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <footer class="card-actions">
+      <button type="submit" form="uploadDocs" class="btn primary">
+        Submit Documents
+        <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+      </button>
+      <button class="btn ghost" onclick="saveFormProgress()">Save & Continue Later</button>
+    </footer>
+
+  </section>
+</main>
+
+<script>
+function updateFileName(input,id){
+  const filenameDisplay = document.getElementById(id)
+  if (input.files && input.files.length > 0){
+    filenameDisplay.textContent = input.files[0].name;
+  } else {
+    filenameDisplay.textContent = 'No file selected';
+  }
+}
+
+// Optional: Save form progress locally
+function saveFormProgress() {
+  const inputs = document.querySelectorAll('.upload-list input[type="file"]');
+  const formData = {};
+  inputs.forEach(input => {
+    if(input.files.length > 0){
+      formData[input.name] = input.files[0].name;
+    }
+  });
+  localStorage.setItem('savedFormData', JSON.stringify(formData));
+  alert('Form progress saved!');
+}
+</script>
+
+{% endblock center_feed_content %}
+
+{% block rightsidebar %}
+  {% include 'components/trending.html' %}
+{% endblock rightsidebar %}

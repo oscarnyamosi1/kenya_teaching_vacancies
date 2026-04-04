@@ -20,5 +20,10 @@ urlpatterns = [
     path("appearance/", views.appearance_settings, name="appearance_settings"),
     path("language/", views.language_settings, name="language_settings"),
     path("help/", views.help_settings, name="help_settings"),
+    
+    path('change-number/',views.changeNumber,name="change-number"),
+    path('change-password/',views.changePassword,name="change-password"),
+    path('change-email/',views.changeEmail,name='change-email'),
+    path('view-documents/',views.viewDocuments,name='view-documents'),
 
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

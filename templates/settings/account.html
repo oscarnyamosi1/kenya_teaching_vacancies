@@ -1,35 +1,40 @@
-{% extends "../settings.html" %}
-
-{% block center_feed_content %}
+{% extends "../settings.html" %} {% block center_feed_content %}
+{% load static %}
 
 <div class="content-container">
+  <h2 class="page-title">Account</h2>
 
-<h2 class="page-title">Account</h2>
+  <div class="settings-group glass-card">
+    <div class="settings-item">
+      <div class="item-content">
+        <div class="item-title">Email</div>
+        <div class="item-subtitle">{{user.email}}</div>
+      </div>
+      <div id='changemail' class='btn-outline btn'>Change</div>
+    </div>
 
-<div class="settings-group glass-card">
+    <div class="settings-item">
+      <div class="item-content">
+        <div class="item-title">Phone Number</div>
+        
+        {% if teacher.phone %}
+            <div class="item-subtitle">{{teacher.phone}}</div>
+        {% else %}
+            <div class="item-subtitle">Not set</div>
+        {% endif %}
+            
+      </div>
+      <div id='changephoneno' class='btn-outline btn'>  Change</div>
 
-<div class="settings-item">
-<div class="item-content">
-<div class="item-title">Email</div>
-<div class="item-subtitle">{{user.email}}</div>
-</div>
-</div>
+    </div>
 
-<div class="settings-item">
-<div class="item-content">
-<div class="item-title">Phone Number</div>
-<div class="item-subtitle">Not set</div>
-</div>
-</div>
+    <div class="settings-item">
+      <div class="item-content">
+        <div id='changepassword' class="item-title btn btn-outline">  Change Password</div>
+      </div>
+    </div>
 
-<div class="settings-item">
-<div class="item-content">
-<div class="item-title">Change Password</div>
+  </div>
 </div>
-</div>
-
-</div>
-
-</div>
-
+<script src={% static 'javascript/account.js' %}></script>
 {% endblock %}

@@ -12,10 +12,11 @@
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
+
 </head>
 
 <body>
-
+{% include 'components/djangomessages.html' %}
     <nav class="navbar glass-nav">
         <div class="navbar-left">
             <div class="logo-mark">
@@ -42,7 +43,8 @@
 
     <main class="shell-main">
 
-        <form class="glass-card signup-shell">
+        <form action="/signup/" class="glass-card signup-shell" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
 
             <div class="light-orbit"></div>
 
@@ -215,8 +217,9 @@
                         <div class="toggle-sub">Schools and parents will see this on your profile.</div>
                     </div>
 
-                    <label id="remoteToggle" class="toggle-shell-off">
-                        <input class="toggle-knob"></input>
+                    <input style="display:none;" name="open2remote" id='toggleKnob'></input>
+                    <label type="checkbox" for="toggleKnob" id="remoteToggle" class="toggle-shell-off">
+                        <div class="toggle-knob"></div>
                     </label>
 
                 </div>
@@ -226,15 +229,15 @@
 
                 <div class="button-row">
 
-                    <div class="btn btn-primary profilecontinue">
+                    <button type="submit" class="btn btn-primary profilecontinue">
                         <span>Continue to documents</span>
                         <iconify-icon icon="lucide:arrow-right"></iconify-icon>
-                    </div>
+                    </button>
 
-                    <div class="btn btn-ghost profilecontinue">
+                    <!-- <div class="btn btn-ghost profilecontinue">
                         <iconify-icon icon="lucide:play"></iconify-icon>
                         <span>Preview profile</span>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -290,6 +293,7 @@
         /* TEACHING FOCUS RADIO */
 
         const chips = document.querySelectorAll(".pill-chip")
+        const toggleKnob = document.getElementById('toggleKnob')
         let selectedFocus = null
 
         chips.forEach(chip => {
@@ -313,6 +317,14 @@
 
         let remote = false
 
+        // toggleKnob.onclick = ()=> {toggleKnob.classList.contains("toggle-shell-off")?toggleKnob.value = 'on':toggleKnob.value = 'off'}
+        toggleKnob.addEventListener('click',()=>{
+            if (toggleKnob.classList.contains("toggle-shell-off")){
+                toggleKnob.value = 'on'
+            }else {
+                toggleKnob.value = 'off'
+            }
+        })
         toggle.onclick = () => {
 
             remote = !remote
@@ -322,8 +334,11 @@
             toggle.classList.toggle("toggle-shell-off")
 
             updatePreview()
-
         }
+
+        console.log(`toggle knob value ${toggleKnob.value}`)
+                console.log(`toggle knob value ${toggleKnob.value}`)
+                        console.log(`toggle knob value ${toggleKnob.value}`)
 
 
 
@@ -408,12 +423,10 @@
 
         }
             
-       
 
 
     </script>
-
-
+    <script src={% static 'javascript/signup.js' %}></script>
 </body>
 
 </html>
