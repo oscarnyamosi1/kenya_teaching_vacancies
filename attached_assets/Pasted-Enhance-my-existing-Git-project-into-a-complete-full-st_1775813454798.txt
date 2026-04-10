@@ -1,0 +1,44 @@
+Enhance my existing Git project into a complete full-stack Django + React application.
+
+Project Requirements:
+1. Frontend Framework:
+- Use React with JSX only (NOT TSX).
+- Do not convert files into TypeScript.
+- Keep all React components in clean modular JSX structure.
+
+2. Backend Framework:
+- Use Django as the backend API provider.
+- Build or complete all necessary Django REST API endpoints required by the frontend.
+- Ensure every frontend feature has a matching backend endpoint.
+- Ensure all CRUD operations are fully functional where needed.
+
+3. Frontend ↔ Backend Integration:
+- Connect every React frontend feature to its corresponding Django API endpoint.
+- Verify all backend endpoints are fully hooked into the frontend.
+- No placeholder APIs — all data should come from real Django endpoints.
+- Implement proper API error handling and loading states.
+
+4. Design Consistency:
+- Carefully inspect my existing HTML templates, CSS themes, layouts, and styling patterns.
+- Reuse and preserve my current visual identity.
+- The React UI must be inspired directly by my existing Django template designs.
+- Match spacing, typography, color palettes, card styles, navigation patterns, and responsiveness from my current styles.
+
+5. Existing Project Preservation:
+- Improve and extend the existing project instead of rebuilding from scratch.
+- Preserve current working functionality.
+- Refactor only where necessary for better architecture and maintainability.
+
+6. Architecture Expectations:
+- Separate reusable React components properly.
+- Use scalable folder organization for frontend and backend.
+- Keep Django views, serializers, URLs, and models organized cleanly.
+
+7. Deliverables:
+- Completed React JSX frontend integrated with Django backend.
+- Fully functional API endpoints for all frontend pages.
+- All pages connected dynamically to backend data.
+- Maintain compatibility with my existing Git project structure.
+
+Important:
+Before generating code, first analyze the current repository structure and existing HTML templates so the upgraded React frontend stays faithful to my original design language.

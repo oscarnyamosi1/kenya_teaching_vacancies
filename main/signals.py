@@ -9,4 +9,7 @@ themeList = ["macglass", "charcoal", "green"]
 def initialize_default_themes(sender, **kwargs):
     # Only run for your 'main' app
     if sender.name == 'main':
-        createThemes(themeList)
+        from django.db import connection
+        table_names = connection.introspection.table_names()
+        if 'main_theme' in table_names:
+            createThemes(themeList)
