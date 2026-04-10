@@ -178,7 +178,10 @@
         Submit Documents
         <iconify-icon icon="lucide:arrow-right"></iconify-icon>
       </button>
-      <button class="btn ghost" onclick="saveFormProgress()">Save & Continue Later</button>
+      <button class="btn ghost savencontinueuploaddocs" onclick="saveFormProgress()">
+        <div class="tool-tip btn ghost">Works with all fields filled</div>
+        Save & Continue Later
+      </button>
     </footer>
 
   </section>
@@ -209,14 +212,13 @@
             academic_certificates:academic_certificates ,
             internship_letter:internship_letter,
             carriculum_vitae:carriculum_vitae,
-            tsc_certificate:tsc_certificat
+            tsc_certificate:tsc_certificate
     
         };
 
         // Convert the object to a JSON string and save it to localStorage
         localStorage.setItem('savedFormData', JSON.stringify(formData));
         alert('Form progress saved!');
-        itional
       } else {
         alert('Incomplete form data !')
       }

@@ -5,6 +5,7 @@
 @import url('themes/jobfeed.css');
 @import url('communications.css');
 @import url('styling/ktv-responsive.css');
+@import url('djangomessages.css');
 
 /* smooth transition like macos */
 * {
@@ -27,25 +28,6 @@ a {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-family-body);
-}
-.django-messages{
-    border:dashed 2px;
-    position:fixed;
-    top:30%;
-    justify-self:center;
-    min
-    /* border-block-width:4px; */
-    color :white;
-    min-height:50px;
-    min-width: 60%;
-    border-radius:8px;
-    padding:10px;
-    font-size:10px;
-    background-color:#0f681fcc;
-    z-index:9;
-    align-content:center;
-    justify-items:center;
-    transition:3s;
 }
 
 /* Layout Grid */

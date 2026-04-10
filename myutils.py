@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from applications.models import Application
 from jobs.models import Job
 
+# import os
+
 
 def maincontext(request):
     # import school helper functions here to avoid circular imports at module load
@@ -221,3 +223,11 @@ def createThemes(themes_list):
     from main.models import Theme  
     for item in themes_list:
         Theme.objects.get_or_create(title=str(item))
+
+def getTeacherDocuments(request):
+    from teachers.models import TeacherDocument
+    teacher = getTeacherProfile(request)
+    
+    teacherDocuments = TeacherDocument.objects.filter(teacher = teacher)
+    return teacherDocuments
+

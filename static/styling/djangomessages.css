@@ -1,11 +1,31 @@
 .django-messages {
     position: fixed;
+    display: none;
     top: 20px;
     right: 20px;
     z-index: 9999;
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.django-messages{
+    border:dashed 2px;
+    position:fixed;
+    top:30%;
+    /* border-block-width:4px; */
+    color :white;
+    min-height:50px;
+    min-width: 60%;
+    border-radius:8px;
+    padding:10px;
+    font-size:10px;
+    background-color:#0f681fcc;
+    z-index:9;
+    align-content:center;
+    justify-items:center;
+    transition:3s;
+    display:none;
 }
 
 /* Base message */

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
 
+    'django_seed',
+
 ]
 
 MIDDLEWARE = [
@@ -73,6 +75,12 @@ TEMPLATES = [
         },
     },
 ]
+
+# for iframe embeddings eg pdfs for temporal use
+# X_FRAME_OPTIONS = 'ALLOWALL'
+
+# for iframe embeddings eg pdfs for proff use
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 WSGI_APPLICATION = 'kenya_teaching_vacancies.wsgi.application'
 

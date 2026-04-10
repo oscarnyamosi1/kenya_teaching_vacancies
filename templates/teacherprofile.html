@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+
 {% block headeradditionalcss %}
 <link rel="stylesheet" href={% static 'styling/teacherprofile.css' %}>
 {% endblock headeradditionalcss %}
@@ -201,7 +202,7 @@ teacherprofile
         Documents
       </div>
       <div class="doc-list">
-        <div class="doc-item" data-media-type="kenya-teaching-vacancies-button">
+        <div class="doc-item cvitem" data-media-type="kenya-teaching-vacancies-button">
           <div class="doc-icon">
             <iconify-icon
               icon="lucide:file-check"
@@ -219,7 +220,7 @@ teacherprofile
             ></iconify-icon>
           </button>
         </div>
-        <div class="doc-item" data-media-type="kenya-teaching-vacancies-button">
+        <div class="doc-item certificateitem" data-media-type="kenya-teaching-vacancies-button">
           <div class="doc-icon">
             <iconify-icon
               icon="lucide:award"
@@ -237,7 +238,7 @@ teacherprofile
             ></iconify-icon>
           </button>
         </div>
-        <div class="doc-item" data-media-type="kenya-teaching-vacancies-button">
+        <div class="doc-item tscitem" data-media-type="kenya-teaching-vacancies-button">
           <div class="doc-icon">
             <iconify-icon
               icon="lucide:badge-check"
@@ -260,6 +261,9 @@ teacherprofile
   </div>
 {% endif %}
 
+{% include 'components/documentdisplay.html' %}
+
+{{teacherDocument4json|json_script:"teacherDocuments"}}
 
 {% endblock center_feed_content %}
 
@@ -329,5 +333,5 @@ teacherprofile
 
 </aside>
 
-
+<script src="{% static 'javascript/teacherprofile.js' %}" ></script>
 {% endblock rightsidebar %}

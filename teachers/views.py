@@ -9,13 +9,19 @@ from django.contrib import messages
 
 @login_required(login_url='login')
 def teacherprofile(request):
+    from myutils import getTeacherDocuments
+
     this_teacher_exists = Teacher.objects.filter(user = request.user ).exists()
     if this_teacher_exists :
         this_teacher = Teacher.objects.get(user = request.user )
     else:
         this_teacher = None
+
+    teacherDocuments = getTeacherDocuments(request)
+    teacherDocument4json = list(TeacherDocument.objects.filter(teacher = this_teacher).values())
+
     context = createContext(request)
-    context2 = {'teacher':this_teacher}
+    context2 = {'teacher':this_teacher,'teacherDocuments':teacherDocuments,'teacherDocument4json':teacherDocument4json}
     context = context|context2
     return render(request,'teacherprofile.html',context)
 

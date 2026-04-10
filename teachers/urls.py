@@ -26,4 +26,5 @@ urlpatterns = [
     path('change-email/',views.changeEmail,name='change-email'),
     path('view-documents/',views.viewDocuments,name='view-documents'),
 
+
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

@@ -1,0 +1,19 @@
+{% comment %} 
+{% for document in teacherDocuments  %}
+
+    {% if document.get_file_type == 'image' %}
+        <div id="{{document.id}}" class="card {{document.document_type}} documentdisplay">
+            <button id="{{document.id}}" class="btn btn-outline closebtn">Close</button>
+            <img style="width:100%;" src="{{document.file.url}}" alt="">
+        
+        </div>
+    {% elif document.get_file_type == 'pdf' %}
+        <div id="{{document.id}}" class="card {{document.document_type}} documentdisplay">
+            <button id="{{document.id}}" class="btn btn-outline closebtn">Close</button>
+            <iframe src="{{ request.scheme }}://{{ request.get_host }}{{ file.url }}"></iframe>        </div>
+    {% endif %}
+    
+{% endfor %}
+
+
+     {% endcomment %}

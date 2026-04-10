@@ -8,6 +8,8 @@ from employers.models import Employer
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 
+import os
+
 classification_choices = (
     ('Humanities','Humanities'),
     ('Sciences','Sciences'),
@@ -157,6 +159,17 @@ class TeacherDocument(models.Model):
     document_type = models.CharField(max_length=10000,choices=document_types,blank=True)
     user = auth.get_user_model().username
     file = models.FileField(upload_to=f'teacher_documents/')
+
+    @property
+    def get_file_type(self):
+        # def get_file_type(file)
+        ext = os.path.splitext(self.file.name)[1].lower()
+        
+        if ext in ['.jpg', '.jpeg', '.png', '.webp']:
+            return 'image'
+        elif ext == '.pdf':
+            return 'pdf'
+        return 'other'
     
     def __str__(self):
         return f'''Documents {self.teacher}.'''

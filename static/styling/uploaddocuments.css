@@ -19,12 +19,7 @@
   z-index: 10;
 }
 
-/* .glass {
-  background: var(--glass);
-  backdrop-filter: blur(18px) saturate(140%);
-  border-bottom: 1px solid var(--border);
-}
- */
+
 .nav-left {
   display: flex;
   align-items: center;
@@ -210,6 +205,8 @@
   border: 1px solid var(--border);
   color: var(--text);
   cursor: pointer;
+
+
 }
 
 .upload-btn.outline {
@@ -225,6 +222,10 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+
+
+  animation-name:slide;
+  animation-duration:5s;
 }
 
 .btn {
@@ -249,3 +250,40 @@
 .btn.ghost {
   background: transparent;
 }
+.savencontinueuploaddocs {
+  position:relative;
+  transition: 2s;
+
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(0);
+  }30% {
+    transform:translateX(-100px);
+  }60% {
+    transform:translateX(70px) ;
+  }100% {
+    transform: translateX(0px);
+  }
+}
+
+.savencontinueuploaddocs .tool-tip {
+  position: absolute;
+  top:-50px;
+  right:-40px;
+  opacity: 0;
+  transition: opacity 1s ease;
+
+}
+
+
+.savencontinueuploaddocs:hover {
+
+  .tool-tip{
+    opacity:1;
+    /* background-color: red; */
+  }
+
+}
+
