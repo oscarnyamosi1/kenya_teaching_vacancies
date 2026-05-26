@@ -252,34 +252,23 @@ kenya_constituencies = {
 }
 
 
-# kenya_counties = [
-#     "Baringo", "Bomet", "Bungoma", "Busia", "Elgeyo Marakwet",
-#     "Embu", "Garissa", "Homa Bay", "Isiolo", "Kajiado",
-#     "Kakamega", "Kericho", "Kiambu", "Kilifi", "Kirinyaga",
-#     "Kisii", "Kisumu", "Kitui", "Kwale", "Laikipia",
-#     "Lamu", "Machakos", "Makueni", "Mandera", "Marsabit",
-#     "Meru", "Migori", "Mombasa", "Murang'a", "Nairobi",
-#     "Nakuru", "Nandi", "Narok", "Nyamira", "Nyandarua",
-#     "Nyeri", "Samburu", "Siaya", "Taita Taveta", "Tana River",
-#     "Tharaka Nithi", "Trans Nzoia", "Turkana", "Uasin Gishu",
-#     "Vihiga", "Wajir", "West Pokot"
-# ]
+class Constituency(models.Model):
+    title = models.CharField(max_length=30,unique=True)
+    is_constituency = models.BooleanField(default=True)
+    def __str__(self):
+        return f'{self.title.capitalize()}'
+    
 
 
 class County(models.Model):
     title = models.CharField(max_length=30,unique=True)
-
+    constituencies = models.ManyToManyField(Constituency)
     is_county = models.BooleanField(default=True)
     def __str__(self):
         return f'{self.title.capitalize()}'
     
-class Constituency(models.Model):
-    title = models.CharField(max_length=30,unique=True)
-    county = models.ForeignKey(County,on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f'{self.title.capitalize()}'
-    
+
 class Language(models.Model):
     title = models.CharField(max_length=20)
 
@@ -310,14 +299,22 @@ def createCountynConstituencies():
     County = apps.get_model('main','County')
     if (len(County.objects.all()) < 47 or len(County.objects.all()) > 47)and(len(Constituency.objects.all()) < 290 or len(Constituency.objects.all()) > 290) :
         for county in kenya_constituencies.keys():
+            
             new_county = County.objects.create(title = county).save()
-        for county in kenya_constituencies.keys():
-            new_county = County.objects.get(title = county)
-            for constituency in kenya_constituencies.get(county):
-                Constituency.objects.create(county = new_county,title=constituency).save()
+            constituencies = kenya_constituencies[new_county.title]
+            new_county.constituencies = constituencies
+            new_county.save()
 
+# def createCountynConstituencies():
+#     County = apps.get_model('main','County')
+#     if (len(County.objects.all()) < 47 or len(County.objects.all()) > 47)and(len(Constituency.objects.all()) < 290 or len(Constituency.objects.all()) > 290) :
+#         for county in kenya_constituencies.keys():
+#             new_county = County.objects.create(title = county).save()
+#         for county in kenya_constituencies.keys():
+#             new_county = County.objects.get(title = county)
+#             for constituency in kenya_constituencies.get(county):
+#                 Constituency.objects.create(county = new_county,title=constituency).save()
 
-    # create constituencies
 
 class Theme(models.Model):
     title = models.CharField(max_length=20,blank=True,null=True)

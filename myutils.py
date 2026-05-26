@@ -6,6 +6,8 @@ from schools.models import School,SchoolBlog
 from django.contrib.auth.decorators import login_required
 from applications.models import Application
 from jobs.models import Job
+from rest_framework import status
+from rest_framework.response import Response
 
 # import os
 
@@ -142,10 +144,6 @@ def getAllJobs(request):
 def getAllSchools(request):
     return School.objects.all()
 
-@login_required(login_url='login')
-def getAllSchools(request):
-    return SchoolBlog.objects.all()
-
 
 @login_required(login_url='login')
 def getTeacherSavedJobs(request):
@@ -169,7 +167,7 @@ def countActiveJobs():
     return len(active_jobs)
 
 
-def getJobById(id):
+def getJobById(id:int):
     job_exists = Job.objects.filter(id=id).exists()
     if job_exists:
         job = Job.objects.get(id=id)
@@ -231,3 +229,17 @@ def getTeacherDocuments(request):
     teacherDocuments = TeacherDocument.objects.filter(teacher = teacher)
     return teacherDocuments
 
+def updateTeacherProfileEmail(request):
+    user = request.user
+    teacher = getTeacherProfile(request)
+    teacher.email = user.email
+    teacher.save()
+
+
+def getSchool(id:int):
+    schoolExists = School.objects.filter(id=id).exists()
+    if schoolExists:
+        school=School.objects.get(id=id)
+    else:
+        return Response({"message":"No such School"},status=status.HTTP_400_BAD_REQUEST)
+    return school

@@ -1,0 +1,133 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:30:56
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://0.0.0.0:5000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+[10/Apr/2026 09:31:02] [32m"GET / HTTP/1.1" 302 0[0m
+[10/Apr/2026 09:31:02] [m"GET /login/?next=/ HTTP/1.1" 200 6231[0m
+[10/Apr/2026 09:31:02] [33m"GET /static/themes/macglass.css HTTP/1.1" 404 1871[0m
+[10/Apr/2026 09:31:02] [m"GET /static/styling/login.css HTTP/1.1" 200 3632[0m
+[10/Apr/2026 09:31:02] [m"GET /static/styling/index.css HTTP/1.1" 200 18051[0m
+[10/Apr/2026 09:31:08] [m"GET /static/images/logo/ktvlogo.png HTTP/1.1" 200 1428083[0m
+[10/Apr/2026 09:31:08] [m"GET /static/styling/themes/jobfeed.css HTTP/1.1" 200 2548[0m
+[10/Apr/2026 09:31:08] [m"GET /static/styling/uploaddocuments.css HTTP/1.1" 200 4570[0m
+[10/Apr/2026 09:31:08] [m"GET /static/styling/djangomessages.css HTTP/1.1" 200 1748[0m
+[10/Apr/2026 09:31:08] [33m"GET /static/styling/styling/ktv-responsive.css HTTP/1.1" 404 1916[0m
+[10/Apr/2026 09:31:08] [m"GET /static/styling/communications.css HTTP/1.1" 200 1413[0m
+[10/Apr/2026 09:31:08] [m"GET /static/styling/themes/macglass.css HTTP/1.1" 200 4129[0m
+Not Found: /favicon.ico
+[10/Apr/2026 09:31:08] [33m"GET /favicon.ico HTTP/1.1" 404 7438[0m
+[10/Apr/2026 09:31:14] [32m"GET / HTTP/1.1" 302 0[0m
+[10/Apr/2026 09:31:14] [m"GET /login/?next=/ HTTP/1.1" 200 6231[0m
+[10/Apr/2026 09:31:15] [33m"GET /static/themes/macglass.css HTTP/1.1" 404 1924[0m
+[10/Apr/2026 09:31:15] [m"GET /static/styling/index.css HTTP/1.1" 200 18051[0m
+[10/Apr/2026 09:31:15] [m"GET /static/styling/login.css HTTP/1.1" 200 3632[0m
+[10/Apr/2026 09:31:16] [m"GET /static/images/logo/ktvlogo.png HTTP/1.1" 200 1428083[0m
+[10/Apr/2026 09:31:16] [m"GET /static/styling/uploaddocuments.css HTTP/1.1" 200 4570[0m
+[10/Apr/2026 09:31:16] [m"GET /static/styling/communications.css HTTP/1.1" 200 1413[0m
+[10/Apr/2026 09:31:16] [m"GET /static/styling/themes/jobfeed.css HTTP/1.1" 200 2548[0m
+[10/Apr/2026 09:31:16] [m"GET /static/styling/djangomessages.css HTTP/1.1" 200 1748[0m
+[10/Apr/2026 09:31:16] [33m"GET /static/styling/styling/ktv-responsive.css HTTP/1.1" 404 1969[0m
+[10/Apr/2026 09:31:16] [m"GET /static/styling/themes/macglass.css HTTP/1.1" 200 4129[0m
+/home/runner/workspace/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:35:24
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://0.0.0.0:5000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+[10/Apr/2026 09:35:25] [32m"GET / HTTP/1.1" 302 0[0m
+[10/Apr/2026 09:35:25] [m"GET /login/?next=/ HTTP/1.1" 200 6231[0m
+[10/Apr/2026 09:35:26] [36m"GET /static/styling/index.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:35:26] [36m"GET /static/styling/login.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:35:26] [33m"GET /static/themes/macglass.css HTTP/1.1" 404 1924[0m
+[10/Apr/2026 09:35:26] [33m"GET /static/styling/styling/ktv-responsive.css HTTP/1.1" 404 1969[0m
+[10/Apr/2026 09:35:26] [36m"GET /static/styling/uploaddocuments.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:35:26] [36m"GET /static/styling/themes/jobfeed.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:35:26] [36m"GET /static/styling/communications.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:35:26] [36m"GET /static/styling/djangomessages.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:35:26] [36m"GET /static/images/logo/ktvlogo.png HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:35:27] [36m"GET /static/styling/themes/macglass.css HTTP/1.1" 304 0[0m
+/home/runner/workspace/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:36:49
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://0.0.0.0:5000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+[10/Apr/2026 09:36:50] [32m"GET / HTTP/1.1" 302 0[0m
+[10/Apr/2026 09:36:50] [m"GET /login/?next=/ HTTP/1.1" 200 6231[0m
+[10/Apr/2026 09:36:51] [36m"GET /static/styling/login.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:36:51] [36m"GET /static/styling/index.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:36:51] [33m"GET /static/themes/macglass.css HTTP/1.1" 404 1924[0m
+[10/Apr/2026 09:36:51] [36m"GET /static/images/logo/ktvlogo.png HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:36:51] [36m"GET /static/styling/themes/jobfeed.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:36:51] [33m"GET /static/styling/styling/ktv-responsive.css HTTP/1.1" 404 1969[0m
+[10/Apr/2026 09:36:51] [36m"GET /static/styling/uploaddocuments.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:36:51] [36m"GET /static/styling/communications.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:36:51] [36m"GET /static/styling/djangomessages.css HTTP/1.1" 304 0[0m
+[10/Apr/2026 09:36:52] [36m"GET /static/styling/themes/macglass.css HTTP/1.1" 304 0[0m
+/home/runner/workspace/api/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:37:07
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://0.0.0.0:5000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+[10/Apr/2026 09:37:08] [32m"GET / HTTP/1.1" 302 0[0m
+[10/Apr/2026 09:37:08] [m"GET /login/?next=/ HTTP/1.1" 200 6231[0m
+[10/Apr/2026 09:37:09] [33m"GET /static/themes/macglass.css HTTP/1.1" 404 1924[0m
+[10/Apr/2026 09:37:09] [33m"GET /static/styling/styling/ktv-responsive.css HTTP/1.1" 404 1969[0m
+/home/runner/workspace/kenya_teaching_vacancies/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:37:15
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://0.0.0.0:5000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+[10/Apr/2026 09:37:16] [32m"GET / HTTP/1.1" 302 0[0m
+[10/Apr/2026 09:37:17] [m"GET /login/?next=/ HTTP/1.1" 200 6231[0m
+[10/Apr/2026 09:37:17] [33m"GET /static/themes/macglass.css HTTP/1.1" 404 1924[0m
+[10/Apr/2026 09:37:17] [33m"GET /static/styling/styling/ktv-responsive.css HTTP/1.1" 404 1969[0m
+/home/runner/workspace/kenya_teaching_vacancies/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:37:21
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://0.0.0.0:5000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+[10/Apr/2026 09:37:21] [32m"GET / HTTP/1.1" 302 0[0m
+[10/Apr/2026 09:37:22] [m"GET /login/?next=/ HTTP/1.1" 200 6231[0m
+[10/Apr/2026 09:37:22] [33m"GET /static/themes/macglass.css HTTP/1.1" 404 1924[0m
+[10/Apr/2026 09:37:23] [33m"GET /static/styling/styling/ktv-responsive.css HTTP/1.1" 404 1969[0m

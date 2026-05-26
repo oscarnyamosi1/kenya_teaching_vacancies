@@ -87,7 +87,6 @@ class Teacher(models.Model):
         teachersubjectslist = self.teacher_subjects.all()
         teachersubjects = ', '.join(teachersubjectslist).capitalize()
         return f'{teachersubjects} .'
-
     @property
     def availability(self):
         now = timezone.now()

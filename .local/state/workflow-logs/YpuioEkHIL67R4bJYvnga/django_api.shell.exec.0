@@ -1,0 +1,103 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:43:46
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+Forbidden: /api/auth/me/
+[10/Apr/2026 09:44:04] [31;1m"GET /api/auth/me/ HTTP/1.1" 403 58[0m
+[10/Apr/2026 09:44:04] [m"GET /api/jobs/?page=1 HTTP/1.1" 200 52[0m
+[10/Apr/2026 09:44:04] [m"GET /api/jobs/trending/ HTTP/1.1" 200 52[0m
+Forbidden: /api/auth/me/
+[10/Apr/2026 09:44:04] [31;1m"GET /api/auth/me/ HTTP/1.1" 403 58[0m
+[10/Apr/2026 09:44:04] [m"GET /api/jobs/?page=1 HTTP/1.1" 200 52[0m
+[10/Apr/2026 09:44:04] [m"GET /api/jobs/trending/ HTTP/1.1" 200 52[0m
+/home/runner/workspace/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:45:08
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+/home/runner/workspace/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:45:48
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+/home/runner/workspace/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:46:37
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+/home/runner/workspace/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:46:39
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+/home/runner/workspace/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:46:45
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+/home/runner/workspace/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:46:47
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+/home/runner/workspace/api/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:46:52
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m

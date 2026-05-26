@@ -8,6 +8,28 @@ from applications.models import Application
 from main.models import County, Constituency, Subject, EmploymentType, Specialization, Language
 
 
+class SignupSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, min_length=8)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data.get('email', ''),
+            password=validated_data['password'],
+        )
+        return user
+
+
+# class UserSerializer(serializers.ModelSerializer):
+
+#     class Meta:
+#         model = User
+#         fields = ('id', 'username', 'email')
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -100,6 +122,7 @@ class TeacherSerializer(serializers.ModelSerializer):
     school_types_experienced = SchoolCategorySerializer(many=True, read_only=True)
     specializations = SpecializationSerializer(many=True, read_only=True)
     employment_type = EmploymentTypeSerializer(read_only=True)
+    schools_followed = SchoolSerializer(many=True, read_only=True)
 
     class Meta:
         model = Teacher
@@ -111,7 +134,7 @@ class TeacherSerializer(serializers.ModelSerializer):
             'tsc_number', 'specializations', 'preferred_locations',
             'willing_to_relocate', 'expected_salary_min', 'expected_salary_max',
             'employment_type', 'profile_visibility', 'verified_badge',
-            'profile_picture', 'interviews_done', 'is_teacher',
+            'profile_picture', 'interviews_done', 'is_teacher','schools_followed'
         ]
 
 

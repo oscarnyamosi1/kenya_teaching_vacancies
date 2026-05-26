@@ -1,0 +1,30 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 10, 2026 - 09:47:25
+Django version 6.0.4, using settings 'kenya_teaching_vacancies.settings'
+Starting development server at http://localhost:8000/
+Quit the server with CONTROL-C.
+
+[33;1mWARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/[0m
+[10/Apr/2026 09:48:00] [m"GET /api/jobs/ HTTP/1.1" 200 7170[0m
+Not Found: /api/meta/
+[10/Apr/2026 09:48:05] [33m"GET /api/meta/ HTTP/1.1" 404 12202[0m
+Forbidden: /api/auth/me/
+[10/Apr/2026 09:48:06] [31;1m"GET /api/auth/me/ HTTP/1.1" 403 58[0m
+Forbidden: /api/auth/me/
+[10/Apr/2026 09:48:06] [31;1m"GET /api/auth/me/ HTTP/1.1" 403 58[0m
+[10/Apr/2026 09:48:06] [m"GET /api/jobs/?page=1 HTTP/1.1" 200 7170[0m
+[10/Apr/2026 09:48:06] [m"GET /api/jobs/trending/ HTTP/1.1" 200 7170[0m
+[10/Apr/2026 09:48:06] [m"GET /api/jobs/?page=1 HTTP/1.1" 200 7170[0m
+[10/Apr/2026 09:48:06] [m"GET /api/jobs/trending/ HTTP/1.1" 200 7170[0m
+Forbidden: /api/auth/me/
+[10/Apr/2026 09:48:41] [31;1m"GET /api/auth/me/ HTTP/1.1" 403 58[0m
+Forbidden: /api/auth/me/
+[10/Apr/2026 09:48:41] [31;1m"GET /api/auth/me/ HTTP/1.1" 403 58[0m
+[10/Apr/2026 09:48:41] [m"GET /api/jobs/?page=1 HTTP/1.1" 200 7170[0m
+[10/Apr/2026 09:48:41] [m"GET /api/jobs/trending/ HTTP/1.1" 200 7170[0m
+[10/Apr/2026 09:48:41] [m"GET /api/jobs/?page=1 HTTP/1.1" 200 7170[0m
+[10/Apr/2026 09:48:41] [m"GET /api/jobs/trending/ HTTP/1.1" 200 7170[0m

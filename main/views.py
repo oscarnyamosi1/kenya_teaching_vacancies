@@ -61,6 +61,19 @@ def login(request):
                     
                     if user is not None:
                         auth.login(request,user)
+
+                        if Teacher.objects.filter(user = request.user).exists():
+                            pass
+                        else:
+                            Teacher.objects.create(user= request.user,email = request.user.email).save()
+                            print('''
+                            
+                            
+                            created teacher new with email profile
+                            
+                            
+                            ''')
+                        # updateTeacherProfileEmail(request)
                         return redirect("home")
                     else:
                         # alert in javascript wrong password or email

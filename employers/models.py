@@ -16,7 +16,7 @@ class Employer(models.Model):
 
     employer_location = models.ForeignKey('main.County',on_delete=models.CASCADE)
     verified = models.BooleanField(default=False)
-
+    contact=models.CharField(max_length=13,blank=True,null=True)
     is_employer = models.BooleanField(default=True)
 
     def __str__(self):
