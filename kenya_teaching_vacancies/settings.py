@@ -11,12 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-change-in-production')
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG= False
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECRET_KEY = "secret"
-
-DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -63,7 +62,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'kenya_teaching_vacancies.urls'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://kenyateachers.pythonanywhere.com",
     "https://kenyateachers.vercel.app",
     "http://localhost:5173",
     "http://localhost:5000",
@@ -120,7 +118,7 @@ if DEBUG:
     SESSION_COOKIE_SAMESITE = "Lax"
 
     CSRF_COOKIE_SECURE = False
-    CSRF_COOKIE_SAME_SITE="Lax"
+    CSRF_COOKIE_SAMESITE="Lax"
 
     COOKIE_SAMESITE = 'Lax'
 
@@ -135,13 +133,14 @@ else:
     COOKIE_SAMESITE = 'None'
 
     CSRF_COOKIE_SECURE = True
-    CSRF_COOKIE_SAME_SITE="None"
+    CSRF_COOKIE_SAMESITE="None"
 
     SIMPLE_JWT.update({
         'AUTH_COOKIE_SECURE':True,
         'AUTH_COOKIE_SAMESITE':'None'
     })
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 COOKIE_PATH= "/"
 
