@@ -20,7 +20,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "localhost"
+    "localhost",
+    "kenyateachers.pythonanywhere.com"
 ]
 
 INSTALLED_APPS = [
@@ -31,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'corsheaders',
+    'headers',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
 
@@ -63,6 +64,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'kenya_teaching_vacancies.urls'
 
 CORS_ALLOWED_ORIGINS = [
+    "https://kenyateachers.pythonanywhere.com",
+    "https://kenyateachers.vercel.app",
     "http://localhost:5173",
     "http://localhost:5000",
     "http://127.0.0.1:5000",
@@ -77,6 +80,8 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://kenyateachers.pythonanywhere.com",
+    "https://kenyateachers.vercel.app",
     "http://localhost:5173",
     "http://localhost:5000",
     "http://127.0.0.1:5000",
