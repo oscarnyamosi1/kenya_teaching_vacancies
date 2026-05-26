@@ -24,22 +24,20 @@ def set_auth_cookies(response, access_token, refresh_token):
         key="access_token",
         value=str(access_token),
         httponly=True,
-        domain=None,
-        secure=True,   # True in production (HTTPS)
+        secure=True,
         samesite="None",
         path="/",
-        max_age=15 * 60,  # 15 minutes
+        max_age=15 * 60,
     )
 
     response.set_cookie(
         key="refresh_token",
         value=str(refresh_token),
         httponly=True,
-        domain=None,
-        secure=True,   # True in production (HTTPS)
+        secure=True,
         samesite="None",
         path="/",
-        max_age=7 * 24 * 60 * 60,  # 7 days
+        max_age=7 * 24 * 60 * 60,
     )
 
 
