@@ -25,8 +25,8 @@ def set_auth_cookies(response, access_token, refresh_token):
         value=str(access_token),
         httponly=True,
         domain=None,
-        secure=settings.COOKIE_SECURE,   # True in production (HTTPS)
-        samesite=settings.COOKIE_SAMESITE,
+        secure=True,   # True in production (HTTPS)
+        samesite="None",
         path="/",
         max_age=15 * 60,  # 15 minutes
     )
@@ -36,8 +36,8 @@ def set_auth_cookies(response, access_token, refresh_token):
         value=str(refresh_token),
         httponly=True,
         domain=None,
-        secure=settings.COOKIE_SECURE,
-        samesite=settings.COOKIE_SAMESITE,
+        secure=True,   # True in production (HTTPS)
+        samesite="None",
         path="/",
         max_age=7 * 24 * 60 * 60,  # 7 days
     )
