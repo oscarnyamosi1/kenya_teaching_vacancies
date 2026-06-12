@@ -9,7 +9,6 @@ from employers.models import Employer
 class Application(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    approver = models.ForeignKey(Employer,on_delete=models.CASCADE)
     status = models.CharField(
         max_length=20,
         choices=[

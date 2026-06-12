@@ -2,7 +2,7 @@ from django.urls import path
 
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views,jobstuff,teacherstuff,schoolstuff
+from . import views,jobstuff,teacherstuff,schoolstuff,locationstuff
 urlpatterns = [
     # Auth    
     path('auth/login/',views.login_view,name="login"),
@@ -35,5 +35,6 @@ urlpatterns = [
 
     path('teacher/profile/', teacherstuff.getTeacherProfile),
 
+    path('locations/getcounties/',locationstuff.getCounties)
     # Jobs
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

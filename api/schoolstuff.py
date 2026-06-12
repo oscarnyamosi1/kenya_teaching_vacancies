@@ -22,12 +22,11 @@ def followSchool(request):
     
     school = getSchool(schoolId)
     teacher = getTeacherProfile(request)
-    teacherserializer = TeacherSerializer(teacher)
-
     teacher.schools_followed.add(school)
+    teacher.save()
 
     return Response(
-        {"message":"followed School","teacher_profile":teacherserializer.data},status=status.HTTP_200_OK
+        {"message":"Followed School"},status=status.HTTP_200_OK
     )
 
 @api_view(["POST"])
@@ -54,7 +53,7 @@ def checkFollow(request):
     teacher = getTeacherProfile(request)
     if school in list(teacher.schools_followed.all()):
         return Response(
-            {"message":"following School","isFollowing":True},status=status.HTTP_200_OK
+            {"message":"Following School","isFollowing":True},status=status.HTTP_200_OK
         )
     return Response(
         {"message":"Not following School","isFollowing":False},status=status.HTTP_200_OK

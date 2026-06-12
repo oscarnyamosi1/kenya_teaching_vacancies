@@ -10,3 +10,4 @@ requirementsWEBDEV.txt
 media/
 __pycache__/
 .env
+*.sqlite3

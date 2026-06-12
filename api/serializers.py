@@ -103,7 +103,7 @@ class JobListSerializer(serializers.ModelSerializer):
             'location', 'county', 'subjects_required', 'employment_type',
             'is_promoted', 'is_featured', 'is_urgent', 'is_active',
             'application_deadline', 'date_posted', 'views', 'saves',
-            'total_applications', 'employer', 'days_posted', 'days_to_deadline',
+            'total_applications', 'employer', 'days_posted', 'days_to_deadline','application_deadline'
         ]
 
 

@@ -4,7 +4,7 @@ from teachers.models import Teacher
 from rest_framework.decorators import api_view,permission_classes 
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework import status
-
+from employers.models import Employer
 
 @api_view(['GET','PATCH'])
 @permission_classes([IsAuthenticated])
@@ -27,3 +27,12 @@ def getTeacherProfile(request):
             serializer.save()
             return Response(teacherSerializedData.data|{"message":"edited"},status=status.HTTP_201_CREATED)
         return Response(teacherSerializedData.data|{"message":"Not edited.Invalid data"},status=status.HTTP_417_EXPECTATION_FAILED)
+
+
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+# def uploaderProfile(request):
+#     user = request.user
+#     employerProfile = Employer.objects.get_or_create(user = user)[0]
+#     employerserializer = EmployerSerializer(employerProfile)
+#     return Response({"message":"employer profile"},status=status.HTTP_200_OK)

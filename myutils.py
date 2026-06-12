@@ -105,30 +105,25 @@ def returnToPrevPage(request):
     prev_url = request.META.get('HTTP_REFERER')
     return redirect(str(prev_url))
 
-@login_required(login_url='login')
-def createMissingTeacherProfiles(request):
-    user = request.user
-    teacher_profiles = Teacher.objects.all()
+# @login_required(login_url='login')
+# def createMissingTeacherProfiles(request):
+#     user = request.user
+#     teacher_profiles = Teacher.objects.all()
 
 
-    profile_exists = teacher_profiles.filter(user = user).exists()
-    if profile_exists :
-        pass
-    else:
-        new_teacher_profile = Teacher.objects.create(user = user,email=user.email)
-        new_teacher_profile.save()
-        print('teacher profile created')
+#     profile_exists = teacher_profiles.filter(user = user).exists()
+#     if profile_exists :
+#         pass
+#     else:
+#         new_teacher_profile = Teacher.objects.create(user = user,email=user.email)
+#         new_teacher_profile.save()
+#         print('teacher profile created')
 
 
-@login_required(login_url='login')
 def getTeacherProfile(request):
-    createMissingTeacherProfiles(request) 
-    if request.user.is_authenticated:
-        teacher = Teacher.objects.get(user = request.user)
-        return teacher
-    else:
-        return redirect('login')
-    
+    # createMissingTeacherProfiles(request) 
+    teacher = Teacher.objects.get(user = request.user)
+    return teacher
 
 @login_required(login_url='login')
 def getAllJobApplications(request):
@@ -175,7 +170,7 @@ def getJobById(id:int):
     else:
         None
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def getAllJobsApplied(request):
     teacher = getTeacherProfile(request)
     return teacher.applied_jobs.all()
