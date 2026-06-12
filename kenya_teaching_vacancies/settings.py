@@ -27,7 +27,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-
+    'corsheaders'
     'api',
     'applications',
     'employers',
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'schools',
     'superuser',
     'teachers'
+
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173"
 
 ]
+
+from corsheaders.defaults import default_methods
+CORS_ALLOW_METHODS = list(default_headers)
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "x-csrftoken"

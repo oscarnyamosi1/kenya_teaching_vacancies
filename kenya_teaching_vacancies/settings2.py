@@ -11,17 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-change-in-production')
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG= False
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECRET_KEY = "secret"
-
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost"
-]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,10 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-
+    'corsheaders'
     'api',
     'applications',
     'employers',
@@ -45,6 +38,7 @@ INSTALLED_APPS = [
     'schools',
     'superuser',
     'teachers'
+
 ]
 
 MIDDLEWARE = [
@@ -62,8 +56,20 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'kenya_teaching_vacancies.urls'
 
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "kenyateachers.pythonanywhere.com",
+    "www.kenyateachers.pythonanywhere.com"
+]
+
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
+    "https://kenyateachers.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:5000",
+    "http://127.0.0.1:5000",
+    "http://127.0.0.1:5173"
 
 ]
 
@@ -74,7 +80,12 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173"
+    "https://kenyateachers.pythonanywhere.com",
+    "https://kenyateachers.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:5000",
+    "http://127.0.0.1:5000",
+    "http://127.0.0.1:5173"
 ]
 
 
@@ -92,7 +103,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 
     'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': False,
+    'BLACKLIST_AFTER_ROTATION': True,
 
     'AUTH_HEADER_TYPES': ('Bearer',),
     "AUTH_COOKIE": "access_token",
@@ -107,31 +118,32 @@ COOKIE_SECURE = False #change to true in production
 
 if DEBUG:
     SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
-
     SESSION_COOKIE_SAMESITE = "Lax"
-    CSRF_COOKIE_SAMESITE = "Lax"
 
-    COOKIE_SAMESITE = "Lax"
+    CSRF_COOKIE_SECURE = False
+    CSRF_COOKIE_SAMESITE="Lax"
+
+    COOKIE_SAMESITE = 'Lax'
 
     SIMPLE_JWT.update({
-        "AUTH_COOKIE_SECURE": False,
-        "AUTH_COOKIE_SAMESITE": "Lax",
+        'AUTH_COOKIE_SECURE':False,
+        'AUTH_COOKIE_SAMESITE':'Lax'
     })
-
 else:
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-
     SESSION_COOKIE_SAMESITE = "None"
-    CSRF_COOKIE_SAMESITE = "None"
 
-    COOKIE_SAMESITE = "None"
+    COOKIE_SAMESITE = 'None'
+
+    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_SAMESITE="None"
 
     SIMPLE_JWT.update({
-        "AUTH_COOKIE_SECURE": True,
-        "AUTH_COOKIE_SAMESITE": "None",
+        'AUTH_COOKIE_SECURE':True,
+        'AUTH_COOKIE_SAMESITE':'None'
     })
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 COOKIE_PATH= "/"
 
@@ -191,3 +203,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
